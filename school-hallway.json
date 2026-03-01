@@ -1,0 +1,19 @@
+{
+  "environment": "school-hallway",
+  "title": "The Class Pass",
+  "goal": "Get the class pass to the right room before the bell.",
+  "nodes": [
+    { "id": "sh1", "location": "hall-start", "text": ["I am in the hall.", "The class pass is not on the hook."], "choiceA": "Check the class rug", "choiceB": "Ask the hall pal", "nextA": "sh2", "nextB": "sh3", "effects": ["startQuest"] },
+    { "id": "sh2", "location": "class-door", "text": ["The rug is flat.", "A wet path goes to the art room."], "choiceA": "Run to art", "choiceB": "Check the sink", "nextA": "sh4", "nextB": "sh5", "effects": ["sawClue"] },
+    { "id": "sh3", "location": "locker", "text": ["My hall pal saw a kid in a red cap.", "He had the pass at lunch."], "choiceA": "Find the red cap", "choiceB": "Go to art", "nextA": "sh6", "nextB": "sh4", "effects": ["talkedFriend"] },
+    { "id": "sh4", "location": "art-room", "text": ["The art room has wet paint.", "The pass is not by the rack."], "choiceA": "Ask the art pal", "choiceB": "Check the sink", "nextA": "sh7", "nextB": "sh5", "effects": ["roomCheck"] },
+    { "id": "sh5", "location": "sink", "text": ["A class smock is by the sink.", "The pass may be in the big bin."], "choiceA": "Tap the bin", "choiceB": "Skip to the gym hall", "nextA": "sh8", "nextB": "sh6", "effects": ["newClue"] },
+    { "id": "sh6", "location": "gym-hall", "text": ["The red cap kid is sad.", "He lost the pass in the bin."], "choiceA": "Go to the bin", "choiceB": "Walk him to class", "nextA": "sh8", "nextB": "sh9", "effects": ["foundKid"] },
+    { "id": "sh7", "location": "art-room", "text": ["The art pal says, 'The bell is set to ring.'", "We must act fast."], "choiceA": "Run to the bin", "choiceB": "Run to class", "nextA": "sh8", "nextB": "sh9", "effects": ["timePressure"] },
+    { "id": "sh8", "location": "supply-bin", "text": ["I lift a pad and a map.", "The class pass is at the base."], "choiceA": "Grab the pass", "choiceB": "Call the red cap kid", "nextA": "sh10", "nextB": "sh10", "effects": ["foundPass"] },
+    { "id": "sh9", "location": "class-door", "text": ["The pass is not here yet.", "The class waits by the door."], "choiceA": "Run to the bin", "choiceB": "Ask the hall pal", "nextA": "sh8", "nextB": "sh3", "effects": ["loop"] },
+    { "id": "sh10", "location": "hall-run", "text": ["I dash in the hall.", "The bell has not rung."], "choiceA": "Hand the pass to class", "choiceB": "Hand the pass to the red cap kid", "nextA": "sh11", "nextB": "sh11", "effects": ["sprint"] },
+    { "id": "sh11", "location": "class-door", "text": ["The class can grin.", "The pass is back on the hook."], "choiceA": "Step in class", "choiceB": "High-five the pal", "nextA": "sh12", "nextB": "sh12", "effects": ["questClear"] },
+    { "id": "sh12", "location": "class-door", "text": ["The bell rings.", "We made it in time."], "choiceA": "Play again", "choiceB": "Pick a new map", "nextA": "sh1", "nextB": "sh1", "effects": ["end"] }
+  ]
+}

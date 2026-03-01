@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLOCK QUEST</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <section id="title-screen" class="screen active">
+      <div class="landing-shell">
+        <section class="landing-hero">
+          <div class="hero-scene hero-scene-left" aria-hidden="true"></div>
+          <div class="hero-scene hero-scene-right" aria-hidden="true"></div>
+          <div class="hero-center">
+            <div class="hero-logo" aria-label="Block Quest logo">
+              <svg viewBox="0 0 300 164" role="img" aria-hidden="true">
+                <defs>
+                  <filter id="shadow-edge" x="-20%" y="-20%" width="140%" height="140%">
+                    <feOffset dx="0" dy="4" />
+                    <feGaussianBlur stdDeviation="0.8" result="blur" />
+                    <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.11 0 0 0 0 0.18 0 0 0 0 0.28 0 0 0 0.35 0" />
+                    <feBlend in="SourceGraphic" />
+                  </filter>
+                </defs>
+                <g filter="url(#shadow-edge)">
+                  <rect x="96" y="14" width="108" height="56" rx="4" fill="#8e6442" />
+                  <rect x="100" y="10" width="46" height="52" rx="4" fill="#f6f0dc" stroke="#394f6a" stroke-width="4" />
+                  <rect x="154" y="10" width="46" height="52" rx="4" fill="#f6f0dc" stroke="#394f6a" stroke-width="4" />
+                  <path d="M146 12 L150 22 L154 12" fill="#394f6a" />
+                  <g stroke="#d7cab2" stroke-width="2">
+                    <line x1="108" y1="22" x2="138" y2="22" />
+                    <line x1="108" y1="30" x2="138" y2="30" />
+                    <line x1="108" y1="38" x2="138" y2="38" />
+                    <line x1="162" y1="22" x2="192" y2="22" />
+                    <line x1="162" y1="30" x2="192" y2="30" />
+                    <line x1="162" y1="38" x2="192" y2="38" />
+                  </g>
+                  <rect x="170" y="25" width="12" height="12" rx="2" class="logo-glow-tile" fill="#e3c75f" stroke="#b88a25" stroke-width="3" />
+                  <rect x="122" y="66" width="56" height="8" rx="3" fill="#b88a25" />
+                </g>
+              </svg>
+              <div class="hero-wordmark">
+                <span class="wordmark-main">BLOCK QUEST</span>
+                <span class="wordmark-sub">Read. Move. Choose.</span>
+              </div>
+            </div>
+            <div class="hero-copy-wrap">
+              <p class="eyebrow">Pixel Reading Adventure</p>
+              <h1>Play the Block. Read the Story.</h1>
+              <p class="hero-copy">A decodable reading adventure set in NYC.</p>
+            </div>
+            <div class="hero-actions">
+              <button id="play-button" class="big-button landing-primary">▶ Start Playing</button>
+              <button id="builder-button" class="big-button landing-secondary" aria-expanded="false" aria-controls="builder-panel">For Teachers &amp; Families</button>
+            </div>
+          </div>
+        </section>
+
+        <div id="builder-panel" class="builder-card hidden" aria-hidden="true">
+          <div class="teacher-panel-head">
+            <div>
+              <p class="eyebrow">Teacher Setup</p>
+              <h2>Build a Reading Link</h2>
+            </div>
+            <p class="teacher-copy">Choose a phonics program and unit, then copy a story link.</p>
+          </div>
+
+          <div class="teacher-grid">
+            <label>
+              <span>Program</span>
+              <select id="program-select"></select>
+            </label>
+            <label>
+              <span>Unit / Concept</span>
+              <select id="unit-select"></select>
+            </label>
+            <label>
+              <span>Decodability</span>
+              <select id="strictness-select">
+                <option value="strict">Strict</option>
+                <option value="moderate" selected>Moderate</option>
+                <option value="loose">Loose</option>
+              </select>
+            </label>
+            <label>
+              <span>Environment</span>
+              <select id="env-select"></select>
+            </label>
+          </div>
+
+          <div class="toggle-row teacher-toggles">
+            <label class="toggle">
+              <input type="checkbox" id="nyc-toggle" checked>
+              <span>NYC vocabulary on</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="font-toggle">
+              <span>Large text</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="debug-toggle">
+              <span>Debug mode</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="reachability-toggle">
+              <span>Show reachable tiles</span>
+            </label>
+          </div>
+
+          <div class="teacher-actions">
+            <button id="generate-link-button" class="big-button landing-primary">Generate Link</button>
+            <button id="copy-link-button" class="big-button landing-secondary">Copy Link</button>
+            <button id="start-custom-button" class="big-button secondary">Open Story</button>
+          </div>
+
+          <label class="link-box">
+            <span>Shareable link</span>
+            <input id="share-link" type="text" readonly>
+          </label>
+
+          <details class="advanced-tools">
+            <summary>Advanced Builder Tools</summary>
+
+            <p id="reachability-status" class="builder-status">Reachability check pending.</p>
+
+            <section class="viewer-card">
+              <div class="viewer-head">
+                <h3>Decision Tree Viewer</h3>
+                <button id="export-json-button" class="mini-button">Export JSON</button>
+              </div>
+              <div id="tree-view" class="tree-view"></div>
+            </section>
+
+            <section class="viewer-card">
+              <div class="viewer-head">
+                <h3>Usability Self-Check</h3>
+                <button id="refresh-review-button" class="mini-button">Run Review</button>
+              </div>
+              <div id="review-output" class="review-output"></div>
+            </section>
+
+            <section class="viewer-card">
+              <div class="viewer-head">
+                <h3>Narrative Audit</h3>
+                <button id="run-audit-button" class="mini-button">Run Audit</button>
+              </div>
+              <div id="audit-output" class="review-output"></div>
+              <div id="audit-preview" class="tree-node hidden"></div>
+            </section>
+
+            <section class="viewer-card">
+              <div class="viewer-head">
+                <h3>Language Audit</h3>
+                <button id="run-language-audit-button" class="mini-button">Run Language Audit</button>
+              </div>
+              <div id="language-audit-output" class="review-output"></div>
+            </section>
+
+            <section class="viewer-card">
+              <div class="viewer-head">
+                <h3>Causality Audit</h3>
+                <button id="run-causality-audit-button" class="mini-button">Run Causality Audit</button>
+              </div>
+              <div id="causality-audit-output" class="review-output"></div>
+            </section>
+
+            <section class="viewer-card">
+              <div class="viewer-head">
+                <h3>Beat Planner</h3>
+              </div>
+              <div id="beat-plan-output" class="review-output"></div>
+            </section>
+          </details>
+        </div>
+
+        <section class="landing-section how-section" aria-label="How It Works">
+          <h2>How It Works</h2>
+          <div class="how-grid">
+            <article class="landing-card">
+              <svg class="feature-art" viewBox="0 0 160 120" aria-hidden="true">
+                <rect x="24" y="18" width="72" height="56" rx="4" fill="#4f7f63" stroke="#8e6442" stroke-width="6" />
+                <rect x="34" y="28" width="52" height="10" fill="#dbe7d6" />
+                <rect x="34" y="44" width="24" height="8" fill="#8fcf7a" />
+                <rect x="62" y="44" width="24" height="8" fill="#9ec3df" />
+                <rect x="34" y="58" width="18" height="6" fill="#dbe7d6" />
+                <rect x="104" y="70" width="20" height="18" fill="#d8cfba" stroke="#8e6442" stroke-width="4" />
+                <rect x="114" y="52" width="6" height="20" fill="#8e6442" />
+              </svg>
+              <h3>Choose Your Unit</h3>
+              <p>Pick your unit and match the text to the phonics work you are doing.</p>
+            </article>
+            <article class="landing-card">
+              <svg class="feature-art" viewBox="0 0 160 120" aria-hidden="true">
+                <rect x="18" y="70" width="124" height="26" fill="#c3b39a" />
+                <rect x="30" y="42" width="28" height="28" fill="#c59a76" stroke="#8e6442" stroke-width="4" />
+                <rect x="60" y="42" width="28" height="28" fill="#c59a76" stroke="#8e6442" stroke-width="4" />
+                <rect x="90" y="42" width="28" height="28" fill="#c59a76" stroke="#8e6442" stroke-width="4" />
+                <rect x="44" y="74" width="14" height="18" fill="#394f6a" />
+                <rect x="72" y="74" width="14" height="18" fill="#394f6a" />
+                <rect x="102" y="74" width="14" height="18" fill="#394f6a" />
+                <rect x="16" y="58" width="12" height="20" fill="#6a8f5c" />
+                <rect x="132" y="58" width="12" height="20" fill="#6a8f5c" />
+              </svg>
+              <h3>Explore the Block</h3>
+              <p>Walk a small NYC map with clear goals, short routes, and familiar places.</p>
+            </article>
+            <article class="landing-card">
+              <svg class="feature-art" viewBox="0 0 160 120" aria-hidden="true">
+                <rect x="20" y="30" width="120" height="56" rx="8" fill="#f6f0dc" stroke="#394f6a" stroke-width="6" />
+                <rect x="34" y="44" width="92" height="8" fill="#d8cfba" />
+                <rect x="34" y="58" width="70" height="8" fill="#d8cfba" />
+                <rect x="30" y="86" width="46" height="18" rx="6" fill="#e3c75f" stroke="#394f6a" stroke-width="4" />
+                <rect x="84" y="86" width="46" height="18" rx="6" fill="#d8cfba" stroke="#394f6a" stroke-width="4" />
+              </svg>
+              <h3>Read &amp; Decide</h3>
+              <p>Read one short beat, make a choice, and see the story move forward.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="landing-section why-section" aria-label="Why It Works">
+          <h2>Why It Works</h2>
+          <ul class="why-list">
+            <li>Built on structured phonics with UFLI and Fundations alignment.</li>
+            <li>Decodable text stays matched to the unit you choose.</li>
+            <li>Real NYC places give kids landmarks they can name and follow.</li>
+            <li>Game-style choices keep reading active and motivating.</li>
+          </ul>
+        </section>
+
+        <section class="landing-section preview-section" aria-label="See the NYC Adventure">
+          <h2>See the NYC Adventure</h2>
+          <div class="preview-grid">
+            <article class="preview-card">
+              <svg class="preview-art" viewBox="0 0 320 170" aria-hidden="true">
+                <rect width="320" height="170" fill="#e9dfcf" />
+                <rect x="16" y="110" width="288" height="32" fill="#c5b39b" />
+                <rect x="34" y="52" width="82" height="58" fill="#b3835f" />
+                <rect x="124" y="42" width="82" height="68" fill="#a97452" />
+                <rect x="214" y="50" width="74" height="60" fill="#b3835f" />
+                <rect x="58" y="82" width="18" height="28" fill="#394f6a" />
+                <rect x="150" y="78" width="18" height="32" fill="#394f6a" />
+                <rect x="238" y="82" width="18" height="28" fill="#394f6a" />
+                <rect x="54" y="110" width="28" height="18" fill="#d8cfba" />
+                <rect x="146" y="110" width="28" height="18" fill="#d8cfba" />
+                <rect x="234" y="110" width="28" height="18" fill="#d8cfba" />
+                <rect x="12" y="118" width="12" height="18" fill="#b34a3c" />
+                <rect x="188" y="122" width="34" height="14" fill="#707f86" />
+              </svg>
+              <h3>Brownstone Block</h3>
+            </article>
+            <article class="preview-card">
+              <svg class="preview-art" viewBox="0 0 320 170" aria-hidden="true">
+                <rect width="320" height="170" fill="#e8dbc8" />
+                <rect x="16" y="28" width="62" height="114" fill="#cab296" />
+                <rect x="88" y="28" width="78" height="54" fill="#b48555" />
+                <rect x="88" y="92" width="78" height="50" fill="#b48555" />
+                <rect x="178" y="28" width="126" height="30" fill="#d9e5ef" />
+                <rect x="178" y="64" width="126" height="38" fill="#f0dfc5" />
+                <rect x="178" y="108" width="126" height="34" fill="#9d6a47" />
+                <rect x="188" y="36" width="20" height="16" fill="#edf6ff" />
+                <rect x="212" y="36" width="20" height="16" fill="#edf6ff" />
+                <rect x="238" y="36" width="20" height="16" fill="#edf6ff" />
+                <rect x="36" y="44" width="22" height="18" fill="#3e9b6a" />
+                <rect x="96" y="40" width="18" height="32" fill="#efc04b" />
+                <rect x="120" y="40" width="18" height="32" fill="#de7659" />
+              </svg>
+              <h3>Bodega Interior</h3>
+            </article>
+            <article class="preview-card">
+              <svg class="preview-art" viewBox="0 0 320 170" aria-hidden="true">
+                <rect width="320" height="170" fill="#e8ecef" />
+                <rect x="0" y="32" width="320" height="28" fill="#355e83" />
+                <rect x="0" y="112" width="320" height="40" fill="#2f6b99" />
+                <rect x="0" y="60" width="320" height="52" fill="#f6f1e8" />
+                <rect x="18" y="68" width="42" height="36" fill="#9fc1d9" />
+                <rect x="72" y="68" width="42" height="36" fill="#9fc1d9" />
+                <rect x="130" y="68" width="36" height="36" fill="#6b4f3a" />
+                <rect x="174" y="68" width="36" height="36" fill="#6b4f3a" />
+                <rect x="218" y="68" width="36" height="36" fill="#6b4f3a" />
+                <rect x="266" y="68" width="36" height="36" fill="#9fc1d9" />
+                <rect x="20" y="118" width="280" height="24" fill="#3a7db2" />
+              </svg>
+              <h3>School Hallway</h3>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen">
+      <header class="hud">
+        <div class="hud-block">
+          <strong id="hud-title">Story</strong>
+          <span id="hud-subtitle">Move to the glowing tile.</span>
+        </div>
+        <div class="hud-actions">
+          <button id="locate-button" class="mini-button">Locate</button>
+          <button id="font-size-button" class="mini-button">Text Size</button>
+          <button id="mute-button" class="mini-button">Mute: Off</button>
+          <button id="back-button" class="mini-button">Title</button>
+        </div>
+      </header>
+
+      <div class="game-layout">
+        <div class="play-column">
+          <div id="quest-hint" class="quest-hint hint-top-left">Walk to the glow.</div>
+          <div class="canvas-wrap">
+            <canvas id="game-canvas" width="512" height="384" aria-label="Game map"></canvas>
+            <div id="overlay-dim" class="overlay-dim hidden"></div>
+            <div id="quest-start-modal" class="quest-start-modal hidden" role="dialog" aria-modal="true" aria-labelledby="quest-start-title">
+              <div class="quest-start-box">
+                <p class="dialogue-kicker">Quest</p>
+                <h2 id="quest-start-title">Your Quest</h2>
+                <p id="quest-start-text" class="quest-start-copy"></p>
+                <button id="quest-start-button" class="big-button primary">START</button>
+              </div>
+            </div>
+            <div id="dialogue-modal" class="dialogue-modal hidden modal-bottom" role="dialog" aria-modal="true" aria-labelledby="dialogue-title">
+              <div class="dialogue-box">
+                <p id="dialogue-title" class="dialogue-kicker">Reading Moment</p>
+                <div id="dialogue-text" class="dialogue-text"></div>
+                <div class="choice-row">
+                  <button id="choice-a-button" class="choice-button"></button>
+                  <button id="choice-b-button" class="choice-button"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side-panel">
+          <section class="panel-card">
+            <h2>Guide</h2>
+            <p id="goal-text"></p>
+            <p id="target-text"></p>
+          </section>
+
+          <section class="panel-card">
+            <h2>Controls</h2>
+            <p>Desktop: arrows or WASD. Press SPACE or CLICK.</p>
+            <p>Mobile: tap arrows, then tap GO.</p>
+          </section>
+
+          <section id="debug-panel" class="panel-card hidden">
+            <h2>Decodability Debug</h2>
+            <div id="debug-output"></div>
+          </section>
+        </aside>
+      </div>
+
+        <div class="touch-controls" aria-label="Touch controls">
+          <button class="touch-button" data-dir="up">▲</button>
+          <div class="touch-mid">
+            <button class="touch-button" data-dir="left">◀</button>
+            <button id="touch-interact" class="touch-button action">GO</button>
+            <button class="touch-button" data-dir="right">▶</button>
+          </div>
+          <button class="touch-button" data-dir="down">▼</button>
+        </div>
+    </section>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

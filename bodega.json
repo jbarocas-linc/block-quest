@@ -1,0 +1,19 @@
+{
+  "environment": "bodega",
+  "title": "Snack Swap",
+  "goal": "Pick the right snack and help the shop stay calm.",
+  "nodes": [
+    { "id": "bo1", "location": "door", "text": ["I step in the shop.", "A pal has one wet sock."], "choiceA": "Get chips", "choiceB": "Get a snack bar", "nextA": "bo2", "nextB": "bo3", "effects": ["startQuest"] },
+    { "id": "bo2", "location": "chip-aisle", "text": ["The chip bag is big.", "It may rip in the rain."], "choiceA": "Keep the chips", "choiceB": "Swap for the bar", "nextA": "bo4", "nextB": "bo3", "effects": ["sawTradeoff"] },
+    { "id": "bo3", "location": "snack-rack", "text": ["The snack bar can fit in a bag.", "It will stay dry."], "choiceA": "Grab the bar", "choiceB": "Ask the clerk", "nextA": "bo5", "nextB": "bo6", "effects": ["pickedBar"] },
+    { "id": "bo4", "location": "soda-box", "text": ["A can tips by the box.", "The floor is slick."], "choiceA": "Fix the can stack", "choiceB": "Skip to the line", "nextA": "bo6", "nextB": "bo7", "effects": ["messFound"] },
+    { "id": "bo5", "location": "milk-box", "text": ["The milk hum is loud.", "I spot a lost list on the lid."], "choiceA": "Grab the list", "choiceB": "Go to the line", "nextA": "bo8", "nextB": "bo7", "effects": ["foundList"] },
+    { "id": "bo6", "location": "clerk", "text": ["The clerk nods.", "He says the list is for a dad in a cap."], "choiceA": "Find the dad", "choiceB": "Pay first", "nextA": "bo8", "nextB": "bo7", "effects": ["talkedClerk"] },
+    { "id": "bo7", "location": "line", "text": ["The line is long.", "A kid in back is sad."], "choiceA": "Let the kid go", "choiceB": "Stay in my spot", "nextA": "bo9", "nextB": "bo10", "effects": ["lineChoice"] },
+    { "id": "bo8", "location": "aisle", "text": ["A dad in a cap pats his bag.", "He lost that list."], "choiceA": "Hand the list", "choiceB": "Read the list", "nextA": "bo9", "nextB": "bo10", "effects": ["foundOwner"] },
+    { "id": "bo9", "location": "counter", "text": ["The dad and kid grin.", "The clerk adds a small mint."], "choiceA": "Take the bar", "choiceB": "Take the chips", "nextA": "bo11", "nextB": "bo11", "effects": ["rewarded"] },
+    { "id": "bo10", "location": "counter", "text": ["The shop is still fine.", "But the bar is the best fit for rain."], "choiceA": "Pick the bar", "choiceB": "Pick the chips", "nextA": "bo11", "nextB": "bo11", "effects": ["softNudge"] },
+    { "id": "bo11", "location": "door", "text": ["I step out with the snack.", "My pal can stay dry and fed."], "choiceA": "Share the mint", "choiceB": "Run to my pal", "nextA": "bo12", "nextB": "bo12", "effects": ["questClear"] },
+    { "id": "bo12", "location": "stoop", "text": ["The rain starts.", "We laugh and eat on the stoop."], "choiceA": "Play again", "choiceB": "Pick a new map", "nextA": "bo1", "nextB": "bo1", "effects": ["end"] }
+  ]
+}

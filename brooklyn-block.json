@@ -1,0 +1,19 @@
+{
+  "environment": "brooklyn-block",
+  "title": "The Stoop Cat",
+  "goal": "Help find Pip the cat before rain starts.",
+  "nodes": [
+    { "id": "bb1", "location": "stoop", "text": ["I am on the block.", "Pip the cat is not in his box."], "choiceA": "Tap the stoop", "choiceB": "Ask the pal", "nextA": "bb2", "nextB": "bb3", "effects": ["startQuest"] },
+    { "id": "bb2", "location": "stoop", "text": ["I tap the stoop.", "I see a small red tag."], "choiceA": "Grab the tag", "choiceB": "Skip to the tree", "nextA": "bb4", "nextB": "bb5", "effects": ["foundTag"] },
+    { "id": "bb3", "location": "sidewalk", "text": ["My pal can help.", "She saw Pip run by the tree."], "choiceA": "Run to the tree", "choiceB": "Check the bench", "nextA": "bb5", "nextB": "bb6", "effects": ["metPal"] },
+    { "id": "bb4", "location": "sidewalk", "text": ["The tag has mud.", "Pip may be by the park gate."], "choiceA": "Go to the gate", "choiceB": "Call Pip first", "nextA": "bb7", "nextB": "bb6", "effects": ["readClue"] },
+    { "id": "bb5", "location": "tree", "text": ["A thin cat path is in the grass.", "I see a tan cat nap spot."], "choiceA": "Peek in the grass", "choiceB": "Look by the can", "nextA": "bb8", "nextB": "bb9", "effects": ["sawTrail"] },
+    { "id": "bb6", "location": "bench", "text": ["Pip is not on the bench.", "A kid has a bag of fish bits."], "choiceA": "Ask for fish bits", "choiceB": "Go to the gate", "nextA": "bb10", "nextB": "bb7", "effects": ["gotHint"] },
+    { "id": "bb7", "location": "gate", "text": ["The gate is shut.", "I hear a soft mew."], "choiceA": "Set the fish bits", "choiceB": "Call, 'Pip, Pip!'", "nextA": "bb11", "nextB": "bb8", "effects": ["nearCat"] },
+    { "id": "bb8", "location": "grass", "text": ["Pip peeks up.", "He is stuck by a big bag."], "choiceA": "Lift the bag", "choiceB": "Get my pal", "nextA": "bb11", "nextB": "bb10", "effects": ["foundCat"] },
+    { "id": "bb9", "location": "trash-can", "text": ["No cat is in the can.", "But Pip's tag is on the side."], "choiceA": "Go to the soft mew", "choiceB": "Run back to the stoop", "nextA": "bb7", "nextB": "bb2", "effects": ["loopClue"] },
+    { "id": "bb10", "location": "sidewalk", "text": ["My pal and I grin.", "We can help Pip fast."], "choiceA": "Lift the bag", "choiceB": "Set the fish bits", "nextA": "bb11", "nextB": "bb11", "effects": ["teamUp"] },
+    { "id": "bb11", "location": "gate", "text": ["Pip hops out.", "He sits in my lap and purrs."], "choiceA": "Walk Pip home", "choiceB": "Pet Pip", "nextA": "bb12", "nextB": "bb12", "effects": ["questClear"] },
+    { "id": "bb12", "location": "stoop", "text": ["Pip is safe.", "Rain taps the stoop. We win."], "choiceA": "Play again", "choiceB": "Pick a new map", "nextA": "bb1", "nextB": "bb1", "effects": ["end"] }
+  ]
+}

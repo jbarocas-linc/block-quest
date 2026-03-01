@@ -354,7 +354,8 @@
       nycVocab: true,
       debug: false,
       largeText: false,
-      showReachable: false
+      showReachable: false,
+      cameraFollow: false
     },
     currentNarrative: null,
     currentNodeId: null,
@@ -373,6 +374,10 @@
     objectiveArrowUntil: 0,
     questStartOpen: false,
     modalOpen: false,
+    settingsOpen: false,
+    orientationLocked: false,
+    audioUnlocked: false,
+    cameraPreferenceSet: false,
     showBuilder: false,
     pathHistory: [],
     lastChoice: "",
@@ -382,6 +387,7 @@
     currentInstruction: "",
     player: { x: 7, y: 9, facing: "down", step: 0, moving: false },
     input: { up: false, down: false, left: false, right: false },
+    camera: { x: 0, y: 0 },
     lastMoveAt: 0,
     muted: false,
     audioCtx: null
@@ -440,6 +446,16 @@
     debugOutput: document.getElementById("debug-output"),
     questHint: document.getElementById("quest-hint"),
     locateButton: document.getElementById("locate-button"),
+    settingsButton: document.getElementById("settings-button"),
+    settingsModal: document.getElementById("settings-modal"),
+    closeSettingsButton: document.getElementById("close-settings-button"),
+    settingsTextButton: document.getElementById("settings-text-button"),
+    settingsMuteButton: document.getElementById("settings-mute-button"),
+    settingsCameraButton: document.getElementById("settings-camera-button"),
+    settingsRestartButton: document.getElementById("settings-restart-button"),
+    settingsTitleButton: document.getElementById("settings-title-button"),
+    orientationGate: document.getElementById("orientation-gate"),
+    orientationCheckButton: document.getElementById("orientation-check-button"),
     fontSizeButton: document.getElementById("font-size-button"),
     muteButton: document.getElementById("mute-button"),
     backButton: document.getElementById("back-button"),
@@ -452,6 +468,7 @@
     populateSelectors();
     bindEvents();
     readUrlConfig();
+    applyResponsiveState();
     syncBuilderForm();
     updateShareLink();
     renderTree();
@@ -495,6 +512,7 @@
 
   function bindEvents() {
     ui.playButton.addEventListener("click", () => {
+      unlockAudio();
       startNarrative(state.config.env);
       showGame();
     });
@@ -575,6 +593,7 @@
       ui.shareLink.select();
     });
     ui.startCustomButton.addEventListener("click", () => {
+      unlockAudio();
       startNarrative(state.config.env);
       showGame();
     });
@@ -594,23 +613,45 @@
     ui.choiceAButton.addEventListener("click", () => choose("A"));
     ui.choiceBButton.addEventListener("click", () => choose("B"));
     ui.locateButton.addEventListener("click", pulseLocatePlayer);
-    ui.fontSizeButton.addEventListener("click", () => {
-      state.config.largeText = !state.config.largeText;
-      ui.fontToggle.checked = state.config.largeText;
-      syncScale();
-      renderReview();
+    ui.settingsButton.addEventListener("click", toggleSettingsModal);
+    ui.closeSettingsButton.addEventListener("click", closeSettingsModal);
+    ui.orientationCheckButton.addEventListener("click", () => {
+      unlockAudio();
+      applyResponsiveState();
     });
+    ui.fontSizeButton.addEventListener("click", () => {
+      toggleTextSize();
+    });
+    ui.settingsTextButton.addEventListener("click", toggleTextSize);
     ui.muteButton.addEventListener("click", () => {
-      state.muted = !state.muted;
-      ui.muteButton.textContent = "Mute: " + (state.muted ? "On" : "Off");
+      toggleMute();
+    });
+    ui.settingsMuteButton.addEventListener("click", toggleMute);
+    ui.settingsCameraButton.addEventListener("click", toggleCameraFollow);
+    ui.settingsRestartButton.addEventListener("click", () => {
+      closeSettingsModal();
+      startNarrative(state.config.env);
+      showGame();
+    });
+    ui.settingsTitleButton.addEventListener("click", () => {
+      closeSettingsModal();
+      showTitle();
     });
     ui.backButton.addEventListener("click", showTitle);
-    ui.touchInteract.addEventListener("click", interact);
+    ui.touchInteract.addEventListener("click", () => {
+      unlockAudio();
+      interact();
+    });
     ui.canvas.addEventListener("click", handleCanvasConfirm);
     document.querySelectorAll("[data-dir]").forEach((button) => {
       button.addEventListener("pointerdown", (event) => {
         event.preventDefault();
+        unlockAudio();
         const dir = button.getAttribute("data-dir");
+        if (isMobileDevice()) {
+          moveOneTile(dir);
+          return;
+        }
         setInput(dir, true);
       });
       button.addEventListener("pointerup", (event) => {
@@ -625,6 +666,9 @@
     });
 
     window.addEventListener("keydown", (event) => {
+      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " ", "Enter", "w", "a", "s", "d", "W", "A", "S", "D"].includes(event.key)) {
+        unlockAudio();
+      }
       if (event.key === "ArrowUp" || event.key.toLowerCase() === "w") setInput("up", true);
       if (event.key === "ArrowDown" || event.key.toLowerCase() === "s") setInput("down", true);
       if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") setInput("left", true);
@@ -635,9 +679,14 @@
           startQuestPlay();
           return;
         }
+        if (state.settingsOpen) {
+          closeSettingsModal();
+          return;
+        }
         interact();
       }
-      if (event.key === "Escape" && state.modalOpen) closeModal();
+      if (event.key === "Escape" && state.settingsOpen) closeSettingsModal();
+      else if (event.key === "Escape" && state.modalOpen) closeModal();
     });
 
     window.addEventListener("keyup", (event) => {
@@ -648,13 +697,17 @@
     });
 
     window.addEventListener("resize", () => {
+      applyResponsiveState();
       if (state.screen === "game") {
         requestAnimationFrame(resolveOverlaySafety);
       }
     });
+
+    window.addEventListener("orientationchange", applyResponsiveState);
   }
 
   function setInput(dir, active) {
+    if (active && isInteractionBlocked()) return;
     state.input[dir] = active;
   }
 
@@ -669,10 +722,128 @@
     ui.fontToggle.checked = state.config.largeText;
     ui.reachabilityToggle.checked = state.config.showReachable;
     syncScale();
+    syncCameraButtonLabel();
   }
 
   function syncScale() {
     document.documentElement.style.setProperty("--ui-scale", state.config.largeText ? "1.16" : "1");
+  }
+
+  function isMobileDevice() {
+    const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    const agent = navigator.userAgent || "";
+    return coarse || /iPhone|iPad|iPod|Android|Mobile/i.test(agent);
+  }
+
+  function isMobileLandscapeMode() {
+    return isMobileDevice() && window.innerWidth > window.innerHeight;
+  }
+
+  function applyResponsiveState() {
+    const app = document.getElementById("app");
+    const mobileLandscape = isMobileLandscapeMode();
+    const mobilePortrait = isMobileDevice() && !mobileLandscape;
+    const cameraFollowActive = mobileLandscape && state.config.cameraFollow;
+
+    document.body.classList.toggle("mobile-landscape", mobileLandscape);
+    document.body.classList.toggle("mobile-portrait", mobilePortrait);
+    document.body.classList.toggle("camera-follow-on", cameraFollowActive);
+    app.classList.toggle("mobile-landscape", mobileLandscape);
+    app.classList.toggle("mobile-portrait", mobilePortrait);
+    app.classList.toggle("camera-follow-on", cameraFollowActive);
+
+    if (!state.cameraPreferenceSet) {
+      state.config.cameraFollow = mobileLandscape;
+    }
+
+    state.orientationLocked = state.screen === "game" && mobilePortrait;
+    ui.orientationGate.classList.toggle("hidden", !state.orientationLocked);
+    syncCameraButtonLabel();
+    updateCanvasViewport();
+    syncDockState();
+  }
+
+  function updateCanvasViewport() {
+    if (isMobileLandscapeMode() && state.config.cameraFollow) {
+      ui.canvas.width = 320;
+      ui.canvas.height = 224;
+    } else {
+      ui.canvas.width = 512;
+      ui.canvas.height = 384;
+    }
+  }
+
+  function isInteractionBlocked() {
+    return state.modalOpen || state.questStartOpen || state.settingsOpen || state.orientationLocked;
+  }
+
+  function moveOneTile(dir) {
+    if (isInteractionBlocked()) return;
+    const delta = {
+      up: { dx: 0, dy: -1, facing: "up" },
+      down: { dx: 0, dy: 1, facing: "down" },
+      left: { dx: -1, dy: 0, facing: "left" },
+      right: { dx: 1, dy: 0, facing: "right" }
+    }[dir];
+    if (!delta) return;
+    state.player.facing = delta.facing;
+    const nextX = state.player.x + delta.dx;
+    const nextY = state.player.y + delta.dy;
+    if (canMoveTo(nextX, nextY)) {
+      state.player.x = nextX;
+      state.player.y = nextY;
+      state.player.step = (state.player.step + 1) % 2;
+      playBlip(260 + state.player.step * 20, 0.025, "square");
+    }
+    state.lastMoveAt = performance.now();
+  }
+
+  function unlockAudio() {
+    if (state.muted) return;
+    try {
+      if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (state.audioCtx.state === "suspended") {
+        state.audioCtx.resume().catch(function () {});
+      }
+      if (!state.audioUnlocked) {
+        const buffer = state.audioCtx.createBuffer(1, 1, 22050);
+        const source = state.audioCtx.createBufferSource();
+        const gain = state.audioCtx.createGain();
+        source.buffer = buffer;
+        gain.gain.value = 0.0001;
+        source.connect(gain);
+        gain.connect(state.audioCtx.destination);
+        source.start(0);
+        state.audioUnlocked = true;
+      }
+    } catch (error) {
+      // Audio is optional and should fail quietly.
+    }
+  }
+
+  function toggleTextSize() {
+    state.config.largeText = !state.config.largeText;
+    ui.fontToggle.checked = state.config.largeText;
+    syncScale();
+    updateShareLink();
+    renderReview();
+  }
+
+  function toggleMute() {
+    state.muted = !state.muted;
+    ui.muteButton.textContent = "Mute: " + (state.muted ? "On" : "Off");
+    ui.settingsMuteButton.textContent = "Mute: " + (state.muted ? "On" : "Off");
+  }
+
+  function toggleCameraFollow() {
+    state.config.cameraFollow = !state.config.cameraFollow;
+    state.cameraPreferenceSet = true;
+    syncCameraButtonLabel();
+    applyResponsiveState();
+  }
+
+  function syncCameraButtonLabel() {
+    ui.settingsCameraButton.textContent = "Camera follow: " + (state.config.cameraFollow ? "On" : "Off");
   }
 
   function readUrlConfig() {
@@ -685,6 +856,7 @@
     const debug = params.get("debug");
     const large = params.get("largeText");
     const reach = params.get("showReachable");
+    const cameraFollow = params.get("cameraFollow");
 
     if (program && PROGRAM_DATA[program]) state.config.program = program;
     rebuildUnitOptions();
@@ -695,6 +867,10 @@
     if (debug) state.config.debug = debug === "true";
     if (large) state.config.largeText = large === "true";
     if (reach) state.config.showReachable = reach === "true";
+    if (cameraFollow) {
+      state.config.cameraFollow = cameraFollow === "true";
+      state.cameraPreferenceSet = true;
+    }
 
     if ([program, params.get("unit"), strictness, env].some(Boolean)) {
       setBuilderVisibility(true, false);
@@ -721,7 +897,8 @@
       nyc: String(state.config.nycVocab),
       debug: String(state.config.debug),
       largeText: String(state.config.largeText),
-      showReachable: String(state.config.showReachable)
+      showReachable: String(state.config.showReachable),
+      cameraFollow: String(state.config.cameraFollow)
     });
     const base = window.location.href.split("?")[0];
     ui.shareLink.value = base + "?" + params.toString();
@@ -730,17 +907,28 @@
   function showTitle() {
     state.screen = "title";
     state.questStartOpen = false;
+    state.settingsOpen = false;
     ui.questStartModal.classList.add("hidden");
+    ui.settingsModal.classList.add("hidden");
+    closeModal();
+    document.body.classList.remove("gameplay-active");
+    document.getElementById("app").classList.remove("gameplay-active");
+    applyResponsiveState();
     ui.titleScreen.classList.add("active");
     ui.gameScreen.classList.remove("active");
+    syncDockState();
   }
 
   function showGame() {
     state.screen = "game";
+    document.body.classList.add("gameplay-active");
+    document.getElementById("app").classList.add("gameplay-active");
+    applyResponsiveState();
     ui.titleScreen.classList.remove("active");
     ui.gameScreen.classList.add("active");
     updateHud();
     updateDebugPanel();
+    syncDockState();
     requestAnimationFrame(resolveOverlaySafety);
     if (state.questStartOpen) ui.questStartModal.classList.remove("hidden");
   }
@@ -777,6 +965,7 @@
     state.hintVisibleAt = Number.POSITIVE_INFINITY;
     ui.questHint.classList.add("hint-fade-hidden");
     closeModal();
+    closeSettingsModal();
     showQuestStartModal();
     updateHud();
     renderReview();
@@ -794,13 +983,15 @@
   }
 
   function startQuestPlay() {
-    if (!state.questStartOpen) return;
+    if (!state.questStartOpen || state.orientationLocked) return;
+    unlockAudio();
     state.questStartOpen = false;
     ui.questStartModal.classList.add("hidden");
     state.gameplayStartedAt = performance.now();
     state.hintVisibleAt = state.gameplayStartedAt + 1800;
     pulseLocatePlayer();
     ui.questHint.textContent = state.currentInstruction;
+    syncDockState();
     requestAnimationFrame(resolveOverlaySafety);
     playBlip(470, 0.07, "triangle");
   }
@@ -816,8 +1007,8 @@
     state.currentNode = node;
     state.currentDisplayNode = displayNode;
     const trigger = map.triggers[node.location];
-    ui.hudTitle.textContent = state.currentNarrative.title + " | " + map.label;
-    ui.hudSubtitle.textContent = "Short steps. Short reads.";
+    ui.hudTitle.textContent = state.currentNarrative.title;
+    ui.hudSubtitle.textContent = map.label;
     ui.goalText.textContent = "Goal: " + getShortGoal();
     state.currentInstruction = buildInstructionFromState(node, trigger, displayNode);
     ui.targetText.textContent = "Next: " + summarizeInstructionTarget(trigger, displayNode);
@@ -837,7 +1028,7 @@
 
   function loop(timestamp) {
     syncHintVisibility(timestamp);
-    if (state.screen === "game" && !state.modalOpen && !state.questStartOpen) {
+    if (state.screen === "game" && !isInteractionBlocked()) {
       updateMovement(timestamp);
     }
     render();
@@ -876,8 +1067,7 @@
 
   function interact() {
     if (state.screen !== "game") return;
-    if (state.modalOpen) return;
-    if (state.questStartOpen) return;
+    if (isInteractionBlocked()) return;
     const node = getCurrentNode();
     const trigger = MAPS[state.config.env].triggers[node.location];
     if (isAtOrNearTrigger(trigger)) {
@@ -907,6 +1097,7 @@
     resolveDialoguePlacement(node.location);
     ui.overlayDim.classList.remove("hidden");
     ui.dialogueModal.classList.remove("hidden");
+    syncDockState();
     updateDebugPanel();
   }
 
@@ -914,6 +1105,30 @@
     state.modalOpen = false;
     ui.overlayDim.classList.add("hidden");
     ui.dialogueModal.classList.add("hidden");
+    syncDockState();
+  }
+
+  function toggleSettingsModal() {
+    if (state.settingsOpen) closeSettingsModal();
+    else openSettingsModal();
+  }
+
+  function openSettingsModal() {
+    state.settingsOpen = true;
+    ui.settingsModal.classList.remove("hidden");
+    syncDockState();
+  }
+
+  function closeSettingsModal() {
+    state.settingsOpen = false;
+    ui.settingsModal.classList.add("hidden");
+    syncDockState();
+  }
+
+  function syncDockState() {
+    const disabled = state.modalOpen || state.questStartOpen || state.settingsOpen || state.orientationLocked;
+    const touchControls = document.querySelector(".touch-controls");
+    if (touchControls) touchControls.classList.toggle("disabled", disabled);
   }
 
   function choose(which) {
@@ -2176,6 +2391,13 @@
   }
 
   function render() {
+    updateCamera();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, ui.canvas.width, ui.canvas.height);
+    ctx.save();
+    if (shouldUseCameraFollow()) {
+      ctx.translate(-state.camera.x, -state.camera.y);
+    }
     drawMap();
     drawBrownstoneDecor();
     drawBodegaDecor();
@@ -2184,13 +2406,13 @@
     drawReachableOverlay();
     drawBrooklynLabels();
     drawPlayer();
+    ctx.restore();
+    drawGoalCompass();
   }
 
   function drawMap() {
     const map = MAPS[state.config.env];
     const palette = map.palette;
-
-    ctx.clearRect(0, 0, ui.canvas.width, ui.canvas.height);
 
     for (let y = 0; y < MAP_H; y += 1) {
       for (let x = 0; x < MAP_W; x += 1) {
@@ -2568,6 +2790,70 @@
 
     ctx.strokeStyle = "rgba(16, 37, 66, 0.08)";
     ctx.strokeRect(px, py, TILE, TILE);
+  }
+
+  function shouldUseCameraFollow() {
+    return state.config.cameraFollow && isMobileLandscapeMode();
+  }
+
+  function updateCamera() {
+    if (!shouldUseCameraFollow()) {
+      state.camera.x = 0;
+      state.camera.y = 0;
+      return;
+    }
+    const worldWidth = MAP_W * TILE;
+    const worldHeight = MAP_H * TILE;
+    const targetX = state.player.x * TILE + TILE / 2 - ui.canvas.width / 2;
+    const targetY = state.player.y * TILE + TILE / 2 - ui.canvas.height / 2;
+    state.camera.x = clamp(targetX, 0, Math.max(0, worldWidth - ui.canvas.width));
+    state.camera.y = clamp(targetY, 0, Math.max(0, worldHeight - ui.canvas.height));
+  }
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function toWorldPoint(x, y) {
+    if (!shouldUseCameraFollow()) return { x, y };
+    return {
+      x: x + state.camera.x,
+      y: y + state.camera.y
+    };
+  }
+
+  function drawGoalCompass() {
+    if (!shouldUseCameraFollow() || performance.now() >= state.objectiveArrowUntil) return;
+    const trigger = MAPS[state.config.env].triggers[getCurrentNode().location];
+    if (!trigger) return;
+    const screenX = trigger.x * TILE + TILE / 2 - state.camera.x;
+    const screenY = trigger.y * TILE + TILE / 2 - state.camera.y;
+    const inView = screenX >= 24 && screenX <= ui.canvas.width - 24 && screenY >= 24 && screenY <= ui.canvas.height - 24;
+    if (inView) return;
+
+    const centerX = ui.canvas.width / 2;
+    const centerY = ui.canvas.height / 2;
+    const angle = Math.atan2(screenY - centerY, screenX - centerX);
+    const radiusX = ui.canvas.width / 2 - 18;
+    const radiusY = ui.canvas.height / 2 - 18;
+    const px = centerX + Math.cos(angle) * radiusX;
+    const py = centerY + Math.sin(angle) * radiusY;
+
+    ctx.save();
+    ctx.fillStyle = "rgba(255, 221, 87, 0.95)";
+    ctx.beginPath();
+    ctx.arc(px, py, 13, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.translate(px, py);
+    ctx.rotate(angle);
+    ctx.fillStyle = "#15324f";
+    ctx.beginPath();
+    ctx.moveTo(7, 0);
+    ctx.lineTo(-5, -6);
+    ctx.lineTo(-5, 6);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
   }
 
   function drawTriggers() {
@@ -3039,11 +3325,11 @@
   }
 
   function isMobileMode() {
-    return window.matchMedia("(max-width: 720px)").matches || ("ontouchstart" in window && window.innerWidth <= 980);
+    return isMobileDevice();
   }
 
   function syncHintVisibility(timestamp) {
-    if (state.screen !== "game" || state.questStartOpen) {
+    if (state.screen !== "game" || state.questStartOpen || state.modalOpen || state.settingsOpen) {
       ui.questHint.classList.add("hint-fade-hidden");
       return;
     }
@@ -3070,6 +3356,16 @@
   }
 
   function resolveDialoguePlacement(locationKey) {
+    if (isMobileLandscapeMode()) {
+      ui.dialogueModal.classList.remove("modal-top");
+      ui.dialogueModal.classList.add("modal-bottom");
+      return;
+    }
+    if (isMobileMode()) {
+      ui.dialogueModal.classList.remove("modal-top");
+      ui.dialogueModal.classList.add("modal-bottom");
+      return;
+    }
     const trigger = MAPS[state.config.env].triggers[locationKey];
     if (!trigger) return;
     ui.dialogueModal.classList.remove("modal-top", "modal-bottom");
@@ -3143,12 +3439,13 @@
   }
 
   function handleCanvasConfirm(event) {
-    if (state.screen !== "game" || state.modalOpen || state.questStartOpen) return;
+    if (state.screen !== "game" || isInteractionBlocked()) return;
     const rect = ui.canvas.getBoundingClientRect();
     const scaleX = ui.canvas.width / rect.width;
     const scaleY = ui.canvas.height / rect.height;
-    const tileX = Math.floor((event.clientX - rect.left) * scaleX / TILE);
-    const tileY = Math.floor((event.clientY - rect.top) * scaleY / TILE);
+    const worldPoint = toWorldPoint((event.clientX - rect.left) * scaleX, (event.clientY - rect.top) * scaleY);
+    const tileX = Math.floor(worldPoint.x / TILE);
+    const tileY = Math.floor(worldPoint.y / TILE);
     const trigger = MAPS[state.config.env].triggers[getCurrentNode().location];
     if (tileX === trigger.x && tileY === trigger.y && isAtOrNearTrigger(trigger)) {
       interact();
@@ -3351,7 +3648,8 @@
   function playBlip(frequency, duration, type) {
     if (state.muted) return;
     try {
-      if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      unlockAudio();
+      if (!state.audioCtx || state.audioCtx.state === "suspended") return;
       const now = state.audioCtx.currentTime;
       const oscillator = state.audioCtx.createOscillator();
       const gain = state.audioCtx.createGain();

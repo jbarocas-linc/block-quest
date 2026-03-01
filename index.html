@@ -297,10 +297,11 @@
           <span id="hud-subtitle">Move to the glowing tile.</span>
         </div>
         <div class="hud-actions">
-          <button id="locate-button" class="mini-button">Locate</button>
-          <button id="font-size-button" class="mini-button">Text Size</button>
-          <button id="mute-button" class="mini-button">Mute: Off</button>
-          <button id="back-button" class="mini-button">Title</button>
+          <button id="locate-button" class="mini-button desktop-only">Locate</button>
+          <button id="font-size-button" class="mini-button desktop-only">Text Size</button>
+          <button id="mute-button" class="mini-button desktop-only">Mute: Off</button>
+          <button id="back-button" class="mini-button desktop-only">Title</button>
+          <button id="settings-button" class="mini-button settings-button" aria-label="Open settings">⚙</button>
         </div>
       </header>
 
@@ -351,15 +352,37 @@
         </aside>
       </div>
 
-        <div class="touch-controls" aria-label="Touch controls">
-          <button class="touch-button" data-dir="up">▲</button>
-          <div class="touch-mid">
-            <button class="touch-button" data-dir="left">◀</button>
-            <button id="touch-interact" class="touch-button action">GO</button>
-            <button class="touch-button" data-dir="right">▶</button>
+      <div id="settings-modal" class="settings-modal hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <div class="settings-box">
+          <div class="settings-head">
+            <h2 id="settings-title">Settings</h2>
+            <button id="close-settings-button" class="mini-button" aria-label="Close settings">Close</button>
           </div>
-          <button class="touch-button" data-dir="down">▼</button>
+          <div class="settings-actions">
+            <button id="settings-text-button" class="big-button secondary">Text Size</button>
+            <button id="settings-mute-button" class="big-button secondary">Mute: Off</button>
+            <button id="settings-camera-button" class="big-button secondary">Camera follow: Off</button>
+            <button id="settings-restart-button" class="big-button secondary">Restart Story</button>
+            <button id="settings-title-button" class="big-button secondary">Back to Title</button>
+          </div>
         </div>
+      </div>
+
+      <div id="orientation-gate" class="orientation-gate hidden" role="dialog" aria-modal="true" aria-labelledby="orientation-title">
+        <div class="orientation-box">
+          <div class="orientation-icon" aria-hidden="true">⟲</div>
+          <h2 id="orientation-title">Turn your phone sideways to play.</h2>
+          <button id="orientation-check-button" class="big-button landing-primary">I&apos;m in landscape</button>
+        </div>
+      </div>
+
+      <div class="touch-controls" aria-label="Touch controls">
+        <button class="touch-button dpad-up" data-dir="up">▲</button>
+        <button class="touch-button dpad-left" data-dir="left">◀</button>
+        <button id="touch-interact" class="touch-button action dpad-go">GO</button>
+        <button class="touch-button dpad-right" data-dir="right">▶</button>
+        <button class="touch-button dpad-down" data-dir="down">▼</button>
+      </div>
     </section>
   </div>
 

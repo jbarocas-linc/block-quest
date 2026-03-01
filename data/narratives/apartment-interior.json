@@ -1,0 +1,19 @@
+{
+  "environment": "apartment-interior",
+  "title": "Snack Lift",
+  "goal": "Bring a snack to the top hall before it gets cold.",
+  "nodes": [
+    { "id": "ai1", "location": "lobby", "text": ["I am in the hall.", "A pal needs a hot snack."], "choiceA": "Use the lift", "choiceB": "Take the steps", "nextA": "ai2", "nextB": "ai3", "effects": ["startQuest"] },
+    { "id": "ai2", "location": "lift", "text": ["The lift is slow.", "It can stop at one more hall."], "choiceA": "Ride up", "choiceB": "Hop out now", "nextA": "ai4", "nextB": "ai5", "effects": ["usedLift"] },
+    { "id": "ai3", "location": "stairs", "text": ["The steps are dim.", "I hear a cat dish tip."], "choiceA": "Check the sound", "choiceB": "Run past it", "nextA": "ai6", "nextB": "ai5", "effects": ["usedStairs"] },
+    { "id": "ai4", "location": "third-hall", "text": ["A kid is sad.", "His sock fell in the mail slot."], "choiceA": "Help the kid", "choiceB": "Keep the snack hot", "nextA": "ai7", "nextB": "ai8", "effects": ["metKid"] },
+    { "id": "ai5", "location": "second-hall", "text": ["The hall has two doors.", "One has a red mat."], "choiceA": "Tap the red mat door", "choiceB": "Tap the tan door", "nextA": "ai8", "nextB": "ai6", "effects": ["hallChoice"] },
+    { "id": "ai6", "location": "mail-area", "text": ["A fat sock blocks the slot.", "I can tug it out."], "choiceA": "Tug the sock", "choiceB": "Ask the super", "nextA": "ai7", "nextB": "ai9", "effects": ["sawProblem"] },
+    { "id": "ai7", "location": "hall", "text": ["The kid can grin now.", "He tips me to the top hall."], "choiceA": "Run to the top", "choiceB": "Take the lift", "nextA": "ai10", "nextB": "ai10", "effects": ["goodTurn"] },
+    { "id": "ai8", "location": "wrong-door", "text": ["This is not the pal's flat.", "A man says, 'Top hall, last door.'"], "choiceA": "Go to the last door", "choiceB": "Go to the lift", "nextA": "ai10", "nextB": "ai2", "effects": ["gotDirections"] },
+    { "id": "ai9", "location": "super-desk", "text": ["The super is glad I ask.", "He pops the slot and nods."], "choiceA": "Help the kid", "choiceB": "Run with the snack", "nextA": "ai7", "nextB": "ai10", "effects": ["adultHelp"] },
+    { "id": "ai10", "location": "top-hall", "text": ["My pal is at the last door.", "The snack is warm."], "choiceA": "Hand it off", "choiceB": "Knock and sing", "nextA": "ai11", "nextB": "ai11", "effects": ["arrived"] },
+    { "id": "ai11", "location": "top-hall", "text": ["My pal claps.", "He has a hot sip and a grin."], "choiceA": "Take a lap", "choiceB": "Ride the lift down", "nextA": "ai12", "nextB": "ai12", "effects": ["questClear"] },
+    { "id": "ai12", "location": "lobby", "text": ["The hall is calm.", "I did a kind job."], "choiceA": "Play again", "choiceB": "Pick a new map", "nextA": "ai1", "nextB": "ai1", "effects": ["end"] }
+  ]
+}

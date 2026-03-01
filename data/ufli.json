@@ -1,0 +1,138 @@
+{
+  "program": "UFLI Foundations",
+  "source": "Structured from the provided UFLI scope and sequence for gameplay progression.",
+  "levels": [
+    {
+      "unit": 1,
+      "concept": "Short vowels and continuous consonants",
+      "graphemePhonemeCorrespondences": ["m", "s", "t", "a", "p", "n", "i", "f"],
+      "highFrequencyWords": ["a", "I", "is"],
+      "skillsUnlocked": [
+        "Read and spell VC and CVC words",
+        "Blend short a and short i words",
+        "Track left-to-right phoneme order"
+      ]
+    },
+    {
+      "unit": 2,
+      "concept": "Stop consonants and mixed CVC words",
+      "graphemePhonemeCorrespondences": ["d", "g", "c", "o", "b", "h"],
+      "highFrequencyWords": ["the", "to"],
+      "skillsUnlocked": [
+        "Decode a broader set of CVC words",
+        "Distinguish stop and continuous sounds",
+        "Read simple one-syllable sentences"
+      ]
+    },
+    {
+      "unit": 3,
+      "concept": "Short e and more consonants",
+      "graphemePhonemeCorrespondences": ["e", "r", "l", "k"],
+      "highFrequencyWords": ["see", "we"],
+      "skillsUnlocked": [
+        "Decode CVC words with short e",
+        "Read words with final l and r",
+        "Track vowel changes across minimal pairs"
+      ]
+    },
+    {
+      "unit": 4,
+      "concept": "Short u and blends",
+      "graphemePhonemeCorrespondences": ["u", "j", "v", "w", "y", "z"],
+      "highFrequencyWords": ["you", "my"],
+      "skillsUnlocked": [
+        "Read short u words",
+        "Blend simple initial and final clusters",
+        "Read short decodable directions"
+      ]
+    },
+    {
+      "unit": 5,
+      "concept": "Digraphs and ng/nk",
+      "graphemePhonemeCorrespondences": ["sh", "ch", "th", "wh", "ck", "ng", "nk"],
+      "highFrequencyWords": ["she", "they"],
+      "skillsUnlocked": [
+        "Decode common consonant digraphs",
+        "Read words ending in ng and nk",
+        "Notice two-letter spellings for one sound"
+      ]
+    },
+    {
+      "unit": 6,
+      "concept": "Double final consonants and ff/ll/ss/zz",
+      "graphemePhonemeCorrespondences": ["ff", "ll", "ss", "zz", "qu", "x"],
+      "highFrequencyWords": ["all", "was"],
+      "skillsUnlocked": [
+        "Read one-syllable words with doubled final consonants",
+        "Read words with qu and x",
+        "Spell closed-syllable words more accurately"
+      ]
+    },
+    {
+      "unit": 7,
+      "concept": "Consonant blends and review",
+      "graphemePhonemeCorrespondences": ["bl", "cl", "fl", "gl", "pl", "sl", "st", "sk"],
+      "highFrequencyWords": ["do", "of"],
+      "skillsUnlocked": [
+        "Read common beginning blends",
+        "Read common ending blends",
+        "Decode longer one-syllable words"
+      ]
+    },
+    {
+      "unit": 8,
+      "concept": "FLOSS and welded endings",
+      "graphemePhonemeCorrespondences": ["all", "oll", "ild", "old", "ind", "ost"],
+      "highFrequencyWords": ["full", "pull"],
+      "skillsUnlocked": [
+        "Read glued sounds and welded chunks",
+        "Recognize high-utility chunks as units",
+        "Read more fluent decodable sentences"
+      ]
+    },
+    {
+      "unit": 9,
+      "concept": "Bonus letters and soft c/g preview",
+      "graphemePhonemeCorrespondences": ["tch", "dge", "ge", "ce"],
+      "highFrequencyWords": ["said", "come"],
+      "skillsUnlocked": [
+        "Decode some common trigraph spellings",
+        "Handle a few less-transparent spellings",
+        "Use trick words when strictness allows"
+      ]
+    },
+    {
+      "unit": 10,
+      "concept": "Long vowel silent e",
+      "graphemePhonemeCorrespondences": ["a_e", "i_e", "o_e", "u_e", "e_e"],
+      "highFrequencyWords": ["like", "have"],
+      "skillsUnlocked": [
+        "Decode VCe words",
+        "Contrast short and long vowels",
+        "Read slightly richer story text"
+      ]
+    },
+    {
+      "unit": 11,
+      "concept": "Open syllables",
+      "graphemePhonemeCorrespondences": ["me", "he", "go", "hi", "we", "no"],
+      "highFrequencyWords": ["he", "me"],
+      "skillsUnlocked": [
+        "Read open syllables with long vowel sound",
+        "Decode simple two-syllable words with open syllables",
+        "Read more natural dialogue"
+      ]
+    },
+    {
+      "unit": 12,
+      "concept": "Long vowel teams",
+      "graphemePhonemeCorrespondences": ["ai", "ay", "ee", "ea", "oa", "ow"],
+      "highFrequencyWords": ["play", "day"],
+      "skillsUnlocked": [
+        "Decode common vowel teams",
+        "Read more flexible decodable choices",
+        "Support richer narrative branches"
+      ]
+    }
+  ]
+}

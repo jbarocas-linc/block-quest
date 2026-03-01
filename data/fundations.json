@@ -1,0 +1,116 @@
+{
+  "program": "Fundations Level 1",
+  "source": "Structured from the provided Fundations Level 1 scope and sequence for gameplay progression.",
+  "levels": [
+    {
+      "unit": 1,
+      "concept": "Letter-keyword-sound foundations",
+      "graphemePhonemeCorrespondences": ["a", "b", "c", "d", "f", "g", "i", "m", "n", "o", "p", "s", "t"],
+      "highFrequencyWords": ["a", "the"],
+      "skillsUnlocked": [
+        "Match letters to sounds",
+        "Read VC and CVC words",
+        "Track sounds while tapping"
+      ]
+    },
+    {
+      "unit": 2,
+      "concept": "Short vowels and CVC automaticity",
+      "graphemePhonemeCorrespondences": ["e", "h", "j", "k", "l", "r", "u"],
+      "highFrequencyWords": ["is", "his"],
+      "skillsUnlocked": [
+        "Decode short vowel CVC words",
+        "Read short patterned phrases",
+        "Spell with sound-by-sound mapping"
+      ]
+    },
+    {
+      "unit": 3,
+      "concept": "Digraphs",
+      "graphemePhonemeCorrespondences": ["sh", "th", "ch", "wh", "ck"],
+      "highFrequencyWords": ["she", "this"],
+      "skillsUnlocked": [
+        "Decode words with digraphs",
+        "Spot two letters making one sound",
+        "Read simple sentences with digraph words"
+      ]
+    },
+    {
+      "unit": 4,
+      "concept": "Blends and consonant clusters",
+      "graphemePhonemeCorrespondences": ["bl", "cl", "fl", "gl", "pl", "sl", "br", "cr", "dr", "fr", "gr", "tr"],
+      "highFrequencyWords": ["from", "with"],
+      "skillsUnlocked": [
+        "Read beginning blends smoothly",
+        "Read slightly longer one-syllable words",
+        "Maintain sound order in clusters"
+      ]
+    },
+    {
+      "unit": 5,
+      "concept": "Closed syllable fluency and bonus letters",
+      "graphemePhonemeCorrespondences": ["ff", "ll", "ss", "zz", "x", "qu"],
+      "highFrequencyWords": ["was", "said"],
+      "skillsUnlocked": [
+        "Read and spell closed syllable words with double final consonants",
+        "Read words with qu and x",
+        "Build automatic word recognition"
+      ]
+    },
+    {
+      "unit": 6,
+      "concept": "Glued sounds",
+      "graphemePhonemeCorrespondences": ["am", "an", "all", "ang", "ing", "ong", "ung", "ink", "ank"],
+      "highFrequencyWords": ["they", "you"],
+      "skillsUnlocked": [
+        "Read glued sound chunks as units",
+        "Decode words with welded endings",
+        "Read more fluent connected text"
+      ]
+    },
+    {
+      "unit": 7,
+      "concept": "Silent e",
+      "graphemePhonemeCorrespondences": ["a_e", "i_e", "o_e", "u_e"],
+      "highFrequencyWords": ["like", "have"],
+      "skillsUnlocked": [
+        "Decode VCe words",
+        "Contrast short and long vowel patterns",
+        "Handle more story variety"
+      ]
+    },
+    {
+      "unit": 8,
+      "concept": "Open syllables",
+      "graphemePhonemeCorrespondences": ["he", "we", "me", "go", "no", "hi"],
+      "highFrequencyWords": ["he", "we"],
+      "skillsUnlocked": [
+        "Read open syllables with long vowel sound",
+        "Decode simple multisyllabic words",
+        "Read natural-feeling dialogue"
+      ]
+    },
+    {
+      "unit": 9,
+      "concept": "Vowel teams",
+      "graphemePhonemeCorrespondences": ["ai", "ay", "ee", "ea", "oa", "ow"],
+      "highFrequencyWords": ["day", "play"],
+      "skillsUnlocked": [
+        "Decode common vowel teams",
+        "Read longer decodable lines",
+        "Sustain comprehension through branching choices"
+      ]
+    },
+    {
+      "unit": 10,
+      "concept": "R-controlled and advanced review",
+      "graphemePhonemeCorrespondences": ["ar", "or", "er", "ir", "ur"],
+      "highFrequencyWords": ["are", "for"],
+      "skillsUnlocked": [
+        "Decode common r-controlled vowels",
+        "Read richer environmental vocabulary",
+        "Handle late-game narrative routes"
+      ]
+    }
+  ]
+}

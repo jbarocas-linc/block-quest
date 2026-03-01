@@ -743,18 +743,19 @@
     const app = document.getElementById("app");
     const mobileLandscape = isMobileLandscapeMode();
     const mobilePortrait = isMobileDevice() && !mobileLandscape;
-    const cameraFollowActive = mobileLandscape && state.config.cameraFollow;
 
     document.body.classList.toggle("mobile-landscape", mobileLandscape);
     document.body.classList.toggle("mobile-portrait", mobilePortrait);
-    document.body.classList.toggle("camera-follow-on", cameraFollowActive);
     app.classList.toggle("mobile-landscape", mobileLandscape);
     app.classList.toggle("mobile-portrait", mobilePortrait);
-    app.classList.toggle("camera-follow-on", cameraFollowActive);
 
     if (!state.cameraPreferenceSet) {
       state.config.cameraFollow = mobileLandscape;
     }
+
+    const cameraFollowActive = mobileLandscape && state.config.cameraFollow;
+    document.body.classList.toggle("camera-follow-on", cameraFollowActive);
+    app.classList.toggle("camera-follow-on", cameraFollowActive);
 
     state.orientationLocked = state.screen === "game" && mobilePortrait;
     ui.orientationGate.classList.toggle("hidden", !state.orientationLocked);
@@ -786,16 +787,7 @@
       right: { dx: 1, dy: 0, facing: "right" }
     }[dir];
     if (!delta) return;
-    state.player.facing = delta.facing;
-    const nextX = state.player.x + delta.dx;
-    const nextY = state.player.y + delta.dy;
-    if (canMoveTo(nextX, nextY)) {
-      state.player.x = nextX;
-      state.player.y = nextY;
-      state.player.step = (state.player.step + 1) % 2;
-      playBlip(260 + state.player.step * 20, 0.025, "square");
-    }
-    state.lastMoveAt = performance.now();
+    attemptMove(delta.dx, delta.dy, performance.now());
   }
 
   function unlockAudio() {
@@ -1047,6 +1039,12 @@
 
     if (!dx && !dy) return;
 
+    attemptMove(dx, dy, timestamp);
+  }
+
+  function attemptMove(dx, dy, timestamp) {
+    const facing = dx > 0 ? "right" : dx < 0 ? "left" : dy > 0 ? "down" : "up";
+    state.player.facing = facing;
     const nextX = state.player.x + dx;
     const nextY = state.player.y + dy;
     if (canMoveTo(nextX, nextY)) {
@@ -1055,7 +1053,6 @@
       state.player.step = (state.player.step + 1) % 2;
       playBlip(260 + state.player.step * 20, 0.025, "square");
     }
-    state.player.facing = dx > 0 ? "right" : dx < 0 ? "left" : dy > 0 ? "down" : "up";
     state.lastMoveAt = timestamp;
   }
 

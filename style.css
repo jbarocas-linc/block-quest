@@ -733,6 +733,12 @@ input[type="text"] {
   margin-bottom: 0;
 }
 
+.settings-story-meta {
+  margin: 0 0 14px;
+  color: #4b5e74;
+  font-weight: 700;
+}
+
 .settings-actions {
   display: grid;
   gap: 12px;
@@ -1161,88 +1167,110 @@ input[type="text"] {
   }
 }
 
-body.mobile-landscape.gameplay-active {
+body.mode-mobile-landscape.gameplay-active {
   overflow: hidden;
 }
 
-body.mobile-landscape.gameplay-active .app-shell {
-  height: 100svh;
+body.mode-mobile-landscape.gameplay-active .app-shell {
+  height: var(--viewport-height, 100dvh);
   padding: 8px;
   overflow: hidden;
 }
 
-body.mobile-landscape #game-screen.active {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 8px;
+body.mode-mobile-landscape #game-screen.active {
+  display: block;
   height: 100%;
   min-height: 0;
 }
 
-body.mobile-landscape .hud {
+body.mode-mobile-landscape .hud {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  left: 8px;
+  right: 8px;
+  z-index: 28;
   margin: 0;
   max-width: none;
-  min-height: 60px;
-  padding: 8px 14px;
+  min-height: 38px;
+  padding: 6px 12px;
+  border-width: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
 }
 
-body.mobile-landscape .hud-subtitle,
-body.mobile-landscape .side-panel,
-body.mobile-landscape .desktop-only {
+body.mode-mobile-landscape #game-screen.hud-revealed .hud {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.mode-mobile-landscape .hud-subtitle,
+body.mode-mobile-landscape .side-panel,
+body.mode-mobile-landscape .desktop-only {
   display: none;
 }
 
-body.mobile-landscape .settings-button {
+body.mode-mobile-landscape .hud-title,
+body.mode-mobile-landscape #hud-title {
+  font-size: 1rem;
+}
+
+body.mode-mobile-landscape .settings-button {
   display: inline-flex;
 }
 
-body.mobile-landscape .game-layout {
+body.mode-mobile-landscape .game-layout {
   display: block;
   max-width: none;
   margin: 0;
   min-height: 0;
+  height: 100%;
 }
 
-body.mobile-landscape .play-column {
+body.mode-mobile-landscape .play-column {
   min-height: 0;
+  height: 100%;
 }
 
-body.mobile-landscape.camera-follow-on .canvas-wrap {
-  width: min(calc(100vw - 152px), calc((100svh - 86px) * 1.42857));
+body.mode-mobile-landscape.camera-follow-on .canvas-wrap {
+  width: min(calc(100vw - 148px - env(safe-area-inset-right, 0px)), calc((var(--viewport-height, 100dvh) - 24px) * 1.42857));
   max-width: calc(100vw - 152px);
   aspect-ratio: 10 / 7;
-  margin: 0 auto 0 0;
+  margin: 0 auto;
   display: grid;
   border-radius: 20px;
 }
 
-body.mobile-landscape:not(.camera-follow-on) .canvas-wrap {
-  width: min(calc(100vw - 152px), calc((100svh - 86px) * 1.33333));
+body.mode-mobile-landscape:not(.camera-follow-on) .canvas-wrap {
+  width: min(calc(100vw - 148px - env(safe-area-inset-right, 0px)), calc((var(--viewport-height, 100dvh) - 24px) * 1.33333));
   max-width: calc(100vw - 152px);
   aspect-ratio: 4 / 3;
-  margin: 0 auto 0 0;
+  margin: 0 auto;
   display: grid;
   border-radius: 20px;
 }
 
-body.mobile-landscape #game-canvas {
+body.mode-mobile-landscape #game-canvas {
   width: 100%;
   height: 100%;
 }
 
-body.mobile-landscape .quest-hint {
+body.mode-mobile-landscape .quest-hint {
   position: fixed;
-  left: 8px;
-  right: 150px;
-  bottom: 8px;
-  width: auto;
+  left: max(8px, env(safe-area-inset-left, 0px));
+  right: calc(146px + env(safe-area-inset-right, 0px));
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  width: min(420px, auto);
   min-height: 42px;
   padding: 8px 12px;
   font-size: calc(0.95rem * var(--ui-scale));
   z-index: 22;
+  background: rgba(255, 249, 232, 0.92);
+  backdrop-filter: blur(2px);
+  white-space: normal;
 }
 
-body.mobile-landscape .touch-controls {
+body.mode-mobile-landscape .touch-controls {
   display: grid;
   grid-template-columns: repeat(3, minmax(52px, 60px));
   grid-template-rows: repeat(3, minmax(52px, 60px));
@@ -1252,8 +1280,8 @@ body.mobile-landscape .touch-controls {
     ". down .";
   gap: 6px;
   position: fixed;
-  right: 12px;
-  bottom: 12px;
+  right: calc(12px + env(safe-area-inset-right, 0px));
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   left: auto;
   margin: 0;
   z-index: 26;
@@ -1264,7 +1292,7 @@ body.mobile-landscape .touch-controls {
   box-shadow: 0 8px 0 var(--shadow);
 }
 
-body.mobile-landscape .touch-button {
+body.mode-mobile-landscape .touch-button {
   width: 100%;
   height: 100%;
   min-width: 52px;
@@ -1272,54 +1300,54 @@ body.mobile-landscape .touch-button {
   font-size: 1.2rem;
 }
 
-body.mobile-landscape .touch-button.action {
+body.mode-mobile-landscape .touch-button.action {
   min-width: 68px;
   min-height: 68px;
   font-size: 1.5rem;
 }
 
-body.mobile-landscape .overlay-dim,
-body.mobile-landscape .dialogue-modal,
-body.mobile-landscape .quest-start-modal {
+body.mode-mobile-landscape .overlay-dim,
+body.mode-mobile-landscape .dialogue-modal,
+body.mode-mobile-landscape .quest-start-modal {
   position: fixed;
   inset: 0;
 }
 
-body.mobile-landscape .dialogue-modal {
+body.mode-mobile-landscape .dialogue-modal {
   display: grid;
   place-items: center;
   padding: 20px 150px 20px 20px;
 }
 
-body.mobile-landscape .dialogue-modal.modal-top,
-body.mobile-landscape .dialogue-modal.modal-bottom {
+body.mode-mobile-landscape .dialogue-modal.modal-top,
+body.mode-mobile-landscape .dialogue-modal.modal-bottom {
   align-items: center;
 }
 
-body.mobile-landscape .dialogue-box {
-  width: min(64vw, 620px);
+body.mode-mobile-landscape .dialogue-box {
+  width: min(60vw, 560px);
   min-height: 0;
   padding: 16px;
   border-radius: 20px;
   border-bottom: 4px solid #15324f;
 }
 
-body.mobile-landscape .choice-row {
+body.mode-mobile-landscape .choice-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-body.mobile-landscape .choice-button {
+body.mode-mobile-landscape .choice-button {
   min-height: 54px;
   width: 100%;
 }
 
-body.mobile-landscape .orientation-gate:not(.hidden) ~ .touch-controls,
-body.mobile-landscape .orientation-gate:not(.hidden) ~ .quest-hint {
+body.mode-mobile-landscape .orientation-gate:not(.hidden) ~ .touch-controls,
+body.mode-mobile-landscape .orientation-gate:not(.hidden) ~ .quest-hint {
   pointer-events: none;
 }
 
-body.mobile-portrait.gameplay-active {
+body.mode-mobile-portrait.gameplay-active {
   overflow: hidden;
 }
 

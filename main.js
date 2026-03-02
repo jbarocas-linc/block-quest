@@ -387,6 +387,8 @@
     currentClues: [],
     introducedEntities: new Set(),
     currentInstruction: "",
+    wordIndexSignature: "",
+    wordAnalysisSelfCheck: null,
     player: { x: 7, y: 9, facing: "down", step: 0, moving: false },
     input: { up: false, down: false, left: false, right: false },
     camera: { x: 0, y: 0 },
@@ -399,6 +401,83 @@
     acc[entry.word.toLowerCase()] = entry;
     return acc;
   }, {});
+  const WORD_ANALYSIS_EXAMPLES = [
+    {
+      original: "the",
+      normalized: "the",
+      graphemeTiles: ["th", "e"],
+      phonemeCount: 2,
+      tileToColumnMap: [[0], [1]],
+      underlineTileIndices: [0],
+      heartStatusByTileIndex: ["none", "permanent"],
+      silentTileIndices: [],
+      curriculum: "ufli",
+      progressPoint: 60,
+      decodability: "permanently_irregular",
+      phonicsTags: ["digraph_th", "schwa_like"],
+      confidence: 0.95
+    },
+    {
+      original: "strong",
+      normalized: "strong",
+      graphemeTiles: ["s", "t", "r", "o", "ng"],
+      phonemeCount: 5,
+      tileToColumnMap: [[0], [1], [2], [3], [4]],
+      underlineTileIndices: [4],
+      heartStatusByTileIndex: ["none", "none", "none", "none", "none"],
+      silentTileIndices: [],
+      curriculum: "fundations",
+      progressPoint: 6,
+      decodability: "temporarily_irregular",
+      phonicsTags: ["blend_str", "final_ng"],
+      confidence: 0.8
+    },
+    {
+      original: "have",
+      normalized: "have",
+      graphemeTiles: ["h", "a", "v", "e"],
+      phonemeCount: 3,
+      tileToColumnMap: [[0], [1], [2, 3]],
+      underlineTileIndices: [],
+      heartStatusByTileIndex: ["none", "none", "none", "none"],
+      silentTileIndices: [3],
+      curriculum: "fundations",
+      progressPoint: 6,
+      decodability: "decodable_now",
+      phonicsTags: ["silent_e"],
+      confidence: 0.85
+    }
+  ];
+  const HEART_COLORS = {
+    temporary: "yellow",
+    permanent: "red"
+  };
+  const WORD_ANALYSIS_OVERRIDES = {
+    the: { graphemeTiles: ["th", "e"], underlineTileIndices: [0], heartStatusByTileIndex: ["none", "permanent"], silentTileIndices: [], decodability: "permanently_irregular", phonicsTags: ["digraph_th", "schwa_like"], confidence: 0.95, progressPoint: { ufli: 2, fundations: 1 } },
+    this: { graphemeTiles: ["th", "i", "s"], underlineTileIndices: [0], heartStatusByTileIndex: ["none", "none", "none"], silentTileIndices: [], decodability: "temporarily_irregular", phonicsTags: ["digraph_th", "short-i"], confidence: 0.92, progressPoint: { ufli: 5, fundations: 3 } },
+    of: { graphemeTiles: ["o", "f"], underlineTileIndices: [], heartStatusByTileIndex: ["permanent", "permanent"], silentTileIndices: [], decodability: "permanently_irregular", phonicsTags: ["hf_irregular"], confidence: 0.96, progressPoint: { ufli: 7, fundations: 7 } },
+    have: { graphemeTiles: ["h", "a", "v", "e"], underlineTileIndices: [], heartStatusByTileIndex: ["none", "none", "none", "none"], silentTileIndices: [3], decodability: "decodable_now", phonicsTags: ["silent_e"], confidence: 0.9, progressPoint: { ufli: 10, fundations: 7 } },
+    said: { graphemeTiles: ["s", "ai", "d"], underlineTileIndices: [1], heartStatusByTileIndex: ["none", "permanent", "none"], silentTileIndices: [], decodability: "permanently_irregular", phonicsTags: ["vowel_team_ai"], confidence: 0.9, progressPoint: { ufli: 9, fundations: 5 } },
+    was: { graphemeTiles: ["w", "a", "s"], underlineTileIndices: [], heartStatusByTileIndex: ["none", "permanent", "none"], silentTileIndices: [], decodability: "permanently_irregular", phonicsTags: ["hf_irregular"], confidence: 0.9, progressPoint: { ufli: 6, fundations: 5 } },
+    come: { graphemeTiles: ["c", "o", "m", "e"], underlineTileIndices: [], heartStatusByTileIndex: ["none", "permanent", "none", "none"], silentTileIndices: [3], decodability: "permanently_irregular", phonicsTags: ["silent_e"], confidence: 0.82, progressPoint: { ufli: 9, fundations: 10 } },
+    some: { graphemeTiles: ["s", "o", "m", "e"], underlineTileIndices: [], heartStatusByTileIndex: ["none", "permanent", "none", "none"], silentTileIndices: [3], decodability: "permanently_irregular", phonicsTags: ["silent_e"], confidence: 0.74, progressPoint: { ufli: 10, fundations: 7 } },
+    one: { graphemeTiles: ["o", "n", "e"], underlineTileIndices: [], heartStatusByTileIndex: ["permanent", "none", "none"], silentTileIndices: [], decodability: "permanently_irregular", phonicsTags: ["hf_irregular"], confidence: 0.6, progressPoint: { ufli: 12, fundations: 10 } },
+    does: { graphemeTiles: ["d", "oe", "s"], underlineTileIndices: [1], heartStatusByTileIndex: ["none", "permanent", "none"], silentTileIndices: [], decodability: "permanently_irregular", phonicsTags: ["hf_irregular"], confidence: 0.68, progressPoint: { ufli: 12, fundations: 10 } }
+  };
+  const ALWAYS_AVAILABLE_TEXT_WORDS = ["go", "to", "the", "red", "dot", "press", "step", "door", "box", "cat", "deli", "mail", "up", "you", "see", "a", "help", "look", "hint", "it", "can", "next", "lead", "leads", "path", "sign", "elevator", "goal", "space", "click", "tap", "or", "bright", "tile"];
+  const WORD_ALIASES = {
+    stoop: ["step"],
+    steps: ["step"],
+    clue: ["hint", "sign"],
+    clues: ["hints"],
+    points: ["leads"],
+    point: ["lead"],
+    new: ["next"],
+    lift: ["elevator", "up"],
+    sidewalk: ["path"]
+  };
+  const MULTI_TILE_GRAPHEMES = ["tch", "dge", "igh", "all", "oll", "ild", "old", "ind", "ost", "ang", "ing", "ong", "ung", "ank", "ink", "th", "sh", "ch", "wh", "ck", "ng", "nk", "ff", "ll", "ss", "zz", "qu", "ai", "ay", "ee", "ea", "oa", "ow", "ar", "or", "er", "ir", "ur"];
+  let wordIndex = {};
 
   const ui = {
     titleScreen: document.getElementById("title-screen"),
@@ -835,7 +914,11 @@
   }
 
   function showGuideToast(duration) {
-    ui.questHint.textContent = state.currentInstruction || ui.questHint.textContent;
+    ui.questHint.innerHTML = renderGameText({
+      intent: "directive",
+      raw: state.currentInstruction || ui.questHint.textContent,
+      allowIrregular: true
+    }).html;
     state.hintVisibleAt = performance.now() + (duration || 2600);
   }
 
@@ -1011,6 +1094,8 @@
     state.currentClues = [];
     state.introducedEntities = new Set(PERSISTENT_SCENE_ENTITIES[envKey] || []);
     state.currentInstruction = "";
+    state.wordIndexSignature = "";
+    refreshWordAnalysisIndex();
     state.questStartOpen = true;
     state.input.up = false;
     state.input.down = false;
@@ -1041,7 +1126,12 @@
   }
 
   function showQuestStartModal() {
-    ui.questStartText.textContent = state.currentNarrative.goal + " " + getQuestStartHint();
+    const rendered = renderGameText({
+      intent: "directive",
+      raw: state.currentNarrative.goal + " " + getQuestStartHint(),
+      allowIrregular: true
+    });
+    ui.questStartText.innerHTML = rendered.html;
     ui.questStartModal.classList.remove("hidden");
   }
 
@@ -1053,7 +1143,11 @@
     state.gameplayStartedAt = performance.now();
     state.hintVisibleAt = state.gameplayStartedAt + 2600;
     pulseLocatePlayer();
-    ui.questHint.textContent = state.currentInstruction;
+    ui.questHint.innerHTML = renderGameText({
+      intent: "directive",
+      raw: state.currentInstruction,
+      allowIrregular: true
+    }).html;
     syncDockState();
     requestAnimationFrame(resolveOverlaySafety);
     playBlip(470, 0.07, "triangle");
@@ -1073,10 +1167,22 @@
     ui.hudTitle.textContent = state.currentNarrative.title;
     ui.hudSubtitle.textContent = map.label;
     ui.settingsStoryMeta.textContent = state.currentNarrative.title + " — " + map.label;
-    ui.goalText.textContent = "Goal: " + getShortGoal();
+    ui.goalText.innerHTML = renderGameText({
+      intent: "hint",
+      raw: "Goal " + getShortGoal(),
+      allowIrregular: true
+    }).html;
     state.currentInstruction = buildInstructionFromState(node, trigger, displayNode);
-    ui.targetText.textContent = "Next: " + summarizeInstructionTarget(trigger, displayNode);
-    ui.questHint.textContent = state.currentInstruction;
+    ui.targetText.innerHTML = renderGameText({
+      intent: "directive",
+      raw: "Next " + summarizeInstructionTarget(trigger, displayNode),
+      allowIrregular: true
+    }).html;
+    ui.questHint.innerHTML = renderGameText({
+      intent: "directive",
+      raw: state.currentInstruction,
+      allowIrregular: true
+    }).html;
     updateReachabilityStatusText();
   }
 
@@ -1145,7 +1251,11 @@
       return;
     }
 
-    ui.questHint.textContent = state.currentInstruction || buildInstructionFromState(node, trigger, state.currentDisplayNode || getDisplayNode(node));
+    ui.questHint.innerHTML = renderGameText({
+      intent: "directive",
+      raw: state.currentInstruction || buildInstructionFromState(node, trigger, state.currentDisplayNode || getDisplayNode(node)),
+      allowIrregular: true
+    }).html;
     showGuideToast(2400);
   }
 
@@ -1155,14 +1265,14 @@
     state.currentValidation = validateDisplayNode(displayNode);
     ui.dialogueText.innerHTML = "";
     displayNode.text.forEach((line, index) => {
-      const lineInfo = state.currentValidation.lines[index];
+      const lineInfo = displayNode.textMeta[index] || state.currentValidation.lines[index];
       const p = document.createElement("p");
-      p.className = "dialogue-line" + (lineInfo.valid ? "" : " invalid");
+      p.className = "dialogue-line" + (state.currentValidation.lines[index].valid ? "" : " invalid");
       p.innerHTML = lineInfo.html;
       ui.dialogueText.appendChild(p);
     });
-    ui.choiceAButton.textContent = displayNode.choiceA;
-    ui.choiceBButton.textContent = displayNode.choiceB;
+    ui.choiceAButton.innerHTML = displayNode.choiceAMeta.html;
+    ui.choiceBButton.innerHTML = displayNode.choiceBMeta.html;
     state.modalOpen = true;
     resolveDialoguePlacement(node.location);
     ui.overlayDim.classList.remove("hidden");
@@ -1263,6 +1373,517 @@
     };
   }
 
+  function getCurrentCurriculum() {
+    return state.config.program === "fundations" ? "fundations" : "ufli";
+  }
+
+  function getWordIndexSignature() {
+    return [
+      getCurrentCurriculum(),
+      state.config.unit,
+      state.config.strictness,
+      state.config.nycVocab
+    ].join("|");
+  }
+
+  function refreshWordAnalysisIndex() {
+    const signature = getWordIndexSignature();
+    if (state.wordIndexSignature === signature) return;
+
+    wordIndex = {};
+    collectKnownWords().forEach((word) => {
+      const analysis = buildWordAnalysisForWord(word);
+      if (analysis) wordIndex[analysis.normalized] = analysis;
+    });
+
+    state.wordIndexSignature = signature;
+    state.wordAnalysisSelfCheck = runWordAnalysisSelfCheck();
+  }
+
+  function collectKnownWords() {
+    const words = new Set(Object.keys(wordLookup));
+    Object.keys(WORD_ANALYSIS_OVERRIDES).forEach((word) => words.add(word));
+    ALWAYS_AVAILABLE_TEXT_WORDS.forEach((word) => words.add(word));
+    TRACKED_ENTITY_WORDS.forEach((word) => words.add(word));
+    Object.keys(WORD_ALIASES).forEach((word) => {
+      words.add(word);
+      WORD_ALIASES[word].forEach((alias) => words.add(alias));
+    });
+    Object.values(NARRATIVES).forEach((story) => {
+      story.nodes.forEach((node) => {
+        node.text.concat([node.choiceA, node.choiceB]).forEach((line) => {
+          (line.match(/[A-Za-z']+/g) || []).forEach((word) => words.add(normalizeWord(word)));
+        });
+      });
+    });
+    return Array.from(words);
+  }
+
+  function cloneWordAnalysis(analysis) {
+    return JSON.parse(JSON.stringify(analysis));
+  }
+
+  function normalizeWord(raw) {
+    return (raw || "").toLowerCase().replace(/[^a-z']/g, "").replace(/'s$/, "");
+  }
+
+  function buildWordAnalysisForWord(rawWord) {
+    const normalized = normalizeWord(rawWord);
+    if (!normalized) return null;
+    const curriculum = getCurrentCurriculum();
+    const override = WORD_ANALYSIS_OVERRIDES[normalized];
+    const entry = wordLookup[normalized];
+    const tags = entry ? entry.tags.slice() : derivePhonicsTagsForWord(normalized);
+    const graphemeTiles = override ? override.graphemeTiles.slice() : segmentWordToGraphemeTiles(normalized);
+    const silentTileIndices = override ? override.silentTileIndices.slice() : getSilentTileIndices(graphemeTiles);
+    const tileToColumnMap = override ? cloneWordAnalysis({ map: override.tileToColumnMap || buildTileToColumnMap(graphemeTiles, silentTileIndices) }).map : buildTileToColumnMap(graphemeTiles, silentTileIndices);
+    const phonemeCount = override ? override.phonemeCount : tileToColumnMap.length;
+    const underlineTileIndices = override ? override.underlineTileIndices.slice() : getUnderlineTileIndices(graphemeTiles);
+    const heartStatusByTileIndex = override ? override.heartStatusByTileIndex.slice() : new Array(graphemeTiles.length).fill("none");
+    const progressPoint = inferProgressPointForWord(normalized, tags, curriculum, override);
+    const decodability = classifyDecodability(normalized, tags, heartStatusByTileIndex, silentTileIndices, entry, override);
+    const confidence = override ? override.confidence : inferConfidence(normalized, entry, tags);
+    const isHFW = Boolean((entry && entry.tags.some((tag) => tag === "hf" || tag === "trick")) || isHighFrequencyWord(normalized));
+    const analysis = {
+      original: rawWord,
+      normalized: normalized,
+      graphemeTiles: graphemeTiles,
+      phonemeCount: phonemeCount,
+      tileToColumnMap: tileToColumnMap,
+      underlineTileIndices: underlineTileIndices,
+      heartStatusByTileIndex: heartStatusByTileIndex,
+      silentTileIndices: silentTileIndices,
+      curriculum: curriculum,
+      progressPoint: progressPoint,
+      decodability: decodability,
+      reasons: [],
+      phonicsTags: tags,
+      syllableCount: normalized.length > 6 ? 2 : 1,
+      isMultisyllabic: normalized.length > 6,
+      isHFW: isHFW,
+      distractorTiles: buildDistractorTiles(graphemeTiles),
+      confidence: confidence
+    };
+
+    applyWordAnalysisOverrides(analysis, override);
+    return analysis;
+  }
+
+  function applyWordAnalysisOverrides(analysis, override) {
+    const currentLevel = state.config.unit;
+    if (analysis.normalized === "the") {
+      if (!isPatternTaught("digraph", currentLevel)) {
+        analysis.heartStatusByTileIndex[0] = "temporary";
+      }
+      analysis.reasons.push("Override: schwa-like final e remains a permanent heart tile.");
+      return;
+    }
+    if (analysis.normalized === "this") {
+      analysis.heartStatusByTileIndex[0] = isPatternTaught("digraph", currentLevel) ? "none" : "temporary";
+      analysis.reasons.push("Override: th is temporary until taught.");
+      return;
+    }
+    if (analysis.normalized === "of") {
+      analysis.reasons.push("Override: o and f stay permanent heart tiles.");
+      return;
+    }
+    if (analysis.normalized === "have") {
+      analysis.reasons.push("Override: final e is silent, not a heart tile.");
+      return;
+    }
+    if (override && override.confidence < 0.75) {
+      analysis.reasons.push("Ambiguous heart marking; avoid automatic child-facing use.");
+    }
+  }
+
+  function inferProgressPointForWord(normalized, tags, curriculum, override) {
+    if (override && override.progressPoint && override.progressPoint[curriculum]) {
+      return override.progressPoint[curriculum];
+    }
+
+    if (ALWAYS_AVAILABLE_TEXT_WORDS.includes(normalized)) return 1;
+
+    const levels = PROGRAM_DATA[curriculum].levels;
+    let earliest = levels[levels.length - 1].unit;
+    let found = false;
+
+    levels.forEach((level) => {
+      if (level.highFrequencyWords.some((word) => normalizeWord(word) === normalized)) {
+        earliest = Math.min(earliest, level.unit);
+        found = true;
+      }
+      if ((tags || []).some((tag) => {
+        if (tag.indexOf("digraph_") === 0 || tag.indexOf("vowel_team_") === 0 || tag === "final_ng") {
+          return true;
+        }
+        return (FEATURE_LADDER[curriculum][level.unit] || []).includes(tag);
+      })) {
+        earliest = Math.min(earliest, level.unit);
+        found = true;
+      }
+    });
+
+    if (!found) {
+      if (tags.includes("short-a") || tags.includes("short-i")) return 1;
+      if (tags.includes("short-o")) return curriculum === "fundations" ? 1 : 2;
+      if (tags.includes("short-e")) return curriculum === "fundations" ? 2 : 3;
+      if (tags.includes("short-u")) return curriculum === "fundations" ? 2 : 4;
+      if (tags.includes("digraph")) return curriculum === "fundations" ? 3 : 5;
+      if (tags.includes("blend")) return curriculum === "fundations" ? 4 : 7;
+      if (tags.includes("glued")) return curriculum === "fundations" ? 6 : 8;
+      if (tags.includes("silent-e")) return curriculum === "fundations" ? 7 : 10;
+      if (tags.includes("open")) return curriculum === "fundations" ? 8 : 11;
+      if (tags.includes("vowel-team")) return curriculum === "fundations" ? 9 : 12;
+    }
+    return earliest;
+  }
+
+  function isPatternTaught(tag, progressPoint) {
+    const profile = getAllowedProfile();
+    if (tag === "digraph") return profile.allowedTags.has("digraph");
+    return profile.allowedTags.has(tag);
+  }
+
+  function derivePhonicsTagsForWord(normalized) {
+    const tags = [];
+    if (!normalized) return tags;
+    if (/(sh|ch|th|wh|ck)/.test(normalized)) tags.push("digraph");
+    if (/(ff|ll|ss|zz)$/.test(normalized)) tags.push("ffllsszz");
+    if (/(all|oll|ild|old|ind|ost|ing|ang|ong|ung|ank|ink|am|an)$/.test(normalized)) tags.push("glued");
+    if (/(ai|ay|ee|ea|oa|ow)/.test(normalized)) tags.push("vowel-team");
+    if (/[aeiou][bcdfghjklmnpqrstvwxyz]e$/.test(normalized) && normalized.length > 3) tags.push("silent-e");
+    if (/^[bcdfghjklmnpqrstvwxyz]{2}/.test(normalized) || /[bcdfghjklmnpqrstvwxyz]{2}$/.test(normalized)) tags.push("blend");
+    if (/(ng|nk)$/.test(normalized)) tags.push("final_ng");
+    if ((normalized.length <= 2 || /^[bcdfghjklmnpqrstvwxyz]*[aeiou]$/.test(normalized)) && /[aeiouy]$/.test(normalized)) tags.push("open");
+    if (/^[bcdfghjklmnpqrstvwxyz]*a[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-a");
+    if (/^[bcdfghjklmnpqrstvwxyz]*i[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-i");
+    if (/^[bcdfghjklmnpqrstvwxyz]*o[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-o");
+    if (/^[bcdfghjklmnpqrstvwxyz]*e[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-e");
+    if (/^[bcdfghjklmnpqrstvwxyz]*u[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-u");
+    if (!tags.length) tags.push("unknown");
+    if (/th/.test(normalized)) tags.push("digraph_th");
+    if (/ng/.test(normalized)) tags.push("final_ng");
+    if (/ea/.test(normalized)) tags.push("vowel_team_ea");
+    if (/ai/.test(normalized)) tags.push("vowel_team_ai");
+    return Array.from(new Set(tags));
+  }
+
+  function segmentWordToGraphemeTiles(normalized) {
+    const tiles = [];
+    let index = 0;
+    while (index < normalized.length) {
+      let match = "";
+      MULTI_TILE_GRAPHEMES.forEach((tile) => {
+        if (!match && normalized.slice(index, index + tile.length) === tile) {
+          match = tile;
+        }
+      });
+      if (match) {
+        tiles.push(match);
+        index += match.length;
+      } else {
+        tiles.push(normalized[index]);
+        index += 1;
+      }
+    }
+    return tiles;
+  }
+
+  function getUnderlineTileIndices(graphemeTiles) {
+    return graphemeTiles.reduce((indices, tile, index) => {
+      if (tile.length > 1) indices.push(index);
+      return indices;
+    }, []);
+  }
+
+  function getSilentTileIndices(graphemeTiles) {
+    if (graphemeTiles.length >= 2 && graphemeTiles[graphemeTiles.length - 1] === "e") {
+      const previous = graphemeTiles[graphemeTiles.length - 2];
+      if (previous.length === 1 && /[bcdfghjklmnpqrstvwxyz]/.test(previous)) {
+        return [graphemeTiles.length - 1];
+      }
+    }
+    return [];
+  }
+
+  function buildTileToColumnMap(graphemeTiles, silentTileIndices) {
+    const silent = new Set(silentTileIndices || []);
+    const columns = [];
+    graphemeTiles.forEach((tile, index) => {
+      if (silent.has(index)) {
+        if (columns.length) {
+          columns[columns.length - 1].push(index);
+        } else {
+          columns.push([index]);
+        }
+      } else {
+        columns.push([index]);
+      }
+    });
+    return columns;
+  }
+
+  function classifyDecodability(normalized, tags, heartStatusByTileIndex, silentTileIndices, entry, override) {
+    if (ALWAYS_AVAILABLE_TEXT_WORDS.includes(normalized)) return "decodable_now";
+    if (override && override.decodability) return override.decodability;
+    if (heartStatusByTileIndex.some((status) => status === "permanent")) return "permanently_irregular";
+    if (heartStatusByTileIndex.some((status) => status === "temporary")) return "temporarily_irregular";
+    if ((entry && entry.tags.includes("trick")) || tags.includes("unknown")) return "temporarily_irregular";
+    if (silentTileIndices.length) return "decodable_now";
+    return "decodable_now";
+  }
+
+  function inferConfidence(normalized, entry, tags) {
+    if (WORD_ANALYSIS_OVERRIDES[normalized]) return WORD_ANALYSIS_OVERRIDES[normalized].confidence;
+    if (entry) return 0.9;
+    if (ALWAYS_AVAILABLE_TEXT_WORDS.includes(normalized)) return 0.95;
+    if (tags.includes("unknown")) return 0.7;
+    return 0.82;
+  }
+
+  function isHighFrequencyWord(normalized) {
+    const levels = PROGRAM_DATA[getCurrentCurriculum()].levels;
+    return levels.some((level) => level.highFrequencyWords.some((word) => normalizeWord(word) === normalized));
+  }
+
+  function buildDistractorTiles(graphemeTiles) {
+    const pool = ["a", "e", "i", "o", "u", "th", "sh", "ng", "ee", "oa"];
+    const distractors = [];
+    pool.forEach((tile) => {
+      if (distractors.length >= 4) return;
+      if (!graphemeTiles.includes(tile)) distractors.push(tile);
+    });
+    return distractors;
+  }
+
+  function getOrBuildWordAnalysis(rawWord) {
+    refreshWordAnalysisIndex();
+    const normalized = normalizeWord(rawWord);
+    if (!normalized) return null;
+    if (!wordIndex[normalized]) {
+      const analysis = buildWordAnalysisForWord(rawWord);
+      if (analysis) wordIndex[normalized] = analysis;
+    }
+    return wordIndex[normalized] ? cloneWordAnalysis(wordIndex[normalized]) : null;
+  }
+
+  function isWordAllowedForDisplay(analysis, event) {
+    if (!analysis) return false;
+    if (analysis.curriculum !== getCurrentCurriculum()) return false;
+    if (analysis.progressPoint > state.config.unit) return false;
+    if (analysis.confidence < 0.75) return false;
+    if (analysis.decodability === "decodable_now") return true;
+    if (!analysis.isHFW && (!event || !event.allowIrregular)) return false;
+    return Boolean(event && (event.allowIrregular || event.intent === "choice" || event.intent === "story" || event.intent === "directive"));
+  }
+
+  function findRenderableAlias(normalized, event) {
+    const options = WORD_ALIASES[normalized] || [];
+    for (let index = 0; index < options.length; index += 1) {
+      const alias = options[index];
+      const analysis = getOrBuildWordAnalysis(alias);
+      if (isWordAllowedForDisplay(analysis, event)) return alias;
+    }
+    return "";
+  }
+
+  function preserveCase(source, replacement) {
+    if (!source) return replacement;
+    if (source.toUpperCase() === source) return replacement.toUpperCase();
+    if (source[0] === source[0].toUpperCase()) {
+      return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+    }
+    return replacement;
+  }
+
+  function applyVocabularyAliases(raw, event) {
+    return (raw || "").replace(/[A-Za-z']+/g, function (match) {
+      const normalized = normalizeWord(match);
+      if (!normalized) return match;
+      const direct = getOrBuildWordAnalysis(normalized);
+      if (isWordAllowedForDisplay(direct, event)) return match;
+      const alias = findRenderableAlias(normalized, event);
+      if (alias) return preserveCase(match, alias);
+      return match;
+    });
+  }
+
+  function validateSentence(raw, event) {
+    const source = applyVocabularyAliases(raw, event);
+    const words = source.match(/[A-Za-z']+/g) || [];
+    const used = [];
+    const missing = [];
+    const disallowed = [];
+
+    words.forEach((word) => {
+      const analysis = getOrBuildWordAnalysis(word);
+      if (!analysis) {
+        missing.push(normalizeWord(word));
+        return;
+      }
+      used.push(analysis);
+      if (!isWordAllowedForDisplay(analysis, event)) {
+        if (analysis.confidence < 0.75) missing.push(analysis.normalized);
+        else disallowed.push(analysis.normalized);
+      }
+    });
+
+    return {
+      ok: missing.length === 0 && disallowed.length === 0,
+      source: source,
+      used: used,
+      missing: Array.from(new Set(missing)),
+      disallowed: Array.from(new Set(disallowed))
+    };
+  }
+
+  function compileSentence(tokens, opts) {
+    const parts = [];
+    const used = [];
+    const annotations = [];
+
+    (tokens || []).forEach((token) => {
+      if (token.wa) {
+        used.push(token.wa);
+        annotations.push({
+          word: token.wa.normalized,
+          underlineTileIndices: token.wa.underlineTileIndices.slice(),
+          heartStatusByTileIndex: token.wa.heartStatusByTileIndex.slice(),
+          silentTileIndices: token.wa.silentTileIndices.slice()
+        });
+        parts.push(renderWordAnalysisToken(token.wa, opts));
+      } else if (Object.prototype.hasOwnProperty.call(token, "punct")) {
+        parts.push(escapeHtml(token.punct));
+      }
+    });
+
+    return {
+      text: parts.join("").replace(/<[^>]+>/g, ""),
+      html: parts.join(""),
+      used: used,
+      annotations: annotations
+    };
+  }
+
+  function renderWordAnalysisToken(analysis, opts) {
+    const tiles = analysis.graphemeTiles.map((tile, index) => {
+      const classes = ["wa-tile"];
+      if (analysis.underlineTileIndices.includes(index)) classes.push("wa-underline");
+      if (analysis.heartStatusByTileIndex[index] === "temporary") classes.push("wa-heart-temp");
+      if (analysis.heartStatusByTileIndex[index] === "permanent") classes.push("wa-heart-perm");
+      if (analysis.silentTileIndices.includes(index)) classes.push("wa-silent");
+      return '<span class="' + classes.join(" ") + '" data-heart="' + HEART_COLORS[analysis.heartStatusByTileIndex[index]] + '">' + escapeHtml(tile) + "</span>";
+    }).join("");
+    return '<span class="wa-word" data-word="' + escapeHtml(analysis.normalized) + '">' + tiles + "</span>";
+  }
+
+  function tokenizeForCompile(raw) {
+    return (raw.match(/[A-Za-z']+|[^A-Za-z']+/g) || []).map((piece) => {
+      if (/[A-Za-z']/.test(piece)) {
+        const analysis = getOrBuildWordAnalysis(piece);
+        return analysis ? { wa: analysis } : { punct: piece };
+      }
+      return { punct: piece };
+    });
+  }
+
+  function buildSafeFallbackText(event) {
+    if (event && event.intent === "directive") return "Go to the red dot. Press GO.";
+    if (event && event.intent === "hint") return "You see the red dot.";
+    if (event && event.intent === "confirm") return "You can go.";
+    if (event && event.intent === "choice") return "Check the box";
+    return "You see it.";
+  }
+
+  function renderGameText(event) {
+    const validation = validateSentence(event.raw || "", event);
+    let source = validation.source;
+    let appliedFallback = false;
+    let finalValidation = validation;
+
+    if (!validation.ok) {
+      source = buildSafeFallbackText(event);
+      finalValidation = validateSentence(source, Object.assign({}, event, { allowIrregular: true }));
+      appliedFallback = true;
+    }
+
+    const compiled = compileSentence(tokenizeForCompile(source), event && event.opts);
+    return {
+      ok: finalValidation.ok,
+      text: source,
+      html: compiled.html,
+      used: compiled.used,
+      annotations: compiled.annotations,
+      missing: finalValidation.missing,
+      disallowed: finalValidation.disallowed,
+      appliedFallback: appliedFallback
+    };
+  }
+
+  function runWordAnalysisSelfCheck() {
+    const report = WORD_ANALYSIS_EXAMPLES.map((example) => {
+      const compiled = compileSentence([{ wa: cloneWordAnalysis(example) }]);
+      return {
+        word: example.original,
+        validShape: Array.isArray(example.graphemeTiles) && Array.isArray(example.heartStatusByTileIndex) && example.graphemeTiles.length === example.heartStatusByTileIndex.length,
+        rendered: compiled.html.length > 0
+      };
+    });
+    return {
+      pass: report.every((item) => item.validShape && item.rendered),
+      report: report
+    };
+  }
+
+  function getHeartWordBuckets() {
+    refreshWordAnalysisIndex();
+    const buckets = {
+      decodableNowHFWs: [],
+      temporaryHeartHFWs: [],
+      permanentHeartWords: [],
+      mixedHeartWords: [],
+      uncertain: []
+    };
+
+    Object.keys(wordIndex).forEach((key) => {
+      const analysis = wordIndex[key];
+      const heartTiles = analysis.heartStatusByTileIndex.filter((status) => status !== "none");
+      const hasTemporary = analysis.heartStatusByTileIndex.includes("temporary");
+      const hasPermanent = analysis.heartStatusByTileIndex.includes("permanent");
+
+      if (analysis.confidence < 0.75) {
+        buckets.uncertain.push(cloneWordAnalysis(analysis));
+      } else if (analysis.isHFW && !heartTiles.length) {
+        buckets.decodableNowHFWs.push(cloneWordAnalysis(analysis));
+      } else if (analysis.isHFW && hasTemporary && !hasPermanent) {
+        buckets.temporaryHeartHFWs.push(cloneWordAnalysis(analysis));
+      } else if (hasTemporary && hasPermanent) {
+        buckets.mixedHeartWords.push(cloneWordAnalysis(analysis));
+      } else if (hasPermanent) {
+        buckets.permanentHeartWords.push(cloneWordAnalysis(analysis));
+      }
+    });
+
+    return buckets;
+  }
+
+  function getDefaultHeartWordSelection() {
+    const buckets = getHeartWordBuckets();
+    const pick = function (list, count, singleHeartOnly) {
+      const source = (singleHeartOnly ? list.filter((item) => item.heartStatusByTileIndex.filter((status) => status !== "none").length === 1) : list).slice();
+      return source.slice(0, count);
+    };
+    const selection = []
+      .concat(pick(buckets.decodableNowHFWs, 6, false))
+      .concat(pick(buckets.temporaryHeartHFWs, 4, true))
+      .concat(pick(buckets.permanentHeartWords, 2, true));
+
+    if (selection.length < 12) {
+      return selection.concat(buckets.decodableNowHFWs.slice(0, 12 - selection.length));
+    }
+    return selection.slice(0, 12);
+  }
+
   function getDisplayNode(node) {
     if (!node) return null;
     const priorEntities = getIntroducedEntitiesForPath(state.pathHistory);
@@ -1272,19 +1893,40 @@
       markEntitiesInText(result.text, runningTextEntities);
       return result;
     });
-    const refinedText = textResults.map((result) => result.text);
+    const textMeta = textResults.map((result) => renderGameText({
+      intent: "story",
+      raw: result.text,
+      allowIrregular: true
+    }));
+    const refinedText = textMeta.map((result) => result.text);
     const choiceEntities = new Set(runningTextEntities);
     const choiceAResult = sanitizeChoiceResult(refinePhrase(node.choiceA, choiceEntities, "choice"), node, "A");
     const choiceBResult = sanitizeChoiceResult(refinePhrase(node.choiceB, choiceEntities, "choice"), node, "B");
+    const choiceAMeta = renderGameText({
+      intent: "choice",
+      raw: choiceAResult.text,
+      allowIrregular: true
+    });
+    const choiceBMeta = renderGameText({
+      intent: "choice",
+      raw: choiceBResult.text,
+      allowIrregular: true
+    });
 
     return {
       id: node.id,
       text: refinedText,
-      choiceA: choiceAResult.text,
-      choiceB: choiceBResult.text,
+      textMeta: textMeta,
+      choiceA: choiceAMeta.text,
+      choiceB: choiceBMeta.text,
+      choiceAMeta: choiceAMeta,
+      choiceBMeta: choiceBMeta,
       languageFindings: textResults
         .flatMap((result) => result.notes)
         .concat(choiceAResult.notes, choiceBResult.notes)
+        .concat(textMeta.filter((meta) => meta.appliedFallback).map((meta) => "Word analysis fallback used: '" + meta.text + "'"))
+        .concat(choiceAMeta.appliedFallback ? ["Word analysis fallback used on choice A."] : [])
+        .concat(choiceBMeta.appliedFallback ? ["Word analysis fallback used on choice B."] : [])
     };
   }
 
@@ -1581,15 +2223,15 @@
   }
 
   function validateSnippet(text) {
-    const line = validateLine(text, getAllowedProfile());
+    const validation = validateSentence(text, { intent: "story", allowIrregular: true });
     return {
-      valid: line.valid,
-      invalidWords: line.words.filter((word) => !word.valid).map((word) => word.word)
+      valid: validation.ok,
+      invalidWords: validation.missing.concat(validation.disallowed)
     };
   }
 
   function validateDisplayNode(displayNode) {
-    const lines = displayNode.text.map((line) => validateLine(line, getAllowedProfile()));
+    const lines = displayNode.text.map((line) => validateLine(line, getAllowedProfile(), { intent: "story", allowIrregular: true }));
     const invalidWords = [];
     const usedTags = new Set();
 
@@ -1610,7 +2252,7 @@
 
   function validateNode(node) {
     const profile = getAllowedProfile();
-    const lines = node.text.map((line) => validateLine(line, profile));
+    const lines = node.text.map((line) => validateLine(line, profile, { intent: "story", allowIrregular: true }));
     const invalidWords = [];
     const usedTags = new Set();
 
@@ -1629,29 +2271,49 @@
     };
   }
 
-  function validateLine(line, profile) {
-    const rawWords = line.match(/[A-Za-z']+/g) || [];
-    const words = rawWords.map((raw) => assessWord(raw, profile));
-    const invalidSet = new Set(words.filter((info) => !info.valid).map((info) => info.word.toLowerCase()));
-
-    const html = line.replace(/[A-Za-z']+/g, (match) => {
-      if (invalidSet.has(match.toLowerCase())) return '<span class="bad-word">' + escapeHtml(match) + "</span>";
-      return escapeHtml(match);
-    });
+  function validateLine(line, profile, event) {
+    const rendered = renderGameText(Object.assign({
+      intent: "story",
+      raw: line,
+      allowIrregular: true
+    }, event || {}));
+    const rawWords = rendered.text.match(/[A-Za-z']+/g) || [];
+    const words = rawWords.map((raw) => assessWord(raw, profile, event));
+    const html = rendered.html;
 
     return {
-      text: line,
+      text: rendered.text,
       html,
       words,
       valid: words.every((word) => word.valid)
     };
   }
 
-  function assessWord(raw, profile) {
+  function assessWord(raw, profile, event) {
     const cleaned = raw.toLowerCase();
+    const analysis = getOrBuildWordAnalysis(cleaned);
+    if (!analysis) {
+      return inferWord(raw, profile);
+    }
+
+    if (!isWordAllowedForDisplay(analysis, event || { intent: "story", allowIrregular: true })) {
+      const tags = analysis.phonicsTags.slice();
+      return {
+        word: raw,
+        valid: false,
+        tags: tags,
+        reason: analysis.confidence < 0.75 ? "Word analysis confidence is too low for child-facing text." : "Blocked by curriculum scope for this unit."
+      };
+    }
+
     const entry = wordLookup[cleaned];
     if (!entry) {
-      return inferWord(raw, profile);
+      return {
+        word: raw,
+        valid: true,
+        tags: analysis.phonicsTags.slice(),
+        reason: "Validated by word analysis layer."
+      };
     }
 
     const tags = entry.tags.slice();
@@ -1719,6 +2381,8 @@
     ui.debugPanel.classList.toggle("hidden", !state.config.debug);
     if (!state.config.debug) return;
 
+    refreshWordAnalysisIndex();
+
     const node = getCurrentNode();
     const displayNode = state.currentDisplayNode || getDisplayNode(node);
     const validation = state.currentValidation || validateDisplayNode(displayNode);
@@ -1742,6 +2406,18 @@
     allowed.className = "debug-chip";
     allowed.textContent = "Allowed now: " + Array.from(profile.allowedTags).sort().join(", ");
     ui.debugOutput.appendChild(allowed);
+
+    if (state.wordAnalysisSelfCheck) {
+      const wordLayer = document.createElement("div");
+      wordLayer.className = "debug-chip";
+      wordLayer.textContent = "Word Analysis self-check: " + (state.wordAnalysisSelfCheck.pass ? "pass" : "review fixture");
+      ui.debugOutput.appendChild(wordLayer);
+
+      const heartSelection = document.createElement("div");
+      heartSelection.className = "debug-chip";
+      heartSelection.textContent = "Heart-word sample size: " + getDefaultHeartWordSelection().length;
+      ui.debugOutput.appendChild(heartSelection);
+    }
 
     const choiceWarnings = getChoiceLanguageWarnings(state.currentNarrative);
     choiceWarnings.forEach((warning) => {
@@ -2123,8 +2799,34 @@
 
   function auditPhraseList(nodeId, phrases, sourceType, introduced, safeReplacements, suggestions, rejected, seen) {
     phrases.forEach((phrase) => {
+      const rendered = renderGameText({
+        intent: sourceType === "choice" ? "choice" : "story",
+        raw: phrase,
+        allowIrregular: true
+      });
+      const validation = validateSentence(phrase, {
+        intent: sourceType === "choice" ? "choice" : "story",
+        allowIrregular: true
+      });
       const candidates = getRefinementCandidates(phrase, introduced, sourceType);
       const repetitionIssue = sourceType === "choice" ? getRepetitionIssue(phrase, phrases) : "";
+
+      if (!validation.ok) {
+        pushLanguageAuditItem(rejected, seen, nodeId + "|word-analysis|" + phrase, {
+          nodeId: nodeId,
+          message: nodeId + " blocked '" + phrase + "' | missing: " + (validation.missing.join(", ") || "none") + " | disallowed: " + (validation.disallowed.join(", ") || "none") + " | rewrite: '" + rendered.text + "'."
+        });
+      }
+
+      (validation.used || []).forEach((analysis) => {
+        if (analysis.confidence < 0.75) {
+          pushLanguageAuditItem(rejected, seen, nodeId + "|ambiguous|" + analysis.normalized, {
+            nodeId: nodeId,
+            message: nodeId + " has an ambiguous case '" + analysis.normalized + "' (" + analysis.confidence.toFixed(2) + ")."
+          });
+        }
+      });
+
       if (repetitionIssue) {
         pushLanguageAuditItem(suggestions, seen, nodeId + "|repeat|" + phrase, {
           nodeId: nodeId,
@@ -2133,8 +2835,8 @@
       }
 
       candidates.forEach((candidate) => {
-        const validation = validateSnippet(candidate.to);
-        if (validation.valid) {
+        const candidateValidation = validateSnippet(candidate.to);
+        if (candidateValidation.valid) {
           pushLanguageAuditItem(safeReplacements, seen, nodeId + "|safe|" + candidate.from + "|" + candidate.to, {
             nodeId: nodeId,
             message: nodeId + " can use '" + candidate.to + "' instead of '" + candidate.from + "'."
@@ -2142,7 +2844,7 @@
         } else {
           pushLanguageAuditItem(rejected, seen, nodeId + "|blocked|" + candidate.from + "|" + candidate.to, {
             nodeId: nodeId,
-            message: nodeId + " rejected '" + candidate.to + "' because " + (validation.invalidWords.join(", ") || "it is out of scope") + "."
+            message: nodeId + " rejected '" + candidate.to + "' because " + (candidateValidation.invalidWords.join(", ") || "it is out of scope") + "."
           });
         }
       });
@@ -2415,6 +3117,7 @@
   }
 
   function runUsabilityReview() {
+    refreshWordAnalysisIndex();
     const story = NARRATIVES[state.config.env];
     const longestSentence = story.nodes.reduce((max, node) => {
       return Math.max(
@@ -2434,6 +3137,7 @@
       { label: "Sentence load", value: longestSentence + " words max per line in this map" },
       { label: "Block read", value: getEnvironmentReadabilityNote() },
       { label: "Reachability", value: state.reachabilityStatus || "Runtime validation pending" },
+      { label: "Word layer", value: state.wordAnalysisSelfCheck && state.wordAnalysisSelfCheck.pass ? "Fixture JSON shape + overlay render check pass" : "Review word analysis fixture" },
       { label: "Goal visibility", value: state.modalOpen ? "Modal is active, movement is frozen, and the modal sits away from the active landmark" : "Goal tile stays visible during movement" },
       { label: "Movement pacing", value: movement + "ms tile step for fast JRPG-style response" },
       { label: "Confirm action", value: isMobileMode() ? "GO button stays visible and consistent" : "SPACE or click is the single confirm action" }
@@ -3333,7 +4037,7 @@
     if (lead.type === "escalation") {
       return lead.text + " Go to " + targetLabel + ". " + getConfirmInstruction();
     }
-    return "You see a new clue. Go to " + targetLabel + ". " + getConfirmInstruction();
+    return "You see a hint. Go to " + targetLabel + ". " + getConfirmInstruction();
   }
 
   function summarizeInstructionTarget(trigger, displayNode) {
@@ -3356,7 +4060,7 @@
     }
 
     if (/\b(no|not|wrong|lost)\b/.test(consequenceText)) {
-      return { type: "elimination", text: "No Pip here. A new clue points on." };
+      return { type: "elimination", text: "No Pip here. A hint leads on." };
     }
 
     if (/\b(stuck|sad|wet|slow|shut|ring|slick|blocks)\b/.test(consequenceText)) {
@@ -3364,7 +4068,7 @@
     }
 
     if (clue) {
-      return { type: "clue", text: "The clue leads to " + targetLabel + "." };
+      return { type: "clue", text: "The hint leads to " + targetLabel + "." };
     }
 
     if (labelWords.some((word) => consequenceText.includes(word))) {

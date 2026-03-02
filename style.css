@@ -833,6 +833,65 @@ input[type="text"] {
   border-radius: 4px;
 }
 
+.wa-word {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 1px;
+  margin-right: 0.12em;
+  vertical-align: baseline;
+}
+
+.wa-tile {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0.55em;
+  padding: 0 0.04em;
+  border-radius: 0.16em;
+}
+
+.wa-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.08em;
+}
+
+.wa-heart-temp::after,
+.wa-heart-perm::after {
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  bottom: -0.68em;
+  transform: translateX(-50%);
+  font-size: 0.48em;
+  line-height: 1;
+}
+
+.wa-heart-temp::after {
+  color: #e3c75f;
+}
+
+.wa-heart-perm::after {
+  color: #d94841;
+}
+
+.wa-silent::before {
+  content: "";
+  position: absolute;
+  inset: 0.12em 0.08em;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 2px,
+      rgba(57, 79, 106, 0.45) 2px,
+      rgba(57, 79, 106, 0.45) 3px
+    );
+  border-radius: 0.14em;
+  pointer-events: none;
+}
+
 .choice-button {
   flex: 1 1 220px;
   padding: 14px;

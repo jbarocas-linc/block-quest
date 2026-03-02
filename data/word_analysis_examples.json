@@ -1,0 +1,47 @@
+[
+  {
+    "original": "the",
+    "normalized": "the",
+    "graphemeTiles": ["th","e"],
+    "phonemeCount": 2,
+    "tileToColumnMap": [[0],[1]],
+    "underlineTileIndices": [0],
+    "heartStatusByTileIndex": ["none","permanent"],
+    "silentTileIndices": [],
+    "curriculum": "ufli",
+    "progressPoint": 60,
+    "decodability": "permanently_irregular",
+    "phonicsTags": ["digraph_th","schwa_like"],
+    "confidence": 0.95
+  },
+  {
+    "original": "strong",
+    "normalized": "strong",
+    "graphemeTiles": ["s","t","r","o","ng"],
+    "phonemeCount": 5,
+    "tileToColumnMap": [[0],[1],[2],[3],[4]],
+    "underlineTileIndices": [4],
+    "heartStatusByTileIndex": ["none","none","none","none","none"],
+    "silentTileIndices": [],
+    "curriculum": "fundations",
+    "progressPoint": 6,
+    "decodability": "temporarily_irregular",
+    "phonicsTags": ["blend_str","final_ng"],
+    "confidence": 0.8
+  },
+  {
+    "original": "have",
+    "normalized": "have",
+    "graphemeTiles": ["h","a","v","e"],
+    "phonemeCount": 3,
+    "tileToColumnMap": [[0],[1],[2,3]],
+    "underlineTileIndices": [],
+    "heartStatusByTileIndex": ["none","none","none","none"],
+    "silentTileIndices": [3],
+    "curriculum": "fundations",
+    "progressPoint": 6,
+    "decodability": "decodable_now",
+    "phonicsTags": ["silent_e"],
+    "confidence": 0.85
+  }
+]

@@ -13,8 +13,8 @@
   --line: #284b63;
   --shadow: rgba(16, 37, 66, 0.18);
   --ui-scale: 1;
-  --font-main: "Trebuchet MS", "Verdana", sans-serif;
-  --font-pixel: "Courier New", monospace;
+  --font-main: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-pixel: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 * {
@@ -791,8 +791,12 @@ input[type="text"] {
 
 .dialogue-kicker {
   margin: 0 0 10px;
-  font-family: var(--font-pixel);
-  text-transform: uppercase;
+  font-family: var(--font-main);
+  font-size: calc(0.98rem * var(--ui-scale));
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.2;
+  text-transform: none;
   color: var(--accent-dark);
 }
 
@@ -800,13 +804,18 @@ input[type="text"] {
   display: grid;
   gap: 8px;
   margin-bottom: 12px;
+  font-family: var(--font-main);
   font-size: calc(1.2rem * var(--ui-scale));
-  line-height: 1.35;
+  letter-spacing: normal;
+  line-height: 1.32;
 }
 
 .dialogue-line {
   margin: 0;
   padding: 8px 10px;
+  font-family: var(--font-main);
+  letter-spacing: normal;
+  line-height: 1.32;
   border-radius: 12px;
   background: white;
   border: 2px solid rgba(40, 75, 99, 0.18);
@@ -833,80 +842,25 @@ input[type="text"] {
   border-radius: 4px;
 }
 
-.wa-word {
-  display: inline-flex;
-  flex-wrap: nowrap;
-  gap: 1px;
-  margin-right: 0.12em;
-  vertical-align: baseline;
-}
-
-.wa-tile {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0.55em;
-  padding: 0 0.04em;
-  border-radius: 0.16em;
-}
-
-.wa-underline {
-  text-decoration: underline;
-  text-decoration-thickness: 0.1em;
-  text-underline-offset: 0.08em;
-}
-
-.wa-heart-temp::after,
-.wa-heart-perm::after {
-  content: "♥";
-  position: absolute;
-  left: 50%;
-  bottom: -0.68em;
-  transform: translateX(-50%);
-  font-size: 0.48em;
-  line-height: 1;
-}
-
-.wa-heart-temp::after {
-  color: #e3c75f;
-}
-
-.wa-heart-perm::after {
-  color: #d94841;
-}
-
-.wa-silent::before {
-  content: "";
-  position: absolute;
-  inset: 0.12em 0.08em;
-  background:
-    repeating-linear-gradient(
-      -45deg,
-      transparent 0,
-      transparent 2px,
-      rgba(57, 79, 106, 0.45) 2px,
-      rgba(57, 79, 106, 0.45) 3px
-    );
-  border-radius: 0.14em;
-  pointer-events: none;
-}
-
 .choice-button {
   flex: 1 1 220px;
-  padding: 14px;
+  padding: 16px 18px;
   background: #ffffff;
+  font-family: var(--font-main);
   font-size: calc(1rem * var(--ui-scale));
   font-weight: 700;
-  min-height: 58px;
-  line-height: 1.2;
+  letter-spacing: normal;
+  min-height: 60px;
+  line-height: 1.25;
   white-space: normal;
+  text-wrap: balance;
   overflow-wrap: anywhere;
   word-break: normal;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
 }
 
 .side-panel {

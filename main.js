@@ -355,7 +355,8 @@
       debug: false,
       largeText: false,
       showReachable: false,
-      cameraFollow: false
+      cameraFollow: false,
+      skinTone: "neutral"
     },
     layoutMode: "desktop",
     currentNarrative: null,
@@ -477,6 +478,15 @@
     sidewalk: ["path"]
   };
   const MULTI_TILE_GRAPHEMES = ["tch", "dge", "igh", "all", "oll", "ild", "old", "ind", "ost", "ang", "ing", "ong", "ung", "ank", "ink", "th", "sh", "ch", "wh", "ck", "ng", "nk", "ff", "ll", "ss", "zz", "qu", "ai", "ay", "ee", "ea", "oa", "ow", "ar", "or", "er", "ir", "ur"];
+  const SKIN_TONES = [
+    { key: "light", label: "Light", base: "#E3BFA3", shadow: "#C8977A", highlight: "#F2D7BF" },
+    { key: "warm-light", label: "Warm Light", base: "#D2A176", shadow: "#B8875A", highlight: "#E6BA94" },
+    { key: "neutral", label: "Neutral", base: "#B8875A", shadow: "#9E6F48", highlight: "#D2A176" },
+    { key: "brown", label: "Brown", base: "#8B5E3C", shadow: "#6E472D", highlight: "#A97854" },
+    { key: "deep", label: "Deep", base: "#6B4328", shadow: "#4F2F1C", highlight: "#8A5B3A" }
+  ];
+  const DEFAULT_SKIN_TONE_KEY = "neutral";
+  const SKIN_TONE_STORAGE_KEY = "blockQuestSkinTone";
   let wordIndex = {};
 
   const ui = {
@@ -532,6 +542,7 @@
     closeSettingsButton: document.getElementById("close-settings-button"),
     settingsTextButton: document.getElementById("settings-text-button"),
     settingsMuteButton: document.getElementById("settings-mute-button"),
+    settingsSkinButton: document.getElementById("settings-skin-button"),
     settingsCameraButton: document.getElementById("settings-camera-button"),
     settingsGuideButton: document.getElementById("settings-guide-button"),
     settingsRestartButton: document.getElementById("settings-restart-button"),
@@ -548,6 +559,7 @@
   const ctx = ui.canvas.getContext("2d");
 
   function init() {
+    loadStoredSkinTone();
     populateSelectors();
     bindEvents();
     readUrlConfig();
@@ -710,6 +722,7 @@
       toggleMute();
     });
     ui.settingsMuteButton.addEventListener("click", toggleMute);
+    ui.settingsSkinButton.addEventListener("click", cycleSkinTone);
     ui.settingsCameraButton.addEventListener("click", toggleCameraFollow);
     ui.settingsGuideButton.addEventListener("click", () => {
       closeSettingsModal();
@@ -822,6 +835,7 @@
     ui.fontToggle.checked = state.config.largeText;
     ui.reachabilityToggle.checked = state.config.showReachable;
     syncScale();
+    syncSkinToneButtonLabel();
     syncCameraButtonLabel();
   }
 
@@ -984,6 +998,46 @@
 
   function syncCameraButtonLabel() {
     ui.settingsCameraButton.textContent = "Camera follow: " + (state.config.cameraFollow ? "On" : "Off");
+  }
+
+  function getSkinTonePalette() {
+    return SKIN_TONES.find((tone) => tone.key === state.config.skinTone) || SKIN_TONES.find((tone) => tone.key === DEFAULT_SKIN_TONE_KEY) || SKIN_TONES[2];
+  }
+
+  function syncSkinToneButtonLabel() {
+    const palette = getSkinTonePalette();
+    if (ui.settingsSkinButton) {
+      ui.settingsSkinButton.textContent = "Character: " + palette.label;
+    }
+  }
+
+  function loadStoredSkinTone() {
+    try {
+      const stored = window.localStorage.getItem(SKIN_TONE_STORAGE_KEY);
+      if (stored && SKIN_TONES.some((tone) => tone.key === stored)) {
+        state.config.skinTone = stored;
+      } else {
+        state.config.skinTone = DEFAULT_SKIN_TONE_KEY;
+      }
+    } catch (error) {
+      state.config.skinTone = DEFAULT_SKIN_TONE_KEY;
+    }
+  }
+
+  function saveSkinTone() {
+    try {
+      window.localStorage.setItem(SKIN_TONE_STORAGE_KEY, state.config.skinTone);
+    } catch (error) {
+      // Persisting skin tone is optional.
+    }
+  }
+
+  function cycleSkinTone() {
+    const currentIndex = Math.max(0, SKIN_TONES.findIndex((tone) => tone.key === state.config.skinTone));
+    const nextTone = SKIN_TONES[(currentIndex + 1) % SKIN_TONES.length];
+    state.config.skinTone = nextTone.key;
+    syncSkinToneButtonLabel();
+    saveSkinTone();
   }
 
   function readUrlConfig() {
@@ -1751,37 +1805,29 @@
           heartStatusByTileIndex: token.wa.heartStatusByTileIndex.slice(),
           silentTileIndices: token.wa.silentTileIndices.slice()
         });
-        parts.push(renderWordAnalysisToken(token.wa, opts));
+        parts.push(renderWordAnalysisToken(token.wa, token.source, opts));
       } else if (Object.prototype.hasOwnProperty.call(token, "punct")) {
         parts.push(escapeHtml(token.punct));
       }
     });
 
     return {
-      text: parts.join("").replace(/<[^>]+>/g, ""),
+      text: parts.join(""),
       html: parts.join(""),
       used: used,
       annotations: annotations
     };
   }
 
-  function renderWordAnalysisToken(analysis, opts) {
-    const tiles = analysis.graphemeTiles.map((tile, index) => {
-      const classes = ["wa-tile"];
-      if (analysis.underlineTileIndices.includes(index)) classes.push("wa-underline");
-      if (analysis.heartStatusByTileIndex[index] === "temporary") classes.push("wa-heart-temp");
-      if (analysis.heartStatusByTileIndex[index] === "permanent") classes.push("wa-heart-perm");
-      if (analysis.silentTileIndices.includes(index)) classes.push("wa-silent");
-      return '<span class="' + classes.join(" ") + '" data-heart="' + HEART_COLORS[analysis.heartStatusByTileIndex[index]] + '">' + escapeHtml(tile) + "</span>";
-    }).join("");
-    return '<span class="wa-word" data-word="' + escapeHtml(analysis.normalized) + '">' + tiles + "</span>";
+  function renderWordAnalysisToken(analysis, source, opts) {
+    return escapeHtml(source || analysis.original || analysis.normalized);
   }
 
   function tokenizeForCompile(raw) {
     return (raw.match(/[A-Za-z']+|[^A-Za-z']+/g) || []).map((piece) => {
       if (/[A-Za-z']/.test(piece)) {
         const analysis = getOrBuildWordAnalysis(piece);
-        return analysis ? { wa: analysis } : { punct: piece };
+        return analysis ? { wa: analysis, source: piece } : { punct: piece };
       }
       return { punct: piece };
     });
@@ -4392,6 +4438,7 @@
     const px = state.player.x * TILE;
     const py = state.player.y * TILE;
     const legOffset = state.player.step === 0 ? 1 : -1;
+    const skin = getSkinTonePalette();
 
     if (performance.now() < state.locatePulseUntil) {
       const pulse = (Math.sin(performance.now() / 120) + 1) * 0.5;
@@ -4404,8 +4451,12 @@
 
     ctx.fillStyle = "#22223b";
     ctx.fillRect(px + 10, py + 8, 12, 12);
-    ctx.fillStyle = "#f7cad0";
+    ctx.fillStyle = skin.base;
     ctx.fillRect(px + 10, py + 4, 12, 8);
+    ctx.fillStyle = skin.highlight;
+    ctx.fillRect(px + 11, py + 5, 10, 2);
+    ctx.fillStyle = skin.shadow;
+    ctx.fillRect(px + 10, py + 10, 12, 2);
     ctx.fillStyle = "#2a9d8f";
     ctx.fillRect(px + 9, py + 16, 14, 8);
     ctx.fillStyle = "#1d3557";

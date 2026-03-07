@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BLOCK QUEST</title>
-  <link rel="stylesheet" href="style.css?v=20260302c">
+    <link rel="stylesheet" href="style.css?v=20260302f">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -333,13 +333,13 @@
         </div>
 
         <aside class="side-panel">
-          <section class="panel-card">
+          <section class="panel-card panel-info">
             <h2>Guide</h2>
             <p id="goal-text"></p>
             <p id="target-text"></p>
           </section>
 
-          <section class="panel-card">
+          <section class="panel-card panel-controls">
             <h2>Controls</h2>
             <p>Desktop: arrows or WASD. Press SPACE or CLICK.</p>
             <p>Mobile: tap arrows, then tap GO.</p>
@@ -348,6 +348,14 @@
           <section id="debug-panel" class="panel-card hidden">
             <h2>Decodability Debug</h2>
             <div id="debug-output"></div>
+          </section>
+
+          <section id="audio-debug-panel" class="panel-card hidden">
+            <div class="viewer-head">
+              <h2>Audio Debug</h2>
+              <button id="audio-test-button" class="mini-button" type="button">Test Sound</button>
+            </div>
+            <div id="audio-debug-output" class="review-output"></div>
           </section>
         </aside>
       </div>
@@ -364,10 +372,18 @@
             <button id="settings-mute-button" class="big-button secondary">Mute: Off</button>
             <button id="settings-skin-button" class="big-button secondary">Character: Neutral</button>
             <button id="settings-camera-button" class="big-button secondary">Camera follow: Off</button>
+            <button id="settings-heart-review-button" class="big-button secondary">Earlier heart words: Off</button>
+            <button id="settings-below-review-button" class="big-button secondary">Below-level review: Off</button>
+            <button id="settings-repeat-button" class="big-button secondary">Prioritize repeats: On</button>
             <button id="settings-guide-button" class="big-button secondary">Show Guide</button>
             <button id="settings-restart-button" class="big-button secondary">Restart Story</button>
             <button id="settings-title-button" class="big-button secondary">Back to Title</button>
           </div>
+          <p class="settings-note">Recommended: NEW + REVIEW + PREVIEW. Earlier words hidden.</p>
+          <section id="word-audit-panel" class="word-audit-panel hidden" aria-live="polite">
+            <h3>Selection Audit</h3>
+            <div id="word-audit-output" class="review-output"></div>
+          </section>
         </div>
       </div>
 
@@ -389,6 +405,8 @@
     </section>
   </div>
 
-  <script src="main.js?v=20260302c"></script>
-</body>
+    <script src="runtime-word-engine/engine-data-v1.js?v=1"></script>
+    <script src="runtime-word-engine/engine-runtime-v1.js?v=1"></script>
+    <script src="main.js?v=20260302f"></script>
+  </body>
 </html>

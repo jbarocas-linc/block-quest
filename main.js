@@ -35,7 +35,46 @@
         { unit: 7, concept: "Silent e", graphemePhonemeCorrespondences: ["a_e", "i_e", "o_e", "u_e"], highFrequencyWords: ["like", "have"], skillsUnlocked: ["Decode VCe words", "Contrast short and long vowel patterns", "Handle more story variety"] },
         { unit: 8, concept: "Open syllables", graphemePhonemeCorrespondences: ["he", "we", "me", "go", "no", "hi"], highFrequencyWords: ["he", "we"], skillsUnlocked: ["Read open syllables with long vowel sound", "Decode simple multisyllabic words", "Read natural-feeling dialogue"] },
         { unit: 9, concept: "Vowel teams", graphemePhonemeCorrespondences: ["ai", "ay", "ee", "ea", "oa", "ow"], highFrequencyWords: ["day", "play"], skillsUnlocked: ["Decode common vowel teams", "Read longer decodable lines", "Sustain comprehension through branching choices"] },
-        { unit: 10, concept: "R-controlled and advanced review", graphemePhonemeCorrespondences: ["ar", "or", "er", "ir", "ur"], highFrequencyWords: ["are", "for"], skillsUnlocked: ["Decode common r-controlled vowels", "Read richer environmental vocabulary", "Handle late-game narrative routes"] }
+        { unit: 10, concept: "R-controlled and advanced review", graphemePhonemeCorrespondences: ["ar", "or", "er", "ir", "ur"], highFrequencyWords: ["are", "for"], skillsUnlocked: ["Decode common r-controlled vowels", "Read richer environmental vocabulary", "Handle late-game narrative routes"] },
+        { unit: 11, concept: "Additional vowel teams and diphthongs", graphemePhonemeCorrespondences: ["oi", "oy", "ou", "ow", "au", "aw"], highFrequencyWords: ["boy", "out"], skillsUnlocked: ["Decode common diphthongs", "Track sound shifts across vowel teams", "Read more expressive story lines"] },
+        { unit: 12, concept: "R-controlled vowel teams and suffixes", graphemePhonemeCorrespondences: ["air", "are", "ear", "ore", "ar", "or", "er"], highFrequencyWords: ["there", "where"], skillsUnlocked: ["Decode r-controlled teams", "Apply suffixes in connected text", "Maintain decodability in longer words"] },
+        { unit: 13, concept: "Prefix and suffix morphology", graphemePhonemeCorrespondences: ["un", "re", "dis", "pre", "mis", "ful", "less", "ness", "ly"], highFrequencyWords: ["again", "because"], skillsUnlocked: ["Decode words with common prefixes", "Decode words with common suffixes", "Use morphology to support meaning"] },
+        { unit: 14, concept: "Multisyllable fluency and schwa awareness", graphemePhonemeCorrespondences: ["schwa", "tion", "sion", "ture", "cian"], highFrequencyWords: ["people", "could"], skillsUnlocked: ["Decode multisyllable words with schwa", "Handle late-grade spelling patterns", "Read extended narrative choices fluently"] }
+      ]
+    },
+    from_phonics_to_reading: {
+      program: "From Phonics to Reading",
+      levels: [
+        { unit: 1, concept: "Grade K fundamentals", graphemePhonemeCorrespondences: ["m", "s", "t", "a", "i"], highFrequencyWords: ["a", "I"], skillsUnlocked: ["Read simple VC/CVC"] },
+        { unit: 2, concept: "Grade K CVC extension", graphemePhonemeCorrespondences: ["p", "n", "o", "d"], highFrequencyWords: ["is", "to"], skillsUnlocked: ["Decode broader CVC words"] },
+        { unit: 3, concept: "Short vowel expansion", graphemePhonemeCorrespondences: ["e", "u", "c", "k"], highFrequencyWords: ["the", "we"], skillsUnlocked: ["Read short-vowel words"] },
+        { unit: 4, concept: "Digraph preview", graphemePhonemeCorrespondences: ["sh", "ch", "th"], highFrequencyWords: ["she", "this"], skillsUnlocked: ["Decode simple digraph words"] },
+        { unit: 5, concept: "Blends and ff/ll/ss/zz", graphemePhonemeCorrespondences: ["bl", "cl", "ff", "ll", "ss", "zz"], highFrequencyWords: ["was", "said"], skillsUnlocked: ["Blend clusters in one-syllable words"] },
+        { unit: 6, concept: "Silent e and open syllables", graphemePhonemeCorrespondences: ["a_e", "i_e", "o_e", "u_e"], highFrequencyWords: ["like", "have"], skillsUnlocked: ["Decode VCe and open syllable words"] },
+        { unit: 7, concept: "Vowel teams", graphemePhonemeCorrespondences: ["ai", "ay", "ee", "ea", "oa", "oe"], highFrequencyWords: ["day", "play"], skillsUnlocked: ["Decode common vowel teams"] },
+        { unit: 8, concept: "Diphthongs and r-controlled", graphemePhonemeCorrespondences: ["oi", "oy", "ou", "ow", "ar", "or"], highFrequencyWords: ["boy", "out"], skillsUnlocked: ["Decode diphthongs and r-controlled words"] },
+        { unit: 9, concept: "Grade 1 bridge", graphemePhonemeCorrespondences: ["er", "ir", "ur", "air", "are"], highFrequencyWords: ["there", "where"], skillsUnlocked: ["Read broader long-vowel and r-controlled patterns"] },
+        { unit: 10, concept: "Grade 1 morphology start", graphemePhonemeCorrespondences: ["ing", "ed", "s", "es"], highFrequencyWords: ["come", "some"], skillsUnlocked: ["Use inflectional endings"] },
+        { unit: 11, concept: "Grade 2 morphology and multisyllable", graphemePhonemeCorrespondences: ["un", "re", "dis", "tion"], highFrequencyWords: ["again", "because"], skillsUnlocked: ["Decode words with affixes and final stable syllables"] },
+        { unit: 12, concept: "Grade 3 extension", graphemePhonemeCorrespondences: ["sion", "ture", "schwa"], highFrequencyWords: ["people", "could"], skillsUnlocked: ["Read advanced multisyllable words"] },
+        { unit: 13, concept: "Level A extension 1", graphemePhonemeCorrespondences: ["ai", "ee"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 14, concept: "Level A extension 2", graphemePhonemeCorrespondences: ["oa", "ow"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 15, concept: "Level A extension 3", graphemePhonemeCorrespondences: ["ar", "or"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 16, concept: "Level A extension 4", graphemePhonemeCorrespondences: ["er", "ir", "ur"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 17, concept: "Level B entry", graphemePhonemeCorrespondences: ["oi", "oy"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 18, concept: "Level B extension 1", graphemePhonemeCorrespondences: ["ou", "ow"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 19, concept: "Level B extension 2", graphemePhonemeCorrespondences: ["au", "aw"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 20, concept: "Level B extension 3", graphemePhonemeCorrespondences: ["air", "ear"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 21, concept: "Level B extension 4", graphemePhonemeCorrespondences: ["tion", "sion"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 22, concept: "Level B extension 5", graphemePhonemeCorrespondences: ["ture", "cian"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 23, concept: "Level C entry", graphemePhonemeCorrespondences: ["prefix_un", "prefix_re"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 24, concept: "Level C extension 1", graphemePhonemeCorrespondences: ["suffix_less", "suffix_ful"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 25, concept: "Level C extension 2", graphemePhonemeCorrespondences: ["suffix_ness", "suffix_ly"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 26, concept: "Level C extension 3", graphemePhonemeCorrespondences: ["multisyllable"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 27, concept: "Level C extension 4", graphemePhonemeCorrespondences: ["schwa"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 28, concept: "Level C extension 5", graphemePhonemeCorrespondences: ["review"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 29, concept: "Level C extension 6", graphemePhonemeCorrespondences: ["review"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] },
+        { unit: 30, concept: "Level C extension 7", graphemePhonemeCorrespondences: ["review"], highFrequencyWords: [], skillsUnlocked: ["Maintain decodable fluency"] }
       ]
     }
   };
@@ -126,21 +165,21 @@
     },
     bodega: {
       environment: "bodega",
-      title: "Snack Swap",
-      goal: "Pick the right snack and help the shop stay calm.",
+      title: "The Bodega Cat",
+      goal: "Help the cat and calm the shop.",
       nodes: [
-        { id: "bo1", location: "door", text: ["Rain drips from one wet sock.", "A pal needs a dry snack."], choiceA: "Check the chips", choiceB: "Check the snack bar", nextA: "bo2", nextB: "bo3", effects: ["startQuest"] },
-        { id: "bo2", location: "chip-aisle", text: ["The chip bag is big.", "Rain can rip the bag."], choiceA: "Bag the chips", choiceB: "Swap for the bar", nextA: "bo4", nextB: "bo3", effects: ["sawTradeoff"] },
-        { id: "bo3", location: "snack-rack", text: ["The snack bar fits in a bag.", "It will stay dry."], choiceA: "Grab the bar", choiceB: "Ask the clerk", nextA: "bo5", nextB: "bo6", effects: ["pickedBar"] },
-        { id: "bo4", location: "soda-box", text: ["A can tips by the box.", "The floor is slick."], choiceA: "Fix the can stack", choiceB: "Call the clerk", nextA: "bo6", nextB: "bo6", effects: ["messFound"] },
-        { id: "bo5", location: "milk-box", text: ["The fridge hums.", "A lost list is on the lid."], choiceA: "Grab the list", choiceB: "Ask who lost it", nextA: "bo8", nextB: "bo6", effects: ["foundList"] },
-        { id: "bo6", location: "clerk", text: ["The clerk nods.", "He says a dad in a cap lost the list."], choiceA: "Find the dad", choiceB: "Pay for the bar", nextA: "bo8", nextB: "bo7", effects: ["talkedClerk"] },
-        { id: "bo7", location: "line", text: ["The line is long.", "You keep the bar dry."], choiceA: "Wave the kid ahead", choiceB: "Hold the bar high", nextA: "bo9", nextB: "bo10", effects: ["lineChoice"] },
-        { id: "bo8", location: "aisle", text: ["A dad in a cap pats his bag.", "He lost that list."], choiceA: "Hand the list", choiceB: "Ask what stays dry", nextA: "bo9", nextB: "bo10", effects: ["foundOwner"] },
-        { id: "bo9", location: "counter", text: ["The dad and kid grin.", "The clerk adds a small mint."], choiceA: "Take the bar", choiceB: "Take a dry bag", nextA: "bo11", nextB: "bo11", effects: ["rewarded"] },
-        { id: "bo10", location: "counter", text: ["The bar will stay dry.", "It is best for the wet sock."], choiceA: "Pick the bar", choiceB: "Grab a bag", nextA: "bo11", nextB: "bo11", effects: ["softNudge"] },
-        { id: "bo11", location: "door", text: ["I step out with the snack.", "My pal can stay dry and fed."], choiceA: "Share the mint", choiceB: "Run to my pal", nextA: "bo12", nextB: "bo12", effects: ["questClear"] },
-        { id: "bo12", location: "stoop", text: ["The rain starts.", "We laugh and eat on the stoop."], choiceA: "Play again", choiceB: "Pick a new map", nextA: "bo1", nextB: "bo1", effects: ["end"] }
+        { id: "bo1", location: "door", text: ["A man has a dog.", "The dog sees the cat."], choiceA: "Pat the dog", choiceB: "Help the cat", nextA: "bo2", nextB: "bo3", effects: ["startQuest"] },
+        { id: "bo2", location: "chip-aisle", text: ["You pat the dog.", "The dog sits by the chips."], choiceA: "Tell the man", choiceB: "Check the cat", nextA: "bo6", nextB: "bo5", effects: ["calmedDog"] },
+        { id: "bo3", location: "snack-rack", text: ["You help the cat.", "The cat hops on a box."], choiceA: "Check the can", choiceB: "Tell the man", nextA: "bo4", nextB: "bo6", effects: ["helpedCat"] },
+        { id: "bo4", location: "soda-box", text: ["A can tips by the box.", "The cat is not hit."], choiceA: "Set the can", choiceB: "Check the cat", nextA: "bo5", nextB: "bo5", effects: ["messFound"] },
+        { id: "bo5", location: "milk-box", text: ["The cat is by the milk.", "The dog can not get in."], choiceA: "Help the cat", choiceB: "Tell the clerk", nextA: "bo8", nextB: "bo6", effects: ["catSafeSpot"] },
+        { id: "bo6", location: "clerk", text: ["The clerk nods.", "He says the man can help."], choiceA: "Tell the man", choiceB: "Get a bag", nextA: "bo7", nextB: "bo9", effects: ["gotAdultHelp"] },
+        { id: "bo7", location: "aisle", text: ["The man has the dog now.", "The dog is calm."], choiceA: "Check the cat", choiceB: "Thank the man", nextA: "bo8", nextB: "bo10", effects: ["manHelps"] },
+        { id: "bo8", location: "counter", text: ["The cat is by the ham.", "The cat is safe now."], choiceA: "Get cat food", choiceB: "Tell the clerk", nextA: "bo9", nextB: "bo10", effects: ["catSettles"] },
+        { id: "bo9", location: "counter", text: ["The clerk has a bag.", "The man can take the dog."], choiceA: "Hand the bag", choiceB: "Check the cat", nextA: "bo10", nextB: "bo10", effects: ["bagReady"] },
+        { id: "bo10", location: "line", text: ["The dog is calm now.", "The cat can purr."], choiceA: "Pet the cat", choiceB: "Thank the clerk", nextA: "bo11", nextB: "bo11", effects: ["calmShop"] },
+        { id: "bo11", location: "door", text: ["The man nods.", "The shop is calm now."], choiceA: "Step out", choiceB: "Wave to the man", nextA: "bo12", nextB: "bo12", effects: ["questClear"] },
+        { id: "bo12", location: "stoop", text: ["The cat can purr.", "The shop is set."], choiceA: "Play again", choiceB: "Pick a new map", nextA: "bo1", nextB: "bo1", effects: ["end"] }
       ]
     },
     "school-hallway": {
@@ -189,8 +228,50 @@
       7: ["silent-e"],
       8: ["open"],
       9: ["vowel-team"],
-      10: ["trick"]
+      10: ["r-controlled", "trick"],
+      11: ["vowel-team", "diphthong"],
+      12: ["r-controlled", "suffix"],
+      13: ["prefix", "suffix", "morphology"],
+      14: ["multisyllable", "schwa", "morphology"]
+    },
+    from_phonics_to_reading: {
+      1: ["short-a", "short-i", "short-o"],
+      2: ["short-e", "short-u"],
+      3: ["short-e", "short-u", "blend"],
+      4: ["digraph"],
+      5: ["blend", "ffllsszz"],
+      6: ["silent-e", "open"],
+      7: ["vowel-team"],
+      8: ["diphthong", "r-controlled"],
+      9: ["r-controlled", "vowel-team"],
+      10: ["suffix"],
+      11: ["suffix", "prefix", "morphology", "multisyllable"],
+      12: ["morphology", "multisyllable", "schwa"],
+      13: ["vowel-team", "r-controlled"],
+      14: ["vowel-team", "r-controlled"],
+      15: ["r-controlled"],
+      16: ["r-controlled"],
+      17: ["diphthong", "vowel-team"],
+      18: ["diphthong", "vowel-team"],
+      19: ["diphthong", "vowel-team"],
+      20: ["r-controlled", "vowel-team"],
+      21: ["suffix", "morphology"],
+      22: ["suffix", "morphology"],
+      23: ["prefix", "morphology"],
+      24: ["prefix", "suffix", "morphology"],
+      25: ["prefix", "suffix", "morphology"],
+      26: ["multisyllable", "morphology"],
+      27: ["multisyllable", "schwa", "morphology"],
+      28: ["multisyllable", "morphology"],
+      29: ["multisyllable", "morphology"],
+      30: ["multisyllable", "morphology", "schwa"]
     }
+  };
+
+  const PROGRAM_THRESHOLDS = {
+    fundations: { gap: 3, rControlled: 10, multisyllableBonus: 10 },
+    ufli: { gap: 10, rControlled: 12, multisyllableBonus: 80 },
+    from_phonics_to_reading: { gap: 6, rControlled: 8, multisyllableBonus: 16 }
   };
 
   const SAFE_SPAWN_ZONES = {
@@ -356,7 +437,11 @@
       largeText: false,
       showReachable: false,
       cameraFollow: false,
-      skinTone: "neutral"
+      skinTone: "neutral",
+      includeEarlierHeartWords: false,
+      includeBelowLevelDecodableReview: false,
+      prioritizeRepeatedWords: true,
+      excludeNames: false
     },
     layoutMode: "desktop",
     currentNarrative: null,
@@ -390,12 +475,24 @@
     currentInstruction: "",
     wordIndexSignature: "",
     wordAnalysisSelfCheck: null,
+    debugAudio: false,
+    debugWords: false,
+    currentSelectionAudit: null,
+    wordEngineWarning: "",
     player: { x: 7, y: 9, facing: "down", step: 0, moving: false },
     input: { up: false, down: false, left: false, right: false },
     camera: { x: 0, y: 0 },
     lastMoveAt: 0,
     muted: false,
-    audioCtx: null
+    audioCtx: null,
+    audioReadyPromise: null,
+    audioImplementation: "none",
+    lastAudioError: "",
+    lastAudioEvent: "",
+    lastMoveEvent: "",
+    lastMoveResult: "",
+    lastSoundAttempt: "",
+    lastSoundPlayed: false
   };
 
   const wordLookup = WORD_BANK.reduce((acc, entry) => {
@@ -477,6 +574,54 @@
     lift: ["elevator", "up"],
     sidewalk: ["path"]
   };
+  const HFW_SET = new Set([
+    "the", "and", "to", "of", "a", "in", "is", "you", "that", "it", "he", "was", "for", "on",
+    "are", "as", "with", "his", "they", "i", "at", "be", "this", "have", "from", "or", "one",
+    "had", "by", "words", "but", "not", "what", "all", "were", "we", "when", "your", "can",
+    "said", "there", "use", "an", "each", "which", "she", "do", "how", "their", "if"
+  ]);
+  const IRREGULAR_SET = new Set([
+    "was", "said", "one", "come", "have", "do", "you", "does", "two", "their", "there",
+    "were", "could", "should", "would", "people", "because", "any", "many", "again"
+  ]);
+  const HEART_RANGE_MAP = {
+    said: [{ start: 1, end: 3 }],
+    was: [{ start: 1, end: 2 }],
+    one: [{ start: 0, end: 3 }],
+    come: [{ start: 1, end: 3 }],
+    have: [{ start: 1, end: 3 }],
+    do: [{ start: 1, end: 2 }],
+    you: [{ start: 1, end: 3 }],
+    does: [{ start: 1, end: 3 }],
+    two: [{ start: 0, end: 2 }],
+    their: [{ start: 2, end: 4 }],
+    there: [{ start: 2, end: 4 }],
+    were: [{ start: 1, end: 3 }],
+    could: [{ start: 2, end: 4 }],
+    should: [{ start: 2, end: 5 }],
+    would: [{ start: 2, end: 5 }],
+    people: [{ start: 1, end: 4 }],
+    because: [{ start: 2, end: 5 }],
+    any: [{ start: 0, end: 1 }],
+    many: [{ start: 1, end: 2 }],
+    again: [{ start: 0, end: 1 }]
+  };
+  const ENGINE_DIGRAPHS = ["sh", "ch", "th", "wh", "ck", "ph", "ng"];
+  const ENGINE_VOWEL_TEAMS = ["ee", "ea", "ai", "ay", "oa", "ow", "oo", "ou", "oi", "oy", "ew", "ue", "igh"];
+  const ENGINE_R_CONTROLLED = ["ar", "er", "ir", "or", "ur"];
+  const PHONEME_GRAPHEME_INVENTORY = [
+    "a", "e", "i", "o", "u", "y",
+    "b", "bb", "c", "cc", "ce", "ch", "ck", "d", "dd", "dge", "ed",
+    "f", "ff", "g", "ge", "gg", "gh", "h", "j", "k", "l", "ll",
+    "m", "mm", "mb", "n", "nn", "kn", "gn", "ng", "nk", "p", "pp",
+    "q", "qu", "r", "rr", "wr", "s", "ss", "sc", "se", "t", "tt",
+    "th", "v", "ve", "w", "wh", "x", "z", "zz", "sh", "tch",
+    "ai", "ay", "ea", "ee", "ei", "eigh", "ey", "ie", "igh",
+    "oa", "oe", "ow", "ough", "oo", "ew", "ue", "ui", "ou",
+    "oi", "oy", "au", "aw", "al", "ar", "or", "ore", "oar", "our",
+    "er", "ir", "ur", "ear", "tion", "sion", "ture", "cian"
+  ];
+  const KNOWN_GRAPHEMES = new Set(PHONEME_GRAPHEME_INVENTORY);
   const MULTI_TILE_GRAPHEMES = ["tch", "dge", "igh", "all", "oll", "ild", "old", "ind", "ost", "ang", "ing", "ong", "ung", "ank", "ink", "th", "sh", "ch", "wh", "ck", "ng", "nk", "ff", "ll", "ss", "zz", "qu", "ai", "ay", "ee", "ea", "oa", "ow", "ar", "or", "er", "ir", "ur"];
   const SKIN_TONES = [
     { key: "light", label: "Light", base: "#E3BFA3", shadow: "#C8977A", highlight: "#F2D7BF" },
@@ -487,6 +632,7 @@
   ];
   const DEFAULT_SKIN_TONE_KEY = "neutral";
   const SKIN_TONE_STORAGE_KEY = "blockQuestSkinTone";
+  const WORD_SELECTION_PREFS_KEY = "blockQuestWordSelectionPrefs";
   let wordIndex = {};
 
   const ui = {
@@ -535,6 +681,9 @@
     targetText: document.getElementById("target-text"),
     debugPanel: document.getElementById("debug-panel"),
     debugOutput: document.getElementById("debug-output"),
+    audioDebugPanel: document.getElementById("audio-debug-panel"),
+    audioDebugOutput: document.getElementById("audio-debug-output"),
+    audioTestButton: document.getElementById("audio-test-button"),
     questHint: document.getElementById("quest-hint"),
     locateButton: document.getElementById("locate-button"),
     settingsButton: document.getElementById("settings-button"),
@@ -544,10 +693,15 @@
     settingsMuteButton: document.getElementById("settings-mute-button"),
     settingsSkinButton: document.getElementById("settings-skin-button"),
     settingsCameraButton: document.getElementById("settings-camera-button"),
+    settingsHeartReviewButton: document.getElementById("settings-heart-review-button"),
+    settingsBelowReviewButton: document.getElementById("settings-below-review-button"),
+    settingsRepeatButton: document.getElementById("settings-repeat-button"),
     settingsGuideButton: document.getElementById("settings-guide-button"),
     settingsRestartButton: document.getElementById("settings-restart-button"),
     settingsTitleButton: document.getElementById("settings-title-button"),
     settingsStoryMeta: document.getElementById("settings-story-meta"),
+    wordAuditPanel: document.getElementById("word-audit-panel"),
+    wordAuditOutput: document.getElementById("word-audit-output"),
     orientationGate: document.getElementById("orientation-gate"),
     orientationCheckButton: document.getElementById("orientation-check-button"),
     fontSizeButton: document.getElementById("font-size-button"),
@@ -560,6 +714,9 @@
 
   function init() {
     loadStoredSkinTone();
+    loadWordSelectionPrefs();
+    state.debugAudio = new URLSearchParams(window.location.search).get("debugAudio") === "1";
+    state.debugWords = new URLSearchParams(window.location.search).get("debugWords") === "1";
     populateSelectors();
     bindEvents();
     readUrlConfig();
@@ -724,6 +881,13 @@
     ui.settingsMuteButton.addEventListener("click", toggleMute);
     ui.settingsSkinButton.addEventListener("click", cycleSkinTone);
     ui.settingsCameraButton.addEventListener("click", toggleCameraFollow);
+    ui.settingsHeartReviewButton.addEventListener("click", toggleEarlierHeartWords);
+    ui.settingsBelowReviewButton.addEventListener("click", toggleBelowLevelReview);
+    ui.settingsRepeatButton.addEventListener("click", togglePrioritizeRepeatedWords);
+    ui.audioTestButton.addEventListener("click", () => {
+      unlockAudio("audio-test-button");
+      playStepSound("audio-test");
+    });
     ui.settingsGuideButton.addEventListener("click", () => {
       closeSettingsModal();
       showGuideToast(2600);
@@ -738,18 +902,19 @@
       showTitle();
     });
     ui.backButton.addEventListener("click", showTitle);
-    ui.touchInteract.addEventListener("click", () => {
-      unlockAudio();
+    ui.touchInteract.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      unlockAudio("touch-go");
       interact();
     });
     ui.canvas.addEventListener("click", handleCanvasConfirm);
     document.querySelectorAll("[data-dir]").forEach((button) => {
       button.addEventListener("pointerdown", (event) => {
         event.preventDefault();
-        unlockAudio();
         const dir = button.getAttribute("data-dir");
+        unlockAudio("pointerdown:" + dir);
         if (isMobileDevice()) {
-          moveOneTile(dir);
+          moveOneTile(dir, "pointerdown:" + dir);
           return;
         }
         setInput(dir, true);
@@ -767,7 +932,7 @@
 
     window.addEventListener("keydown", (event) => {
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " ", "Enter", "w", "a", "s", "d", "W", "A", "S", "D"].includes(event.key)) {
-        unlockAudio();
+        unlockAudio("keydown:" + event.key);
       }
       if (event.key === "ArrowUp" || event.key.toLowerCase() === "w") setInput("up", true);
       if (event.key === "ArrowDown" || event.key.toLowerCase() === "s") setInput("down", true);
@@ -810,6 +975,8 @@
       state.hudVisibleAt = 0;
       if (state.audioCtx && state.audioCtx.state === "running") {
         state.audioCtx.suspend().catch(function () {});
+        state.lastAudioEvent = "visibilitychange:hidden";
+        updateAudioDebugPanel();
       }
     });
     document.addEventListener("pointerdown", (event) => {
@@ -837,6 +1004,7 @@
     syncScale();
     syncSkinToneButtonLabel();
     syncCameraButtonLabel();
+    syncWordSelectionButtons();
   }
 
   function syncScale() {
@@ -936,12 +1104,13 @@
     state.hintVisibleAt = performance.now() + (duration || 2600);
   }
 
-  function moveOneTile(dir) {
-    movePlayer(dir, performance.now());
+  function moveOneTile(dir, eventLabel) {
+    movePlayer(dir, performance.now(), eventLabel || "tap");
   }
 
-  function movePlayer(dir, timestamp) {
+  function movePlayer(dir, timestamp, eventLabel) {
     if (isInteractionBlocked()) return;
+    state.lastMoveEvent = eventLabel || "move";
     const delta = {
       up: { dx: 0, dy: -1 },
       down: { dx: 0, dy: 1 },
@@ -952,26 +1121,55 @@
     attemptMove(delta.dx, delta.dy, timestamp);
   }
 
-  function unlockAudio() {
-    if (state.muted) return;
+  function unlockAudio(eventLabel) {
+    state.lastAudioEvent = eventLabel || state.lastAudioEvent || "interaction";
     try {
-      if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (state.audioCtx.state === "suspended") {
-        state.audioCtx.resume().catch(function () {});
+      if (!window.AudioContext && !window.webkitAudioContext) {
+        state.lastAudioError = "Web Audio is not supported in this browser.";
+        state.audioImplementation = "unsupported";
+        updateAudioDebugPanel();
+        return Promise.resolve(false);
       }
-      if (!state.audioUnlocked) {
-        const buffer = state.audioCtx.createBuffer(1, 1, 22050);
-        const source = state.audioCtx.createBufferSource();
-        const gain = state.audioCtx.createGain();
-        source.buffer = buffer;
-        gain.gain.value = 0.0001;
-        source.connect(gain);
-        gain.connect(state.audioCtx.destination);
-        source.start(0);
-        state.audioUnlocked = true;
+      if (!state.audioCtx) {
+        state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        state.audioImplementation = "WebAudio";
       }
+      if (!state.audioReadyPromise) {
+        state.audioReadyPromise = Promise.resolve()
+          .then(() => {
+            if (state.audioCtx.state === "suspended") {
+              return state.audioCtx.resume();
+            }
+          })
+          .then(() => {
+            const oscillator = state.audioCtx.createOscillator();
+            const gain = state.audioCtx.createGain();
+            oscillator.type = "sine";
+            oscillator.frequency.value = 1;
+            gain.gain.value = 0.00001;
+            oscillator.connect(gain);
+            gain.connect(state.audioCtx.destination);
+            oscillator.start();
+            oscillator.stop(state.audioCtx.currentTime + 0.01);
+            state.audioUnlocked = true;
+            state.lastAudioError = "";
+            updateAudioDebugPanel();
+            return true;
+          })
+          .catch((error) => {
+            state.lastAudioError = error && error.message ? error.message : "Audio unlock failed.";
+            state.audioReadyPromise = null;
+            updateAudioDebugPanel();
+            return false;
+          });
+      }
+      if (state.muted) return state.audioReadyPromise;
+      updateAudioDebugPanel();
+      return state.audioReadyPromise;
     } catch (error) {
-      // Audio is optional and should fail quietly.
+      state.lastAudioError = error && error.message ? error.message : "Audio unlock failed.";
+      updateAudioDebugPanel();
+      return Promise.resolve(false);
     }
   }
 
@@ -987,6 +1185,8 @@
     state.muted = !state.muted;
     ui.muteButton.textContent = "Mute: " + (state.muted ? "On" : "Off");
     ui.settingsMuteButton.textContent = "Mute: " + (state.muted ? "On" : "Off");
+    if (!state.muted) unlockAudio("unmute-toggle");
+    updateAudioDebugPanel();
   }
 
   function toggleCameraFollow() {
@@ -1040,6 +1240,71 @@
     saveSkinTone();
   }
 
+  function loadWordSelectionPrefs() {
+    try {
+      const raw = window.localStorage.getItem(WORD_SELECTION_PREFS_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (typeof parsed.includeEarlierHeartWords === "boolean") state.config.includeEarlierHeartWords = parsed.includeEarlierHeartWords;
+      if (typeof parsed.includeBelowLevelDecodableReview === "boolean") state.config.includeBelowLevelDecodableReview = parsed.includeBelowLevelDecodableReview;
+      if (typeof parsed.prioritizeRepeatedWords === "boolean") state.config.prioritizeRepeatedWords = parsed.prioritizeRepeatedWords;
+      if (typeof parsed.excludeNames === "boolean") state.config.excludeNames = parsed.excludeNames;
+    } catch (error) {
+      // Persisting selection prefs is optional.
+    }
+  }
+
+  function saveWordSelectionPrefs() {
+    try {
+      window.localStorage.setItem(WORD_SELECTION_PREFS_KEY, JSON.stringify({
+        includeEarlierHeartWords: state.config.includeEarlierHeartWords,
+        includeBelowLevelDecodableReview: state.config.includeBelowLevelDecodableReview,
+        prioritizeRepeatedWords: state.config.prioritizeRepeatedWords,
+        excludeNames: state.config.excludeNames
+      }));
+    } catch (error) {
+      // Persisting selection prefs is optional.
+    }
+  }
+
+  function syncWordSelectionButtons() {
+    if (ui.settingsHeartReviewButton) {
+      ui.settingsHeartReviewButton.textContent = "Earlier heart words: " + (state.config.includeEarlierHeartWords ? "On" : "Off");
+    }
+    if (ui.settingsBelowReviewButton) {
+      ui.settingsBelowReviewButton.textContent = "Below-level review: " + (state.config.includeBelowLevelDecodableReview ? "On" : "Off");
+    }
+    if (ui.settingsRepeatButton) {
+      ui.settingsRepeatButton.textContent = "Prioritize repeats: " + (state.config.prioritizeRepeatedWords ? "On" : "Off");
+    }
+  }
+
+  function refreshSelectionAudit() {
+    renderSelectionAudit();
+    updateDebugPanel();
+  }
+
+  function toggleEarlierHeartWords() {
+    state.config.includeEarlierHeartWords = !state.config.includeEarlierHeartWords;
+    syncWordSelectionButtons();
+    saveWordSelectionPrefs();
+    refreshSelectionAudit();
+  }
+
+  function toggleBelowLevelReview() {
+    state.config.includeBelowLevelDecodableReview = !state.config.includeBelowLevelDecodableReview;
+    syncWordSelectionButtons();
+    saveWordSelectionPrefs();
+    refreshSelectionAudit();
+  }
+
+  function togglePrioritizeRepeatedWords() {
+    state.config.prioritizeRepeatedWords = !state.config.prioritizeRepeatedWords;
+    syncWordSelectionButtons();
+    saveWordSelectionPrefs();
+    refreshSelectionAudit();
+  }
+
   function readUrlConfig() {
     const params = new URLSearchParams(window.location.search);
     const env = params.get("env");
@@ -1051,6 +1316,9 @@
     const large = params.get("largeText");
     const reach = params.get("showReachable");
     const cameraFollow = params.get("cameraFollow");
+    const earlierHeart = params.get("includeEarlierHeartWords");
+    const belowReview = params.get("includeBelowLevelDecodableReview");
+    const prioritizeRepeats = params.get("prioritizeRepeatedWords");
 
     if (program && PROGRAM_DATA[program]) state.config.program = program;
     rebuildUnitOptions();
@@ -1065,6 +1333,9 @@
       state.config.cameraFollow = cameraFollow === "true";
       state.cameraPreferenceSet = true;
     }
+    if (earlierHeart) state.config.includeEarlierHeartWords = earlierHeart === "true";
+    if (belowReview) state.config.includeBelowLevelDecodableReview = belowReview === "true";
+    if (prioritizeRepeats) state.config.prioritizeRepeatedWords = prioritizeRepeats === "true";
 
     if ([program, params.get("unit"), strictness, env].some(Boolean)) {
       setBuilderVisibility(true, false);
@@ -1092,7 +1363,10 @@
       debug: String(state.config.debug),
       largeText: String(state.config.largeText),
       showReachable: String(state.config.showReachable),
-      cameraFollow: String(state.config.cameraFollow)
+      cameraFollow: String(state.config.cameraFollow),
+      includeEarlierHeartWords: String(state.config.includeEarlierHeartWords),
+      includeBelowLevelDecodableReview: String(state.config.includeBelowLevelDecodableReview),
+      prioritizeRepeatedWords: String(state.config.prioritizeRepeatedWords)
     });
     const base = window.location.href.split("?")[0];
     ui.shareLink.value = base + "?" + params.toString();
@@ -1253,6 +1527,7 @@
   function loop(timestamp) {
     syncHudVisibility(timestamp);
     syncHintVisibility(timestamp);
+    updateAudioDebugPanel();
     if (state.screen === "game" && !isInteractionBlocked()) {
       updateMovement(timestamp);
     }
@@ -1271,7 +1546,7 @@
 
     if (!dir) return;
 
-    movePlayer(dir, timestamp);
+    movePlayer(dir, timestamp, "keyboard");
   }
 
   function attemptMove(dx, dy, timestamp) {
@@ -1283,8 +1558,12 @@
       state.player.x = nextX;
       state.player.y = nextY;
       state.player.step = (state.player.step + 1) % 2;
-      playBlip(260 + state.player.step * 20, 0.025, "square");
+      state.lastMoveResult = "move-success";
+      playStepSound("move-success");
+    } else {
+      state.lastMoveResult = "move-blocked";
     }
+    updateAudioDebugPanel();
     state.lastMoveAt = timestamp;
   }
 
@@ -1394,6 +1673,75 @@
     playBlip(which === "A" ? 520 : 610, 0.08, "sine");
   }
 
+  function getWordEngineRuntime() {
+    return window.WordEngineRuntime || null;
+  }
+
+  function getWordEngineStatus(gameContext) {
+    const runtime = getWordEngineRuntime();
+    if (!runtime) return { ok: false, reason: "runtime_missing" };
+    if (runtime.compatSchemaVersion && String(runtime.compatSchemaVersion) !== "1") {
+      return { ok: false, reason: "compat_schema_mismatch" };
+    }
+    if (typeof runtime.validateConfig === "function") {
+      const result = runtime.validateConfig({
+        program: gameContext.program,
+        unit: gameContext.unit,
+        strictness: gameContext.strictness
+      });
+      if (!result || result.valid !== true) {
+        return { ok: false, reason: "invalid_config", details: result || null };
+      }
+    }
+    return { ok: true, runtime: runtime };
+  }
+
+  function adaptGameConfigToEngine(config) {
+    const runtime = getWordEngineRuntime();
+    if (!runtime || typeof runtime.adaptGameConfigToEngine !== "function") return null;
+    return runtime.adaptGameConfigToEngine({
+      program: config.program,
+      unit: config.unit,
+      strictness: config.strictness,
+      toggles: getWordSelectionToggles()
+    });
+  }
+
+  function analyzeWordForGame(rawWord, gameContext) {
+    const status = getWordEngineStatus(gameContext);
+    if (!status.ok || typeof status.runtime.analyzeWord !== "function") {
+      state.wordEngineWarning = "Word engine fallback: " + status.reason;
+      return null;
+    }
+    state.wordEngineWarning = "";
+    return status.runtime.analyzeWord(rawWord, {
+      program: gameContext.program,
+      unit: gameContext.unit,
+      strictness: gameContext.strictness,
+      toggles: gameContext.toggles || getWordSelectionToggles()
+    });
+  }
+
+  function selectWordsForGame(tokens, gameContext) {
+    const status = getWordEngineStatus(gameContext);
+    if (!status.ok || typeof status.runtime.analyzeSelection !== "function") {
+      state.wordEngineWarning = "Word engine fallback: " + status.reason;
+      return null;
+    }
+    state.wordEngineWarning = "";
+    return status.runtime.analyzeSelection(tokens, {
+      program: gameContext.program,
+      unit: gameContext.unit,
+      strictness: gameContext.strictness
+    }, gameContext.toggles || getWordSelectionToggles());
+  }
+
+  function buildAuditRowsForGame(tokens, gameContext) {
+    const result = selectWordsForGame(tokens, gameContext);
+    if (!result) return null;
+    return result.audit || [];
+  }
+
   function getAllowedProfile() {
     const ladder = FEATURE_LADDER[state.config.program];
     const levelData = PROGRAM_DATA[state.config.program].levels.filter((level) => level.unit <= state.config.unit);
@@ -1428,7 +1776,9 @@
   }
 
   function getCurrentCurriculum() {
-    return state.config.program === "fundations" ? "fundations" : "ufli";
+    if (state.config.program === "fundations") return "fundations";
+    if (state.config.program === "from_phonics_to_reading") return "from_phonics_to_reading";
+    return "ufli";
   }
 
   function getWordIndexSignature() {
@@ -1481,23 +1831,64 @@
     return (raw || "").toLowerCase().replace(/[^a-z']/g, "").replace(/'s$/, "");
   }
 
+  function isNgDigraph(word, pos) {
+    if (pos + 2 > word.length) return false;
+    if (word.slice(pos, pos + 2) !== "ng") return false;
+    if (pos + 2 === word.length) return true;
+    const after = word[pos + 2];
+    if ("tdkTDK".includes(after)) return true;
+    if (pos + 4 <= word.length && word.slice(pos + 2, pos + 4) === "th") return true;
+    return false;
+  }
+
+  function countSyllables(word) {
+    const lowered = normalizeWord(word);
+    const base = lowered.replace(/e$/, "") || lowered;
+    const matches = base.match(/[aeiouy]+/g);
+    return Math.max(1, matches ? matches.length : 1);
+  }
+
+  function setHeartStatusesFromRanges(normalized, graphemeTiles) {
+    const statuses = new Array(graphemeTiles.length).fill("none");
+    const ranges = HEART_RANGE_MAP[normalized] || [];
+    if (!ranges.length) return statuses;
+
+    let charCursor = 0;
+    graphemeTiles.forEach((tile, index) => {
+      const tileStart = charCursor;
+      const tileEnd = charCursor + tile.length;
+      const overlaps = ranges.some((range) => tileStart < range.end && tileEnd > range.start);
+      if (overlaps) statuses[index] = "permanent";
+      charCursor = tileEnd;
+    });
+    return statuses;
+  }
+
   function buildWordAnalysisForWord(rawWord) {
     const normalized = normalizeWord(rawWord);
     if (!normalized) return null;
     const curriculum = getCurrentCurriculum();
+    const runtimeAnalysis = analyzeWordForGame(rawWord, {
+      program: state.config.program,
+      unit: state.config.unit,
+      strictness: state.config.strictness,
+      toggles: getWordSelectionToggles()
+    });
     const override = WORD_ANALYSIS_OVERRIDES[normalized];
     const entry = wordLookup[normalized];
-    const tags = entry ? entry.tags.slice() : derivePhonicsTagsForWord(normalized);
+    const engineTags = derivePhonicsTagsForWord(normalized);
+    const tags = Array.from(new Set((entry ? entry.tags.slice() : []).concat(engineTags)));
     const graphemeTiles = override ? override.graphemeTiles.slice() : segmentWordToGraphemeTiles(normalized);
     const silentTileIndices = override ? override.silentTileIndices.slice() : getSilentTileIndices(graphemeTiles);
     const tileToColumnMap = override ? cloneWordAnalysis({ map: override.tileToColumnMap || buildTileToColumnMap(graphemeTiles, silentTileIndices) }).map : buildTileToColumnMap(graphemeTiles, silentTileIndices);
     const phonemeCount = override ? override.phonemeCount : tileToColumnMap.length;
     const underlineTileIndices = override ? override.underlineTileIndices.slice() : getUnderlineTileIndices(graphemeTiles);
-    const heartStatusByTileIndex = override ? override.heartStatusByTileIndex.slice() : new Array(graphemeTiles.length).fill("none");
+    const heartStatusByTileIndex = override ? override.heartStatusByTileIndex.slice() : setHeartStatusesFromRanges(normalized, graphemeTiles);
     const progressPoint = inferProgressPointForWord(normalized, tags, curriculum, override);
     const decodability = classifyDecodability(normalized, tags, heartStatusByTileIndex, silentTileIndices, entry, override);
     const confidence = override ? override.confidence : inferConfidence(normalized, entry, tags);
-    const isHFW = Boolean((entry && entry.tags.some((tag) => tag === "hf" || tag === "trick")) || isHighFrequencyWord(normalized));
+    const syllableCount = countSyllables(normalized);
+    const isHFW = Boolean((entry && entry.tags.some((tag) => tag === "hf" || tag === "trick")) || isHighFrequencyWord(normalized) || HFW_SET.has(normalized));
     const analysis = {
       original: rawWord,
       normalized: normalized,
@@ -1512,13 +1903,46 @@
       decodability: decodability,
       reasons: [],
       phonicsTags: tags,
-      syllableCount: normalized.length > 6 ? 2 : 1,
-      isMultisyllabic: normalized.length > 6,
+      syllableCount: syllableCount,
+      isMultisyllabic: syllableCount >= 2,
       isHFW: isHFW,
       distractorTiles: buildDistractorTiles(graphemeTiles),
       confidence: confidence
     };
 
+    if (runtimeAnalysis && !runtimeAnalysis.error) {
+      const runtime = getWordEngineRuntime();
+      analysis.engineLabel = runtimeAnalysis.label;
+      analysis.engineAllowed = runtimeAnalysis.allowed;
+      analysis.engineBlockedFeatures = (runtimeAnalysis.blocked_features || []).slice();
+      analysis.engineSupportedFeatures = (runtimeAnalysis.supported_features || []).slice();
+      analysis.engineMappingPath = runtimeAnalysis.mappingPath || "";
+      analysis.engineVersion = runtime && runtime.version ? runtime.version : "unknown";
+      analysis.heartIntroducedAt = runtimeAnalysis.heartIntroducedAt == null ? null : runtimeAnalysis.heartIntroducedAt;
+      analysis.isHeartScheduled = runtimeAnalysis.heartIntroducedAt != null;
+      if (typeof runtimeAnalysis.confidence === "number") {
+        analysis.confidence = Math.max(0.5, Math.min(0.98, runtimeAnalysis.confidence));
+      }
+      analysis.progressPoint = runtimeAnalysis.earliestDecodableAt || analysis.progressPoint;
+      if (runtimeAnalysis.label === "decodable") {
+        analysis.decodability = "decodable_now";
+      } else if (runtimeAnalysis.label === "heart_word") {
+        analysis.decodability = "temporarily_irregular";
+        if (analysis.heartStatusByTileIndex.length) analysis.heartStatusByTileIndex[0] = "permanent";
+      } else {
+        analysis.decodability = analysis.isHFW ? "temporarily_irregular" : "permanently_irregular";
+      }
+      if (runtimeAnalysis.blocked_features && runtimeAnalysis.blocked_features.length) {
+        analysis.reasons.push("Engine blocked: " + runtimeAnalysis.blocked_features.join(", "));
+      } else {
+        analysis.reasons.push("Engine allowed by taught concepts.");
+      }
+    }
+
+    if (IRREGULAR_SET.has(normalized)) {
+      analysis.reasons.push("Irregular high-frequency word from shared selection set.");
+    }
+    analysis.reasons.push("Scope score: " + getStrictScopeScore(analysis).toFixed(2));
     applyWordAnalysisOverrides(analysis, override);
     return analysis;
   }
@@ -1578,16 +2002,27 @@
     });
 
     if (!found) {
+      const fallbackTables = {
+        fundations: { shortO: 1, shortE: 2, shortU: 2, digraph: 3, blend: 4, glued: 6, silentE: 7, open: 8, vowelTeam: 9, rcontrolled: 10, diphthong: 11, suffix: 12, prefix: 13, morphology: 14 },
+        ufli: { shortO: 2, shortE: 3, shortU: 4, digraph: 5, blend: 7, glued: 8, silentE: 10, open: 11, vowelTeam: 12, rcontrolled: 12, diphthong: 12, suffix: 13, prefix: 14, morphology: 15 },
+        from_phonics_to_reading: { shortO: 2, shortE: 3, shortU: 3, digraph: 4, blend: 5, glued: 6, silentE: 6, open: 6, vowelTeam: 7, rcontrolled: 8, diphthong: 8, suffix: 10, prefix: 11, morphology: 11 }
+      };
+      const fallbackByProgram = fallbackTables[curriculum] || fallbackTables.ufli;
       if (tags.includes("short-a") || tags.includes("short-i")) return 1;
-      if (tags.includes("short-o")) return curriculum === "fundations" ? 1 : 2;
-      if (tags.includes("short-e")) return curriculum === "fundations" ? 2 : 3;
-      if (tags.includes("short-u")) return curriculum === "fundations" ? 2 : 4;
-      if (tags.includes("digraph")) return curriculum === "fundations" ? 3 : 5;
-      if (tags.includes("blend")) return curriculum === "fundations" ? 4 : 7;
-      if (tags.includes("glued")) return curriculum === "fundations" ? 6 : 8;
-      if (tags.includes("silent-e")) return curriculum === "fundations" ? 7 : 10;
-      if (tags.includes("open")) return curriculum === "fundations" ? 8 : 11;
-      if (tags.includes("vowel-team")) return curriculum === "fundations" ? 9 : 12;
+      if (tags.includes("short-o")) return fallbackByProgram.shortO;
+      if (tags.includes("short-e")) return fallbackByProgram.shortE;
+      if (tags.includes("short-u")) return fallbackByProgram.shortU;
+      if (tags.includes("digraph")) return fallbackByProgram.digraph;
+      if (tags.includes("blend")) return fallbackByProgram.blend;
+      if (tags.includes("glued")) return fallbackByProgram.glued;
+      if (tags.includes("silent-e")) return fallbackByProgram.silentE;
+      if (tags.includes("open")) return fallbackByProgram.open;
+      if (tags.includes("vowel-team")) return fallbackByProgram.vowelTeam;
+      if (tags.some((tag) => tag.indexOf("r_controlled_") === 0 || tag === "r-controlled")) return fallbackByProgram.rcontrolled;
+      if (tags.includes("diphthong")) return fallbackByProgram.diphthong;
+      if (tags.includes("suffix")) return fallbackByProgram.suffix;
+      if (tags.includes("prefix")) return fallbackByProgram.prefix;
+      if (tags.includes("morphology") || tags.includes("multisyllable") || tags.includes("schwa")) return fallbackByProgram.morphology;
     }
     return earliest;
   }
@@ -1599,46 +2034,83 @@
   }
 
   function derivePhonicsTagsForWord(normalized) {
+    const word = normalizeWord(normalized);
     const tags = [];
-    if (!normalized) return tags;
-    if (/(sh|ch|th|wh|ck)/.test(normalized)) tags.push("digraph");
-    if (/(ff|ll|ss|zz)$/.test(normalized)) tags.push("ffllsszz");
-    if (/(all|oll|ild|old|ind|ost|ing|ang|ong|ung|ank|ink|am|an)$/.test(normalized)) tags.push("glued");
-    if (/(ai|ay|ee|ea|oa|ow)/.test(normalized)) tags.push("vowel-team");
-    if (/[aeiou][bcdfghjklmnpqrstvwxyz]e$/.test(normalized) && normalized.length > 3) tags.push("silent-e");
-    if (/^[bcdfghjklmnpqrstvwxyz]{2}/.test(normalized) || /[bcdfghjklmnpqrstvwxyz]{2}$/.test(normalized)) tags.push("blend");
-    if (/(ng|nk)$/.test(normalized)) tags.push("final_ng");
-    if ((normalized.length <= 2 || /^[bcdfghjklmnpqrstvwxyz]*[aeiou]$/.test(normalized)) && /[aeiouy]$/.test(normalized)) tags.push("open");
-    if (/^[bcdfghjklmnpqrstvwxyz]*a[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-a");
-    if (/^[bcdfghjklmnpqrstvwxyz]*i[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-i");
-    if (/^[bcdfghjklmnpqrstvwxyz]*o[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-o");
-    if (/^[bcdfghjklmnpqrstvwxyz]*e[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-e");
-    if (/^[bcdfghjklmnpqrstvwxyz]*u[bcdfghjklmnpqrstvwxyz]+$/.test(normalized) && !tags.includes("silent-e")) tags.push("short-u");
+    const vowels = "aeiou";
+    if (!word) return tags;
+
+    ENGINE_DIGRAPHS.forEach((digraph) => {
+      if (word.includes(digraph)) tags.push("digraph_" + digraph);
+    });
+    ENGINE_VOWEL_TEAMS.forEach((team) => {
+      if (word.includes(team)) tags.push("vowel_team_" + team);
+    });
+    ENGINE_R_CONTROLLED.forEach((chunk) => {
+      if (word.includes(chunk)) tags.push("r_controlled_" + chunk);
+    });
+    if (/(oi|oy|ou|ow|au|aw)/.test(word)) tags.push("diphthong");
+    if (/(ing|ed|es|s|er|est|ly|ful|less|ness)$/.test(word) && word.length > 3) tags.push("suffix");
+    if (/^(un|re|dis|pre|mis)/.test(word) && word.length > 4) tags.push("prefix");
+    if (/(tion|sion|ture|cian)$/.test(word)) tags.push("morphology");
+    if (/(tion|sion|ture|cian)/.test(word)) tags.push("multisyllable");
+    if (/(a|e|i|o|u).*(a|e|i|o|u)/.test(word) && countSyllables(word) >= 2) tags.push("multisyllable");
+    if (/(about|again|because|pencil|lemon|wagon|sofa|animal|people)/.test(word)) tags.push("schwa");
+
+    if (word.length >= 4 && word.endsWith("e") && !vowels.includes(word[word.length - 2]) && vowels.includes(word[word.length - 3])) {
+      tags.push("CVCe");
+      tags.push("silent-e");
+    }
+    if (word.length === 3 && !vowels.includes(word[0]) && vowels.includes(word[1]) && !vowels.includes(word[2])) {
+      tags.push("CVC");
+    }
+    if (/^[bcdfghjklmnpqrstvwxyz]{2}/.test(word) || /[bcdfghjklmnpqrstvwxyz]{2}$/.test(word)) tags.push("blend");
+    if (/(ff|ll|ss|zz)$/.test(word)) tags.push("ffllsszz");
+    if (/(all|oll|ild|old|ind|ost|ing|ang|ong|ung|ank|ink|am|an)$/.test(word)) tags.push("glued");
+    if (/(ng|nk)$/.test(word)) tags.push("final_ng");
+    if ((word.length <= 2 || /^[bcdfghjklmnpqrstvwxyz]*[aeiou]$/.test(word)) && /[aeiouy]$/.test(word)) tags.push("open");
+    if (/^[bcdfghjklmnpqrstvwxyz]*a[bcdfghjklmnpqrstvwxyz]+$/.test(word) && !tags.includes("silent-e")) tags.push("short-a");
+    if (/^[bcdfghjklmnpqrstvwxyz]*i[bcdfghjklmnpqrstvwxyz]+$/.test(word) && !tags.includes("silent-e")) tags.push("short-i");
+    if (/^[bcdfghjklmnpqrstvwxyz]*o[bcdfghjklmnpqrstvwxyz]+$/.test(word) && !tags.includes("silent-e")) tags.push("short-o");
+    if (/^[bcdfghjklmnpqrstvwxyz]*e[bcdfghjklmnpqrstvwxyz]+$/.test(word) && !tags.includes("silent-e")) tags.push("short-e");
+    if (/^[bcdfghjklmnpqrstvwxyz]*u[bcdfghjklmnpqrstvwxyz]+$/.test(word) && !tags.includes("silent-e")) tags.push("short-u");
     if (!tags.length) tags.push("unknown");
-    if (/th/.test(normalized)) tags.push("digraph_th");
-    if (/ng/.test(normalized)) tags.push("final_ng");
-    if (/ea/.test(normalized)) tags.push("vowel_team_ea");
-    if (/ai/.test(normalized)) tags.push("vowel_team_ai");
     return Array.from(new Set(tags));
   }
 
   function segmentWordToGraphemeTiles(normalized) {
+    const word = normalizeWord(normalized);
     const tiles = [];
     let index = 0;
-    while (index < normalized.length) {
+    while (index < word.length) {
+      if (word.slice(index, index + 3) === "igh") {
+        tiles.push("igh");
+        index += 3;
+        continue;
+      }
+      if (word.slice(index, index + 2) === "ng" && isNgDigraph(word, index)) {
+        tiles.push("ng");
+        index += 2;
+        continue;
+      }
+      const pair = word.slice(index, index + 2);
+      if (pair.length === 2 && pair !== "ng" && ENGINE_DIGRAPHS.concat(ENGINE_VOWEL_TEAMS, ENGINE_R_CONTROLLED).includes(pair)) {
+        tiles.push(pair);
+        index += 2;
+        continue;
+      }
       let match = "";
       MULTI_TILE_GRAPHEMES.forEach((tile) => {
-        if (!match && normalized.slice(index, index + tile.length) === tile) {
+        if (!match && word.slice(index, index + tile.length) === tile) {
           match = tile;
         }
       });
       if (match) {
         tiles.push(match);
         index += match.length;
-      } else {
-        tiles.push(normalized[index]);
-        index += 1;
+        continue;
       }
+      tiles.push(word[index]);
+      index += 1;
     }
     return tiles;
   }
@@ -1689,15 +2161,29 @@
 
   function inferConfidence(normalized, entry, tags) {
     if (WORD_ANALYSIS_OVERRIDES[normalized]) return WORD_ANALYSIS_OVERRIDES[normalized].confidence;
-    if (entry) return 0.9;
-    if (ALWAYS_AVAILABLE_TEXT_WORDS.includes(normalized)) return 0.95;
-    if (tags.includes("unknown")) return 0.7;
-    return 0.82;
+    const coverage = getKnownGraphemeCoverage(segmentWordToGraphemeTiles(normalized));
+    let confidence = 0.82;
+
+    if (IRREGULAR_SET.has(normalized)) confidence = HEART_RANGE_MAP[normalized] ? 0.88 : 0.68;
+    else if (entry) confidence = 0.9;
+    else if (ALWAYS_AVAILABLE_TEXT_WORDS.includes(normalized)) confidence = 0.95;
+    else if (countSyllables(normalized) >= 3) confidence = 0.62;
+    else if (countSyllables(normalized) === 2 && !tags.some((tag) => tag === "open" || tag === "glued" || tag.indexOf("vowel_team_") === 0)) confidence = 0.7;
+    else if (tags.includes("unknown")) confidence = 0.68;
+
+    if (coverage >= 0.95) confidence += 0.04;
+    else if (coverage < 0.7) confidence -= 0.12;
+    else if (coverage < 0.85) confidence -= 0.06;
+
+    if (tags.includes("schwa") && state.config.program === "fundations" && state.config.unit < 14) confidence -= 0.06;
+    if (tags.includes("morphology") && state.config.program === "fundations" && state.config.unit < 13) confidence -= 0.05;
+
+    return Math.max(0.5, Math.min(0.98, confidence));
   }
 
   function isHighFrequencyWord(normalized) {
     const levels = PROGRAM_DATA[getCurrentCurriculum()].levels;
-    return levels.some((level) => level.highFrequencyWords.some((word) => normalizeWord(word) === normalized));
+    return HFW_SET.has(normalized) || levels.some((level) => level.highFrequencyWords.some((word) => normalizeWord(word) === normalized));
   }
 
   function buildDistractorTiles(graphemeTiles) {
@@ -1708,6 +2194,14 @@
       if (!graphemeTiles.includes(tile)) distractors.push(tile);
     });
     return distractors;
+  }
+
+  function getKnownGraphemeCoverage(graphemeTiles) {
+    if (!graphemeTiles || !graphemeTiles.length) return 0;
+    const knownCount = graphemeTiles.reduce((count, tile) => {
+      return count + (KNOWN_GRAPHEMES.has((tile || "").toLowerCase()) ? 1 : 0);
+    }, 0);
+    return knownCount / graphemeTiles.length;
   }
 
   function getOrBuildWordAnalysis(rawWord) {
@@ -1723,12 +2217,53 @@
 
   function isWordAllowedForDisplay(analysis, event) {
     if (!analysis) return false;
+    const profile = getAllowedProfile();
     if (analysis.curriculum !== getCurrentCurriculum()) return false;
+    if (typeof analysis.engineAllowed === "boolean") {
+      if (!analysis.engineAllowed && !(event && event.allowIrregular)) return false;
+    }
     if (analysis.progressPoint > state.config.unit) return false;
     if (analysis.confidence < 0.75) return false;
+    if (getStrictScopeScore(analysis) < 0.34) return false;
     if (analysis.decodability === "decodable_now") return true;
-    if (!analysis.isHFW && (!event || !event.allowIrregular)) return false;
-    return Boolean(event && (event.allowIrregular || event.intent === "choice" || event.intent === "story" || event.intent === "directive"));
+    if (!analysis.isHFW) return false;
+
+    const normalized = analysis.normalized;
+    const isCurrentHFW = profile.currentHighFrequency.has(normalized);
+    const isKnownHFW = profile.allHighFrequency.has(normalized);
+    const isAlwaysAllowed = ALWAYS_AVAILABLE_TEXT_WORDS.includes(normalized);
+
+    if (state.config.strictness === "strict") {
+      return isCurrentHFW || isAlwaysAllowed;
+    }
+    if (state.config.strictness === "moderate") {
+      return isCurrentHFW || isKnownHFW || isAlwaysAllowed;
+    }
+    return isCurrentHFW || isKnownHFW || analysis.isHFW || isAlwaysAllowed;
+  }
+
+  function getStrictScopeScore(analysis) {
+    const profile = getAllowedProfile();
+    if (!analysis || !analysis.phonicsTags || !analysis.phonicsTags.length) return 0;
+    const scopeTags = analysis.phonicsTags.filter((tag) => {
+      if (tag === "CVC") return true;
+      if (tag === "CVCe") return profile.allowedTags.has("silent-e");
+      if (tag.indexOf("digraph_") === 0) return profile.allowedTags.has("digraph");
+      if (tag.indexOf("vowel_team_") === 0) return profile.allowedTags.has("vowel-team");
+      if (tag.indexOf("r_controlled_") === 0) return profile.allowedTags.has("r-controlled") || state.config.unit >= (PROGRAM_THRESHOLDS[state.config.program] || PROGRAM_THRESHOLDS.ufli).rControlled;
+      if (tag === "final_ng") return profile.allowedTags.has("digraph") || profile.allowedTags.has("glued");
+      if (tag === "diphthong") return profile.allowedTags.has("diphthong") || profile.allowedTags.has("vowel-team");
+      if (tag === "suffix") return profile.allowedTags.has("suffix");
+      if (tag === "prefix") return profile.allowedTags.has("prefix");
+      if (tag === "morphology") return profile.allowedTags.has("morphology");
+      if (tag === "multisyllable") return profile.allowedTags.has("multisyllable");
+      if (tag === "schwa") return profile.allowedTags.has("schwa");
+      return profile.allowedTags.has(tag);
+    });
+    const tagScore = scopeTags.length / analysis.phonicsTags.length;
+    const syllablePenalty = analysis.isMultisyllabic && state.config.unit < 8 ? 0.18 : 0;
+    const irregularPenalty = analysis.decodability !== "decodable_now" && !analysis.isHFW ? 0.22 : 0;
+    return Math.max(0, tagScore - syllablePenalty - irregularPenalty);
   }
 
   function findRenderableAlias(normalized, event) {
@@ -1914,20 +2449,514 @@
   }
 
   function getDefaultHeartWordSelection() {
-    const buckets = getHeartWordBuckets();
-    const pick = function (list, count, singleHeartOnly) {
-      const source = (singleHeartOnly ? list.filter((item) => item.heartStatusByTileIndex.filter((status) => status !== "none").length === 1) : list).slice();
-      return source.slice(0, count);
-    };
-    const selection = []
-      .concat(pick(buckets.decodableNowHFWs, 6, false))
-      .concat(pick(buckets.temporaryHeartHFWs, 4, true))
-      .concat(pick(buckets.permanentHeartWords, 2, true));
+    const selectionResult = selectRecommendedWords({
+      tokens: collectSelectionTokensForCurrentEnv(),
+      curriculum: getCurrentCurriculum(),
+      progress: state.config.unit,
+      targetCount: 12,
+      toggles: getWordSelectionToggles()
+    });
+    if (selectionResult.selected.length) return selectionResult.selected;
 
-    if (selection.length < 12) {
-      return selection.concat(buckets.decodableNowHFWs.slice(0, 12 - selection.length));
+    const buckets = getHeartWordBuckets();
+    return buckets.decodableNowHFWs.slice(0, 12);
+  }
+
+  function getCurriculumModel(curriculum) {
+    const levels = PROGRAM_DATA[curriculum].levels;
+    const progressMax = levels[levels.length - 1].unit;
+    const heartWordIntroducedAtLookup = new Map();
+
+    levels.forEach((level) => {
+      (level.highFrequencyWords || []).forEach((word) => {
+        const normalized = normalizeWord(word);
+        if (!normalized || heartWordIntroducedAtLookup.has(normalized)) return;
+        heartWordIntroducedAtLookup.set(normalized, level.unit);
+      });
+    });
+
+    return {
+      progressMin: 1,
+      progressMax: progressMax,
+      taughtPatternsUpTo: function (progress) {
+        const safeProgress = Math.max(1, Math.min(progressMax, progress));
+        const set = new Set(["CVC"]);
+        for (let unit = 1; unit <= safeProgress; unit += 1) {
+          (FEATURE_LADDER[curriculum][unit] || []).forEach((tag) => set.add(tag));
+        }
+        return set;
+      },
+      newPatternsAt: function (progress) {
+        const safeProgress = Math.max(1, Math.min(progressMax, progress));
+        return new Set(FEATURE_LADDER[curriculum][safeProgress] || []);
+      },
+      reviewPatterns: function (progress) {
+        const safeProgress = Math.max(1, Math.min(progressMax, progress));
+        const set = new Set();
+        (FEATURE_LADDER[curriculum][safeProgress - 1] || []).forEach((tag) => set.add(tag));
+        (FEATURE_LADDER[curriculum][safeProgress] || []).forEach((tag) => set.add(tag));
+        return set;
+      },
+      heartWordsIntroducedAt: function (progress) {
+        const safeProgress = Math.max(1, Math.min(progressMax, progress));
+        const set = new Set();
+        heartWordIntroducedAtLookup.forEach((introducedAt, word) => {
+          if (introducedAt === safeProgress) set.add(word);
+        });
+        return set;
+      },
+      heartWordsIntroducedUpTo: function (progress) {
+        const safeProgress = Math.max(1, Math.min(progressMax, progress));
+        const set = new Set();
+        heartWordIntroducedAtLookup.forEach((introducedAt, word) => {
+          if (introducedAt <= safeProgress) set.add(word);
+        });
+        return set;
+      },
+      heartWordIntroducedAtLookup: heartWordIntroducedAtLookup
+    };
+  }
+
+  function aggregateHeartStatusForSelection(analysis) {
+    if ((analysis.heartStatusByTileIndex || []).some((status) => status === "permanent")) return "permanent";
+    if ((analysis.heartStatusByTileIndex || []).some((status) => status === "temporary")) return "temporary";
+    return "none";
+  }
+
+  function estimateEarliestDecodableAt(analysis, model) {
+    const tags = analysis.phonicsTags || [];
+    if (!tags.length) return model.progressMin;
+    for (let progress = model.progressMin; progress <= model.progressMax; progress += 1) {
+      const taught = model.taughtPatternsUpTo(progress);
+      const allTaught = tags.every((tag) => {
+        if (tag === "CVC") return true;
+        if (tag.indexOf("digraph_") === 0) return taught.has("digraph");
+        if (tag.indexOf("vowel_team_") === 0) return taught.has("vowel-team");
+        if (tag.indexOf("r_controlled_") === 0) return taught.has("r-controlled") || progress >= (PROGRAM_THRESHOLDS[analysis.curriculum] || PROGRAM_THRESHOLDS.ufli).rControlled;
+        if (tag === "final_ng") return taught.has("digraph") || taught.has("glued");
+        if (tag === "diphthong") return taught.has("diphthong") || taught.has("vowel-team");
+        if (tag === "suffix") return taught.has("suffix");
+        if (tag === "prefix") return taught.has("prefix");
+        if (tag === "morphology") return taught.has("morphology");
+        if (tag === "multisyllable") return taught.has("multisyllable");
+        if (tag === "schwa") return taught.has("schwa");
+        return taught.has(tag);
+      });
+      if (allTaught) return progress;
     }
-    return selection.slice(0, 12);
+    return model.progressMax;
+  }
+
+  function analyzeWordWithTiming(rawWord, curriculum, progress, frequencyOnPage) {
+    const base = getOrBuildWordAnalysis(rawWord) || buildWordAnalysisForWord(rawWord);
+    if (!base) return null;
+
+    const analysis = cloneWordAnalysis(base);
+    const model = getCurriculumModel(curriculum);
+    const introducedAt = model.heartWordIntroducedAtLookup.get(analysis.normalized) || null;
+    const taught = model.taughtPatternsUpTo(progress);
+    const newNow = model.newPatternsAt(progress);
+    const reviewNow = model.reviewPatterns(progress);
+    const gap = (PROGRAM_THRESHOLDS[curriculum] || PROGRAM_THRESHOLDS.ufli).gap;
+
+    analysis.curriculum = curriculum;
+    analysis.frequencyOnPage = frequencyOnPage || 1;
+    analysis.isHeartScheduled = introducedAt !== null;
+    analysis.heartIntroducedAt = introducedAt;
+    analysis.heartStatusNow = aggregateHeartStatusForSelection(analysis);
+    analysis.containsNewPatternNow = (analysis.phonicsTags || []).some((tag) => newNow.has(tag));
+    analysis.containsRecentReviewPattern = (analysis.phonicsTags || []).some((tag) => reviewNow.has(tag));
+    analysis.containsUntaughtPatternNow = (analysis.phonicsTags || []).some((tag) => {
+      if (tag === "CVC") return false;
+      if (tag.indexOf("digraph_") === 0) return !taught.has("digraph");
+      if (tag.indexOf("vowel_team_") === 0) return !taught.has("vowel-team");
+      if (tag.indexOf("r_controlled_") === 0) return !(taught.has("r-controlled") || progress >= (PROGRAM_THRESHOLDS[curriculum] || PROGRAM_THRESHOLDS.ufli).rControlled);
+      if (tag === "final_ng") return !(taught.has("digraph") || taught.has("glued"));
+      if (tag === "diphthong") return !(taught.has("diphthong") || taught.has("vowel-team"));
+      if (tag === "suffix") return !taught.has("suffix");
+      if (tag === "prefix") return !taught.has("prefix");
+      if (tag === "morphology") return !taught.has("morphology");
+      if (tag === "multisyllable") return !taught.has("multisyllable");
+      if (tag === "schwa") return !taught.has("schwa");
+      return !taught.has(tag);
+    });
+    analysis.earliestDecodableAt = estimateEarliestDecodableAt(analysis, model);
+    analysis.isBelowLevel = analysis.earliestDecodableAt <= progress - gap;
+    analysis.isFarBelowLevelHeart = analysis.isHeartScheduled && analysis.heartIntroducedAt !== null && analysis.heartIntroducedAt <= progress - gap;
+    analysis.tokenLikelyName = /^[A-Z]/.test(rawWord) && normalizeWord(rawWord) !== "i";
+    return analysis;
+  }
+
+  function getWordSelectionToggles() {
+    return {
+      includeEarlierHeartWords: state.config.includeEarlierHeartWords,
+      includeBelowLevelDecodableReview: state.config.includeBelowLevelDecodableReview,
+      prioritizeRepeatedWords: state.config.prioritizeRepeatedWords,
+      excludeNames: state.config.excludeNames
+    };
+  }
+
+  function getSelectionTier(analysis, progress) {
+    if (analysis.containsNewPatternNow) return "A_NEW";
+    if (analysis.isHeartScheduled && analysis.heartIntroducedAt === progress) return "A_NEW";
+    if (analysis.containsRecentReviewPattern) return "B_REVIEW";
+    if (analysis.isHeartScheduled && analysis.heartIntroducedAt !== null && (analysis.heartIntroducedAt === progress || analysis.heartIntroducedAt === progress - 1)) {
+      return "B_REVIEW";
+    }
+    if (analysis.containsUntaughtPatternNow) return "C_PREVIEW";
+    if (analysis.isHeartScheduled && analysis.heartIntroducedAt !== null && analysis.heartIntroducedAt > progress) return "C_PREVIEW";
+    return "D_ON_LEVEL";
+  }
+
+  function getSelectionBadges(analysis, tier) {
+    const badges = [];
+    if (tier === "A_NEW") badges.push("NEW");
+    if (tier === "B_REVIEW") badges.push("REVIEW");
+    if (tier === "C_PREVIEW") badges.push("PREVIEW");
+    if (tier === "D_ON_LEVEL") badges.push("ON_LEVEL");
+    if (analysis.isBelowLevel || analysis.isFarBelowLevelHeart) badges.push("BELOW");
+    if (analysis.heartStatusNow !== "none" || analysis.isHeartScheduled) badges.push("HEART");
+    return badges;
+  }
+
+  function getSelectionBaseScore(tier) {
+    if (tier === "A_NEW") return 100;
+    if (tier === "B_REVIEW") return 80;
+    if (tier === "C_PREVIEW") return 60;
+    if (tier === "D_ON_LEVEL") return 40;
+    return -999;
+  }
+
+  function selectRecommendedWords(args) {
+    const toggles = Object.assign({
+      includeEarlierHeartWords: false,
+      includeBelowLevelDecodableReview: false,
+      prioritizeRepeatedWords: true,
+      excludeNames: false
+    }, args.toggles || {});
+
+    const adapterResult = selectWordsForGame(args.tokens || [], {
+      program: args.curriculum,
+      unit: args.progress,
+      strictness: state.config.strictness,
+      toggles: toggles
+    });
+    if (adapterResult && Array.isArray(adapterResult.audit)) {
+      const selectedSet = new Set((adapterResult.selected || []).map((w) => normalizeWord(w)));
+      const runtime = getWordEngineRuntime();
+      const auditRows = adapterResult.audit.map((row) => {
+        const analysis = analyzeWordWithTiming(row.word, args.curriculum, args.progress, row.frequencyOnPage || 1) || getOrBuildWordAnalysis(row.word);
+        if (analysis) {
+          analysis.earliestDecodableAt = row.earliestDecodableAt;
+          analysis.heartIntroducedAt = row.heartIntroducedAt;
+          analysis.isHeartScheduled = row.isHeartScheduled;
+          analysis.confidence = row.confidence;
+          analysis.engineBlockedFeatures = (row.conceptsBlocked || []).slice();
+          analysis.engineSupportedFeatures = (row.conceptsSupported || []).slice();
+          analysis.engineMappingPath = row.mappingPath || "";
+        }
+        return {
+          word: row.word,
+          normalized: row.normalized,
+          tier: row.tier,
+          badges: Array.isArray(row.badges) ? row.badges.slice() : [],
+          score: row.score,
+          reasons: (row.reasons || []).slice(),
+          isSelected: selectedSet.has(row.normalized),
+          progress: args.progress,
+          curriculum: args.curriculum,
+          earliestDecodableAt: row.earliestDecodableAt,
+          heartIntroducedAt: row.heartIntroducedAt,
+          isHeartScheduled: row.isHeartScheduled,
+          frequencyOnPage: row.frequencyOnPage || 1,
+          confidence: row.confidence,
+          conceptsBlocked: (row.conceptsBlocked || []).slice(),
+          conceptsSupported: (row.conceptsSupported || []).slice(),
+          label: row.label || "",
+          allowed: row.allowed !== false,
+          mappingPath: row.mappingPath || "",
+          engineVersion: row.engineVersion || (runtime && runtime.version) || "unknown",
+          analysis: analysis
+        };
+      }).sort((a, b) => b.score - a.score);
+
+      const selected = auditRows.filter((row) => row.isSelected && row.analysis).slice(0, args.targetCount).map((row) => row.analysis);
+      return {
+        selected: selected,
+        audit: auditRows.map((row) => {
+          const clone = Object.assign({}, row);
+          delete clone.analysis;
+          return clone;
+        })
+      };
+    }
+
+    const frequency = new Map();
+    const analyzed = [];
+
+    (args.tokens || []).forEach((token) => {
+      const normalized = normalizeWord(token);
+      if (!normalized) return;
+      frequency.set(normalized, (frequency.get(normalized) || 0) + 1);
+    });
+
+    (args.tokens || []).forEach((token) => {
+      const normalized = normalizeWord(token);
+      if (!normalized) return;
+      const analysis = analyzeWordWithTiming(token, args.curriculum, args.progress, frequency.get(normalized) || 1);
+      if (analysis) analyzed.push(analysis);
+    });
+
+    const audit = analyzed.map((analysis) => {
+      let tier = getSelectionTier(analysis, args.progress);
+      const repeated = (analysis.frequencyOnPage || 1) >= 2;
+      const shouldExclude = analysis.isFarBelowLevelHeart || (analysis.isBelowLevel && analysis.normalized.length <= 4);
+      if (shouldExclude) {
+        const allowByToggle =
+          (analysis.isFarBelowLevelHeart && toggles.includeEarlierHeartWords) ||
+          (analysis.isBelowLevel && toggles.includeBelowLevelDecodableReview);
+        if (!(allowByToggle || (toggles.prioritizeRepeatedWords && repeated))) {
+          tier = "E_BELOW_EXCLUDE";
+        }
+      }
+
+      let score = getSelectionBaseScore(tier);
+      const reasons = [];
+      if (tier === "A_NEW") reasons.push("Tier A: new learning now");
+      if (tier === "B_REVIEW") reasons.push("Tier B: recent review window");
+      if (tier === "C_PREVIEW") reasons.push("Tier C: preview (not yet taught)");
+      if (tier === "D_ON_LEVEL") reasons.push("Tier D: on-level practice");
+      if (tier === "E_BELOW_EXCLUDE") reasons.push("Tier E: excluded (below-level) by default");
+
+      if (toggles.prioritizeRepeatedWords) {
+        if ((analysis.frequencyOnPage || 1) >= 2) {
+          score += 10;
+          reasons.push("Repeated on page (>=2)");
+        }
+        if ((analysis.frequencyOnPage || 1) >= 3) {
+          score += 5;
+          reasons.push("Repeated on page (>=3)");
+        }
+      }
+      if (analysis.isMultisyllabic && args.progress >= (PROGRAM_THRESHOLDS[args.curriculum] || PROGRAM_THRESHOLDS.ufli).multisyllableBonus) {
+        score += 10;
+        reasons.push("Multisyllabic bonus (late enough)");
+      }
+      if (toggles.excludeNames && analysis.tokenLikelyName) {
+        score -= 40;
+        reasons.push("Name penalty (excludeNames ON)");
+      }
+      if (analysis.confidence < 0.75) {
+        score -= 50;
+        reasons.push("Low confidence analysis (<0.75)");
+      }
+
+      return {
+        word: analysis.original,
+        normalized: analysis.normalized,
+        tier: tier,
+        badges: getSelectionBadges(analysis, tier),
+        score: score,
+        reasons: reasons,
+        isSelected: false,
+        progress: args.progress,
+        curriculum: args.curriculum,
+        earliestDecodableAt: analysis.earliestDecodableAt,
+        heartIntroducedAt: analysis.heartIntroducedAt,
+        isHeartScheduled: analysis.isHeartScheduled,
+        frequencyOnPage: analysis.frequencyOnPage,
+        confidence: analysis.confidence,
+        analysis: analysis
+      };
+    });
+
+    audit.sort((a, b) => b.score - a.score);
+
+    const selected = [];
+    audit.forEach((row) => {
+      if (selected.length >= args.targetCount) return;
+      if (row.tier === "E_BELOW_EXCLUDE") return;
+      selected.push(row.analysis);
+      row.isSelected = true;
+    });
+
+    if (selected.length < args.targetCount) {
+      audit.forEach((row) => {
+        if (selected.length >= args.targetCount) return;
+        if (row.tier !== "D_ON_LEVEL" || row.isSelected) return;
+        selected.push(row.analysis);
+        row.isSelected = true;
+      });
+    }
+
+    if (selected.length < args.targetCount) {
+      audit.forEach((row) => {
+        if (selected.length >= args.targetCount) return;
+        if (row.tier !== "C_PREVIEW" || row.isSelected) return;
+        selected.push(row.analysis);
+        row.isSelected = true;
+      });
+    }
+
+    return {
+      selected: selected,
+      audit: audit.map((row) => {
+        const clone = Object.assign({}, row);
+        delete clone.analysis;
+        return clone;
+      })
+    };
+  }
+
+  function selectLegacyRecommendedWords(args) {
+    const frequency = new Map();
+    const seen = new Set();
+    const rows = [];
+
+    (args.tokens || []).forEach((token) => {
+      const normalized = normalizeWord(token);
+      if (!normalized) return;
+      frequency.set(normalized, (frequency.get(normalized) || 0) + 1);
+    });
+
+    (args.tokens || []).forEach((token) => {
+      const normalized = normalizeWord(token);
+      if (!normalized || seen.has(normalized)) return;
+      seen.add(normalized);
+      const analysis = getOrBuildWordAnalysis(token);
+      if (!analysis) return;
+      const eligible =
+        analysis.curriculum === args.curriculum &&
+        analysis.progressPoint <= args.progress &&
+        analysis.confidence >= 0.75 &&
+        getStrictScopeScore(analysis) >= 0.34 &&
+        (analysis.decodability === "decodable_now" || analysis.isHFW);
+      rows.push({
+        analysis: analysis,
+        score: (eligible ? 60 : 0) + ((frequency.get(normalized) || 1) * 5) + Math.round(analysis.confidence * 10),
+        eligible: eligible
+      });
+    });
+
+    rows.sort((a, b) => b.score - a.score);
+    return rows.filter((row) => row.eligible).slice(0, args.targetCount).map((row) => row.analysis);
+  }
+
+  function collectSelectionTokensForCurrentEnv() {
+    const story = NARRATIVES[state.config.env];
+    const tokens = [];
+    story.nodes.forEach((node) => {
+      node.text.concat([node.choiceA, node.choiceB]).forEach((line) => {
+        (line.match(/[A-Za-z']+/g) || []).forEach((token) => tokens.push(token));
+      });
+    });
+    return tokens;
+  }
+
+  function renderSelectionAudit() {
+    if (!ui.wordAuditPanel || !ui.wordAuditOutput) return;
+    ui.wordAuditPanel.classList.toggle("hidden", !state.debugWords);
+    if (!state.debugWords) return;
+
+    const tokens = collectSelectionTokensForCurrentEnv();
+    const gameContext = {
+      program: getCurrentCurriculum(),
+      unit: state.config.unit,
+      strictness: state.config.strictness,
+      toggles: getWordSelectionToggles()
+    };
+    const directAuditRows = buildAuditRowsForGame(tokens, gameContext);
+    const nextSelection = selectRecommendedWords({
+      tokens: tokens,
+      curriculum: getCurrentCurriculum(),
+      progress: state.config.unit,
+      targetCount: 12,
+      toggles: getWordSelectionToggles()
+    });
+    const legacySelection = selectLegacyRecommendedWords({
+      tokens: tokens,
+      curriculum: getCurrentCurriculum(),
+      progress: state.config.unit,
+      targetCount: 12
+    });
+    const legacySet = new Set(legacySelection.map((item) => item.normalized));
+    const nextSet = new Set(nextSelection.selected.map((item) => item.normalized));
+    const onlyOld = legacySelection.map((item) => item.normalized).filter((word) => !nextSet.has(word));
+    const onlyNew = nextSelection.selected.map((item) => item.normalized).filter((word) => !legacySet.has(word));
+
+    state.currentSelectionAudit = {
+      selected: nextSelection.selected.map((item) => item.normalized),
+      audit: nextSelection.audit,
+      onlyOld: onlyOld,
+      onlyNew: onlyNew
+    };
+
+    ui.wordAuditOutput.innerHTML = "";
+
+    const summary = document.createElement("div");
+    summary.className = "review-row";
+    const runtime = getWordEngineRuntime();
+    const directAuditCount = Array.isArray(directAuditRows) ? directAuditRows.length : 0;
+    summary.textContent =
+      "Selected: " +
+      nextSelection.selected.length +
+      " | Legacy only: " +
+      (onlyOld.join(", ") || "none") +
+      " | New only: " +
+      (onlyNew.join(", ") || "none") +
+      " | Direct audit rows: " +
+      directAuditCount +
+      " | Engine: " +
+      (runtime ? runtime.version : "legacy-only") +
+      (state.wordEngineWarning ? " | " + state.wordEngineWarning : "");
+    ui.wordAuditOutput.appendChild(summary);
+
+    if (onlyOld.length) {
+      const oldOnly = document.createElement("div");
+      oldOnly.className = "review-row";
+      oldOnly.textContent = "Only in legacy selector: " + onlyOld.join(", ");
+      ui.wordAuditOutput.appendChild(oldOnly);
+    }
+    if (onlyNew.length) {
+      const newOnly = document.createElement("div");
+      newOnly.className = "review-row";
+      newOnly.textContent = "Only in new engine selector: " + onlyNew.join(", ");
+      ui.wordAuditOutput.appendChild(newOnly);
+    }
+
+    nextSelection.audit
+      .slice()
+      .sort((a, b) => b.score - a.score)
+      .forEach((row) => {
+        const item = document.createElement("div");
+        item.className = "review-row";
+        item.textContent =
+          (row.isSelected ? "✅ " : "") +
+          row.word +
+          " | " +
+          row.tier +
+          " | score " +
+          row.score +
+          " | label " +
+          (row.label || "—") +
+          " | allowed " +
+          (row.allowed === false ? "no" : "yes") +
+          " | intro " +
+          (row.heartIntroducedAt == null ? "—" : row.heartIntroducedAt) +
+          " | earliest " +
+          row.earliestDecodableAt +
+          " | conf " +
+          Number(row.confidence || 0).toFixed(2) +
+          " | blocked [" +
+          ((row.conceptsBlocked || []).join(", ") || "—") +
+          "] | supported [" +
+          ((row.conceptsSupported || []).join(", ") || "—") +
+          "] | map " +
+          (row.mappingPath || "—") +
+          " | " +
+          row.reasons.join(" • ");
+        ui.wordAuditOutput.appendChild(item);
+      });
   }
 
   function getDisplayNode(node) {
@@ -2342,51 +3371,21 @@
       return inferWord(raw, profile);
     }
 
-    if (!isWordAllowedForDisplay(analysis, event || { intent: "story", allowIrregular: true })) {
-      const tags = analysis.phonicsTags.slice();
-      return {
-        word: raw,
-        valid: false,
-        tags: tags,
-        reason: analysis.confidence < 0.75 ? "Word analysis confidence is too low for child-facing text." : "Blocked by curriculum scope for this unit."
-      };
+    const valid = isWordAllowedForDisplay(analysis, event || { intent: "story", allowIrregular: true });
+    const scopeScore = getStrictScopeScore(analysis);
+    let reason = "Validated by strict word analysis layer.";
+    if (!valid) {
+      if (analysis.confidence < 0.75) reason = "Word analysis confidence is too low for child-facing text.";
+      else if (scopeScore < 0.34) reason = "Word falls outside the current taught-pattern score.";
+      else reason = "Blocked by curriculum scope for this unit.";
     }
 
-    const entry = wordLookup[cleaned];
-    if (!entry) {
-      return {
-        word: raw,
-        valid: true,
-        tags: analysis.phonicsTags.slice(),
-        reason: "Validated by word analysis layer."
-      };
-    }
-
-    const tags = entry.tags.slice();
-    const hasAllowedTag = tags.some((tag) => profile.allowedTags.has(tag));
-    const isHighFrequency = profile.allHighFrequency.has(cleaned) || profile.currentHighFrequency.has(cleaned);
-    const isStrictTrick = state.config.strictness === "strict" && tags.includes("trick") && !profile.currentHighFrequency.has(cleaned);
-    const isModerateTrick = state.config.strictness === "moderate" && tags.includes("trick") && !profile.allHighFrequency.has(cleaned);
-    const isLooseUnknown = state.config.strictness === "loose" && tags.includes("trick");
-
-    let valid = hasAllowedTag || isHighFrequency || isLooseUnknown;
-    let reason = "Uses allowed taught pattern.";
-
-    if (isStrictTrick) {
-      valid = false;
-      reason = "Strict mode blocks untaught trick word.";
-    } else if (isModerateTrick) {
-      valid = false;
-      reason = "Moderate mode allows only introduced trick words.";
-    } else if (!hasAllowedTag && !isHighFrequency && !isLooseUnknown) {
-      valid = false;
-      reason = "No allowed grapheme tag for this unit.";
-    } else if (tags.includes("nyc") && !state.config.nycVocab) {
-      valid = false;
-      reason = "NYC vocabulary toggle is off.";
-    }
-
-    return { word: raw, valid, tags, reason };
+    return {
+      word: raw,
+      valid: valid,
+      tags: analysis.phonicsTags.slice(),
+      reason: reason
+    };
   }
 
   function inferWord(raw, profile) {
@@ -2425,6 +3424,8 @@
 
   function updateDebugPanel() {
     ui.debugPanel.classList.toggle("hidden", !state.config.debug);
+    ui.audioDebugPanel.classList.toggle("hidden", !state.debugAudio);
+    updateAudioDebugPanel();
     if (!state.config.debug) return;
 
     refreshWordAnalysisIndex();
@@ -2465,6 +3466,13 @@
       ui.debugOutput.appendChild(heartSelection);
     }
 
+    if (state.currentSelectionAudit) {
+      const selectionChip = document.createElement("div");
+      selectionChip.className = "debug-chip";
+      selectionChip.textContent = "Selection audit: " + state.currentSelectionAudit.selected.length + " selected | legacy-only " + (state.currentSelectionAudit.onlyOld.join(", ") || "none");
+      ui.debugOutput.appendChild(selectionChip);
+    }
+
     const choiceWarnings = getChoiceLanguageWarnings(state.currentNarrative);
     choiceWarnings.forEach((warning) => {
       const chip = document.createElement("div");
@@ -2487,6 +3495,28 @@
         chip.textContent = wordInfo.word + " -> " + (wordInfo.valid ? "ok" : "flag") + " | " + wordInfo.tags.join(", ") + " | " + wordInfo.reason;
         ui.debugOutput.appendChild(chip);
       });
+    });
+  }
+
+  function updateAudioDebugPanel() {
+    if (!ui.audioDebugPanel || !ui.audioDebugOutput || !state.debugAudio) return;
+    ui.audioDebugOutput.innerHTML = "";
+    [
+      "Implementation: " + state.audioImplementation,
+      "Unlocked: " + (state.audioUnlocked ? "true" : "false"),
+      "AudioContext: " + (state.audioCtx ? state.audioCtx.state : "none"),
+      "Muted: " + (state.muted ? "true" : "false"),
+      "Last event: " + (state.lastAudioEvent || "none"),
+      "Last move input: " + (state.lastMoveEvent || "none"),
+      "Last move result: " + (state.lastMoveResult || "none"),
+      "Last sound attempt: " + (state.lastSoundAttempt || "none"),
+      "Last sound played: " + (state.lastSoundPlayed ? "true" : "false"),
+      "Last error: " + (state.lastAudioError || "none")
+    ].forEach((text) => {
+      const row = document.createElement("div");
+      row.className = "review-row";
+      row.textContent = text;
+      ui.audioDebugOutput.appendChild(row);
     });
   }
 
@@ -3153,6 +4183,7 @@
 
   function renderReview() {
     const report = runUsabilityReview();
+    renderSelectionAudit();
     ui.reviewOutput.innerHTML = "";
     report.forEach((item) => {
       const row = document.createElement("div");
@@ -4477,10 +5508,39 @@
   }
 
   function playBlip(frequency, duration, type) {
-    if (state.muted) return;
+    if (state.muted) {
+      state.lastSoundAttempt = "muted";
+      state.lastSoundPlayed = false;
+      updateAudioDebugPanel();
+      return;
+    }
     try {
-      unlockAudio();
-      if (!state.audioCtx || state.audioCtx.state === "suspended") return;
+      unlockAudio("playBlip");
+      if (!state.audioCtx) {
+        state.lastSoundAttempt = "no-audio-context";
+        state.lastSoundPlayed = false;
+        updateAudioDebugPanel();
+        return;
+      }
+      if (state.audioCtx.state === "suspended") {
+        state.lastSoundAttempt = "queued-until-unlock";
+        state.lastSoundPlayed = false;
+        const queuedFrequency = frequency;
+        const queuedDuration = duration;
+        const queuedType = type;
+        Promise.resolve(state.audioReadyPromise || unlockAudio("queued-play"))
+          .then((ready) => {
+            if (ready && state.audioCtx && state.audioCtx.state === "running" && !state.muted) {
+              playBlip(queuedFrequency, queuedDuration, queuedType);
+            }
+          })
+          .catch((error) => {
+            state.lastAudioError = error && error.message ? error.message : "Queued audio play failed.";
+            updateAudioDebugPanel();
+          });
+        updateAudioDebugPanel();
+        return;
+      }
       const now = state.audioCtx.currentTime;
       const oscillator = state.audioCtx.createOscillator();
       const gain = state.audioCtx.createGain();
@@ -4492,9 +5552,21 @@
       gain.connect(state.audioCtx.destination);
       oscillator.start(now);
       oscillator.stop(now + duration);
+      state.lastSoundAttempt = "played";
+      state.lastSoundPlayed = true;
+      state.lastAudioError = "";
+      updateAudioDebugPanel();
     } catch (error) {
-      // Audio is optional and should fail quietly.
+      state.lastSoundAttempt = "error";
+      state.lastSoundPlayed = false;
+      state.lastAudioError = error && error.message ? error.message : "Audio play failed.";
+      updateAudioDebugPanel();
     }
+  }
+
+  function playStepSound(source) {
+    state.lastSoundAttempt = source || "step";
+    playBlip(260 + state.player.step * 20, 0.025, "square");
   }
 
   function escapeHtml(text) {

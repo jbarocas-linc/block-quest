@@ -1,0 +1,15 @@
+{
+  "engineVersion": "1.0.0",
+  "dataVersion": "1.0.0",
+  "compatSchemaVersion": "1",
+  "curriculaSupported": [
+    "fundations",
+    "ufli",
+    "from_phonics_to_reading"
+  ],
+  "checksums": {
+    "engine-runtime-v1.js": "5efbe120b40a3b1de731888ec59c280e2e6345d72378bded93529e070c8a43e5",
+    "engine-data-v1.json": "ab1c548d95da26233ceb7a2eafa2a22850e8653d6373d03709ee8b7fc3620f1c"
+  },
+  "notes": "Versioned runtime bundle for Block Quest offline integration."
+}
